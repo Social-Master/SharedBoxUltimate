@@ -1,4 +1,4 @@
-package sharedBoxUltimate;
+package models;
 
 public class Admin extends Mitarbeiter {
 

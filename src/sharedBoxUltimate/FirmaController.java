@@ -2,6 +2,8 @@ package sharedBoxUltimate;
 
 import java.io.File;
 
+import models.Firma;
+
 public class FirmaController {
 	private Firma model;
 	

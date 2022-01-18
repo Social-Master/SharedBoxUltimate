@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
+import models.Firma;
+
 public class FirmenInitializer {
 	
 	public static Set<Firma> firmen = new HashSet<Firma>();
