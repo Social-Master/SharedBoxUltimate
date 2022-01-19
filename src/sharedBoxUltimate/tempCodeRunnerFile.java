@@ -1,1 +1,0 @@
-	Fileview gui = new Fileview();
