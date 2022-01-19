@@ -1,7 +1,14 @@
-package sharedBoxUltimate;
+/**
+ * This is the Main class, that implements everything.
+ */
+
+//package sharedBoxUltimate;
+
+//import Fileview;
 
 public class Main {
 	public static void main (String[] args) {
-		System.out.println("Hello World!");
+		Fileview gui = new Fileview();
+		gui.go();
 	}
 }
