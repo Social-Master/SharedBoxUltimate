@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.time.temporal.TemporalQueries;
 import java.awt.*;
 
-public class Fileview extends JFrame {
+public class Fileview {
 
 	/**
 	 * These are the main things that allow a window to appear.
@@ -17,7 +17,7 @@ public class Fileview extends JFrame {
 	FlowLayout topLayout = new FlowLayout();
 	JTextArea directoryContentAreaPlaceholder = null;	// This is just a placeholder. It will be replaced with something that views directory content.
 
-	public void go() {
+	public void fileviewGo() {
 		frame = new JFrame("Shared-Box Ultimate");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1000,500);
@@ -46,14 +46,14 @@ public class Fileview extends JFrame {
 		directoryContentAreaPlaceholder.append("Placeholder for directory content listing");
 		directoryContentAreaPlaceholder.setEditable(false);
 
-		JPanel directoryContentAreaPanel = new JPanel();
+		final JPanel directoryContentAreaPanel = new JPanel();
 		directoryContentAreaPanel.add(directoryContentAreaPlaceholder);
 		directoryContentAreaPanel.setOpaque(true);
 
 		/**
-		 * This userSettingsPanel ist an area that allows accessing the current user their settings. If an administrator is logged in, the department buttons will also appear; they are not accessable to normal users.
+		 * This userSettingsPanel is an area that allows accessing the current user their settings. If an administrator is logged in, the department buttons will also appear; they are not accessable to normal users.
 		 */
-		JPanel userSettingsPanel = new JPanel();
+		final JPanel userSettingsPanel = new JPanel();
 		JButton editProfileButton = new JButton("Edit Profile");
 		JButton deleteProfileButton = new JButton("Delete Profile");
 		JButton createDepartmentButton = new JButton("Create Department");

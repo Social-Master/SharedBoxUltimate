@@ -8,7 +8,7 @@
 
 public class Main {
 	public static void main (String[] args) {
-		Fileview gui = new Fileview();
-		gui.go();
+		Loginview gui = new Loginview();
+		gui.loginviewGo();
 	}
 }
