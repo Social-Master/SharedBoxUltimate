@@ -1,5 +1,5 @@
 /**
- * This class is the View class; it views the data, e.g. Files and Directories.
+ * This class is the View class; it views the data, e.g. Files and Directories and provides access points to the settings.
  */
 
 //package sharedBoxUltimate;
@@ -10,10 +10,12 @@ import java.awt.*;
 
 public class Fileview extends JFrame {
 
+	/**
+	 * These are the main things that allow a window to appear.
+	 */
 	JFrame frame = null;
 	FlowLayout topLayout = new FlowLayout();
-	JTextArea directoryContentAreaPlaceholder = null;
-	//JTextArea userSettingsAreaPlaceholder = null;
+	JTextArea directoryContentAreaPlaceholder = null;	// This is just a placeholder. It will be replaced with something that views directory content.
 
 	public void go() {
 		frame = new JFrame("Shared-Box Ultimate");
@@ -22,24 +24,35 @@ public class Fileview extends JFrame {
         frame.setLocation(300,300);
         frame.getContentPane();
 
+		/**
+		 * This is the panel that hold the label displaying the current directory and the button allowing to muve up a directory.
+		 * It is using the FlowLayout because the other ones didn't work properly.
+		 */
 		final JPanel topPanel = new JPanel();
 		topPanel.setLayout(topLayout);
 		topLayout.setAlignment(FlowLayout.TRAILING);
 
 		JButton moveUpButton = new JButton("Move up directory");
-		JLabel filePathLabel = new JLabel("/user");
+		JLabel filePathLabel = new JLabel("/user");	// This should display the current name of the directory.
 
 		topPanel.add(filePathLabel);
 		topPanel.add(moveUpButton);
 		topPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
+		/**
+		 * This JTextArea is just a placeholder and will be replace by something that allows the display of the current directory's content.
+		 */
 		directoryContentAreaPlaceholder = new JTextArea(25, 65);
+		directoryContentAreaPlaceholder.append("Placeholder for directory content listing");
 		directoryContentAreaPlaceholder.setEditable(false);
 
 		JPanel directoryContentAreaPanel = new JPanel();
 		directoryContentAreaPanel.add(directoryContentAreaPlaceholder);
 		directoryContentAreaPanel.setOpaque(true);
 
+		/**
+		 * This userSettingsPanel ist an area that allows accessing the current user their settings. If an administrator is logged in, the department buttons will also appear; they are not accessable to normal users.
+		 */
 		JPanel userSettingsPanel = new JPanel();
 		JButton editProfileButton = new JButton("Edit Profile");
 		JButton deleteProfileButton = new JButton("Delete Profile");
