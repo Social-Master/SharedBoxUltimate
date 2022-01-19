@@ -58,7 +58,6 @@ public class Fileview implements ActionListener {
 		   JButton editDepartmentsButton = new JButton("Edit Departments");
 		   JButton deleteDepartmentsButton = new JButton("Delete Departments");
 		   JButton logoutButton = new JButton("Logout");
-		   logoutButton.addActionListener(this);
 		   userSettingsPanel.setLayout(new BoxLayout(userSettingsPanel, BoxLayout.PAGE_AXIS));
 		   userSettingsPanel.add(editProfileButton);
 		   userSettingsPanel.add(deleteProfileButton);
@@ -74,9 +73,4 @@ public class Fileview implements ActionListener {
 		   frame.setVisible(true);
 	 }
 
-	 public void actionPerformed(ActionEvent e) {
-		 Loginview loginview = new Loginview();
-		 loginview.loginviewGo();
-		 frame.dispose();
-	 }
 }

@@ -61,7 +61,6 @@ public class Loginview implements ActionListener {
 		   */
 
 		   JButton loginButton = new JButton("Login");
-		   loginButton.addActionListener(this);
 		   JButton registerButton = new JButton("Register");
 		   final JPanel buttonPanel = new JPanel();
 		   buttonPanel.setLayout(horizontalLayout);
@@ -74,11 +73,5 @@ public class Loginview implements ActionListener {
 		   frame.getContentPane().add(BorderLayout.SOUTH, buttonPanel);
 
 		   frame.setVisible(true);
-	 }
-
-	 public void actionPerformed(ActionEvent e) {
-		 Fileview fileview = new Fileview();
-		 fileview.fileviewGo();
-		 frame.dispose();
 	 }
 }
