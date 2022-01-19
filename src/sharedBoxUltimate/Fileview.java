@@ -7,7 +7,7 @@ import java.time.temporal.TemporalQueries;
 import java.awt.event.*;
 import java.awt.*;
 
-public class Fileview implements ActionListener {
+public class Fileview {
 	
 	/**
 	 * These are the main things that allow a window to appear.
@@ -54,16 +54,10 @@ public class Fileview implements ActionListener {
 		   final JPanel userSettingsPanel = new JPanel();
 		   JButton editProfileButton = new JButton("Edit Profile");
 		   JButton deleteProfileButton = new JButton("Delete Profile");
-		   JButton createDepartmentButton = new JButton("Create Department");
-		   JButton editDepartmentsButton = new JButton("Edit Departments");
-		   JButton deleteDepartmentsButton = new JButton("Delete Departments");
 		   JButton logoutButton = new JButton("Logout");
 		   userSettingsPanel.setLayout(new BoxLayout(userSettingsPanel, BoxLayout.PAGE_AXIS));
 		   userSettingsPanel.add(editProfileButton);
 		   userSettingsPanel.add(deleteProfileButton);
-		   userSettingsPanel.add(createDepartmentButton);
-		   userSettingsPanel.add(editDepartmentsButton);
-		   userSettingsPanel.add(deleteDepartmentsButton);
 		   userSettingsPanel.add(logoutButton);
 
 		   frame.getContentPane().add(BorderLayout.NORTH, topPanel);

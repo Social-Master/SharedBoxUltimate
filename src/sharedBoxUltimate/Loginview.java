@@ -1,5 +1,5 @@
 /**
- * This is the login window.
+ * This class is the login window.
  */
 
 import javax.swing.*;
@@ -7,10 +7,10 @@ import java.time.temporal.TemporalQueries;
 import java.awt.event.*;
 import java.awt.*;
 
-public class Loginview implements ActionListener {
+public class Loginview {
 	
 	/**
-	 * These are the main things that allow a windows to appear.
+	 * These are the main things that allow a window to appear.
 	 */
 
 	 JFrame frame = null;
@@ -30,7 +30,7 @@ public class Loginview implements ActionListener {
 		 frame.getContentPane();
 
 		 /**
-		  * These deal with the are, where the user are expected to type in their e-mail address.
+		  * These deal with the area, where the user are expected to type in their e-mail address.
 		  */
 
 		  final JPanel emailPanel = new JPanel();
