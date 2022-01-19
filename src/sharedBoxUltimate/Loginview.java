@@ -7,7 +7,7 @@ import java.time.temporal.TemporalQueries;
 import java.awt.event.*;
 import java.awt.*;
 
-public class Loginview {
+public class Loginview implements ActionListener {
 	
 	/**
 	 * These are the main things that allow a windows to appear.
@@ -23,7 +23,7 @@ public class Loginview {
 		 * These set the properties of the window, i.e. the title, its default size and its default placement.
 		 */
 
-		 frame = new JFrame("Shared-Boox Ultimate Login");
+		 frame = new JFrame("Shared-Box Ultimate Login");
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 frame.setSize(400, 150);
 		 frame.setLocation(300, 300);
@@ -61,6 +61,7 @@ public class Loginview {
 		   */
 
 		   JButton loginButton = new JButton("Login");
+		   loginButton.addActionListener(this);
 		   JButton registerButton = new JButton("Register");
 		   final JPanel buttonPanel = new JPanel();
 		   buttonPanel.setLayout(horizontalLayout);
@@ -73,5 +74,11 @@ public class Loginview {
 		   frame.getContentPane().add(BorderLayout.SOUTH, buttonPanel);
 
 		   frame.setVisible(true);
+	 }
+
+	 public void actionPerformed(ActionEvent e) {
+		 Fileview fileview = new Fileview();
+		 fileview.fileviewGo();
+		 frame.dispose();
 	 }
 }
