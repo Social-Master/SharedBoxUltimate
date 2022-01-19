@@ -28,5 +28,18 @@ public class Firma {
 	public String getName() {
 		return this.name;
 	}
+	public Set<Mitarbeiter> getMitarbeiterSet() {
+		return this.mit;
+	}
+	public void printMitarbeiter() {
+		for(Mitarbeiter a : this.mit) {
+			System.out.println(a.getId() + " " + a.getName() + " " + a.getVorname() + " " + a.getPasswort());
+		}
+	}
+	public void printAbteilungen() {
+		for(Abteilung a : this.abt) {
+			System.out.println(a.getName());
+		}
+	}
 	
 }
