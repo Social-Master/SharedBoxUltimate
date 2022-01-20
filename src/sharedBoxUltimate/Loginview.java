@@ -29,6 +29,9 @@ public class Loginview {
 		 frame.setLocation(300, 300);
 		 frame.getContentPane();
 
+		 textArea = new JTextArea(1, 20);
+		 textArea.setEditable(true);
+		 
 		 /**
 		  * These deal with the area, where the user are expected to type in their e-mail address.
 		  */
@@ -39,8 +42,6 @@ public class Loginview {
 		  emailPanel.setOpaque(true);
 		  JLabel emailLabel = new JLabel("E-Mail");
 		  emailPanel.add(emailLabel);
-		  textArea = new JTextArea(1, 20);
-		  textArea.setEditable(true);
 		  emailPanel.add(textArea);
 
 		  /**
@@ -52,8 +53,6 @@ public class Loginview {
 		  passwordPanel.setOpaque(true);
 		  JLabel passwordLabel = new JLabel("Password");
 		  passwordPanel.add(passwordLabel);
-		  textArea = new JTextArea(1, 20);
-		  textArea.setEditable(true);
 		  passwordPanel.add(textArea);
 
 		  /**

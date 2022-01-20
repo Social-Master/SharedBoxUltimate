@@ -54,10 +54,12 @@ public class Fileview {
 		   final JPanel userSettingsPanel = new JPanel();
 		   JButton editProfileButton = new JButton("Edit Profile");
 		   JButton deleteProfileButton = new JButton("Delete Profile");
+		   JButton adminSettingsButton = new JButton("Admin Settings");
 		   JButton logoutButton = new JButton("Logout");
 		   userSettingsPanel.setLayout(new BoxLayout(userSettingsPanel, BoxLayout.PAGE_AXIS));
 		   userSettingsPanel.add(editProfileButton);
 		   userSettingsPanel.add(deleteProfileButton);
+		   userSettingsPanel.add(adminSettingsButton);
 		   userSettingsPanel.add(logoutButton);
 
 		   frame.getContentPane().add(BorderLayout.NORTH, topPanel);
