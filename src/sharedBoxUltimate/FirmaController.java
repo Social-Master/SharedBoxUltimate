@@ -36,7 +36,7 @@ public class FirmaController {
 			}
 			try {
 				FileWriter writer = new FileWriter(userDir.getPath() + "/userinfo.csv");
-				writer.write(id + "," + name + "," + vorname + "," + passwort + "," + "Server/" + model.getName() + "/Mitarbeiter/" + name + "/Files");
+				writer.write(id + "," + name + "," + vorname + "," + passwort + "," + "Server/" + model.getName() + "/Mitarbeiter/" + name + "/Files" + ",none");
 				writer.close();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -65,6 +65,14 @@ public class FirmaController {
 				if(m.getPasswort().equals(passwort)) {
 					return m;
 				}
+			}
+		}
+		return null;
+	}
+	public Abteilung getAbteilungByName(String name) {
+		for(Abteilung x : model.getAbteilungSet()) {
+			if(x.getName().equals(name)) {
+				return x;
 			}
 		}
 		return null;

@@ -1,6 +1,8 @@
 package sharedBoxUltimate;
 
 import java.io.File;
+
+import models.Abteilung;
 import models.Mitarbeiter;
 
 public class Main {
@@ -19,15 +21,12 @@ public class Main {
 		bla.createAbteilung("Development");
 		bla.createAbteilung("Research");
 		
+		
 		Mitarbeiter loggedin = bla.loginMitarbeiter("Heimbrodt", "passwort1");
 		MitarbeiterController loggedincont = new MitarbeiterController(loggedin);
-		System.out.println(loggedin.getName());
-		System.out.println(loggedincont.getUserFilesAsString(""));
-		System.out.println(loggedincont.getUserDirsAsString(""));
+		loggedincont.addAbteilung(bla.getAbteilungByName("Research"));
+		loggedincont.addAbteilung(bla.getAbteilungByName("Development"));
 		
-		//Firma twitter = b.getFirmaByName("twitter");
-		//twitter.printMitarbeiter();
-		//twitter.printAbteilungen();
 	}
 	
 	public static void initFileStructure() {

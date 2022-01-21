@@ -1,10 +1,13 @@
 package models;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.Set;
 
+import sharedBoxUltimate.FirmenInitializer;
+
 public class Mitarbeiter {
-	private Set<Abteilung> abteilungen;
+	private Set<Abteilung> abteilungen = new HashSet<Abteilung>();
 	private String name;
 	private String vorname;
 	private String passwort;
@@ -21,6 +24,23 @@ public class Mitarbeiter {
 		this.vorname = vorname;
 		this.passwort = passwort;
 		this.userPath = userPath;
+		try { //Evtl zum Konstruktoraufruf verlegen
+			String[] abtArr = abteilungenRaw.split(";");
+			if(!abtArr[0].equalsIgnoreCase("none")) {
+				for(Firma a : FirmenInitializer.firmen.keySet()) {
+					if(a.getName().equals(this.getFirma())) {
+						for(int i = 0; i < abtArr.length; i++) {
+							for(Abteilung b : a.getAbteilungSet()) {
+								if(b.getName().equals(abtArr[i]));
+							}
+						}
+					}
+				}
+			}
+		}
+		catch(Exception e) {
+			
+		}
 	}
 	public String getName() {
 		return this.name;
@@ -50,5 +70,11 @@ public class Mitarbeiter {
 	}
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
+	}
+	public void addAbteilung(Abteilung in) {
+		this.abteilungen.add(in);
+	}
+	public Set<Abteilung> getAbteilungen() {
+		return this.abteilungen;
 	}
 }
