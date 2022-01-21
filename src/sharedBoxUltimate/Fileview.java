@@ -15,7 +15,6 @@ public class Fileview {
 
 	 JFrame frame = null;
 	 FlowLayout topLayout = new FlowLayout();
-	 /*JTextArea textArea = null;		// Placeholder for the real thing that views directory content. */
 	 JMenuBar menuBar;
 	 JMenu menu;
 	 JMenuItem menuItem;
@@ -32,20 +31,9 @@ public class Fileview {
 		  frame.setLocation(300, 300);
 		  frame.getContentPane();
 		  
-		  /**
-		   * This JTextArea is just a placeholder and will be replaced by a proper directory view
-		   */
-		  
 		  DefaultListModel<String> directoryContent = new DefaultListModel<>();
-		  directoryContent.addElement("Item0");
-		  directoryContent.addElement("Item1");
-		  directoryContent.addElement("Item2");
-		  directoryContent.addElement("Item3");
 		  JList<String> directoryContentList = new JList<>(directoryContent);
 
-		  //textArea = new JTextArea(25, 65);
-		  //textArea.append("Placeholder for directory content");
-		  //textArea.setEditable(false);
 		  final JPanel rightPanel = new JPanel();
 		  rightPanel.add(directoryContentList);
 		  rightPanel.setOpaque(true);
@@ -76,8 +64,18 @@ public class Fileview {
 		   final JPanel userSettingsPanel = new JPanel();
 		   JButton editProfileButton = new JButton("Edit Profile");
 		   JButton deleteProfileButton = new JButton("Delete Profile");
+		   deleteProfileButton.addActionListener(new ActionListener() {
+			   public void actionPerformed(ActionEvent e) {
+				   dialogBoxDelete();
+			   }
+		   });
 		   JButton adminSettingsButton = new JButton("Admin Settings");
 		   JButton logoutButton = new JButton("Logout");
+		   logoutButton.addActionListener(new ActionListener() {
+			   public void actionPerformed(ActionEvent e) {
+				   dialogBoxDelete();
+			   }
+		   });
 		   userSettingsPanel.setLayout(new BoxLayout(userSettingsPanel, BoxLayout.PAGE_AXIS));
 		   userSettingsPanel.add(editProfileButton);
 		   userSettingsPanel.add(deleteProfileButton);
@@ -91,6 +89,14 @@ public class Fileview {
 		   frame.setJMenuBar(menuBar);
 
 		   frame.setVisible(true);
+	 }
+
+	 public void dialogBoxDelete() {
+		 JOptionPane.showOptionDialog(null, "Are you sure you want to delete this profile?", "Delete Profile", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {"Yes", "No", "Cancel"}, "Cancel");
+	 }
+
+	 public void dialogBoxLogout() {
+		JOptionPane.showOptionDialog(null, "Are you sure you want to logout?", "Logout", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {"Yes", "No", "Cancel"}, "Cancel");
 	 }
 
 }
