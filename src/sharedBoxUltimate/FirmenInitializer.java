@@ -52,7 +52,7 @@ public class FirmenInitializer {
 			String rawLine = reader.readLine();
 			reader.close();
 			String[] arr = rawLine.split(",");
-			mit = new Mitarbeiter(Integer.parseInt(arr[0]),arr[1], arr[2], arr[3]);
+			mit = new Mitarbeiter(Integer.parseInt(arr[0]),arr[1], arr[2], arr[3], arr[4], arr[5]);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

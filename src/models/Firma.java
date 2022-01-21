@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Firma {
-	private Set<Mitarbeiter> mit = new HashSet();
-	private Set<Abteilung> abt = new HashSet();
+	private Set<Mitarbeiter> mit = new HashSet<Mitarbeiter>();
+	private Set<Abteilung> abt = new HashSet<Abteilung>();
 	private String name;
 	
 	
@@ -30,6 +30,9 @@ public class Firma {
 	}
 	public Set<Mitarbeiter> getMitarbeiterSet() {
 		return this.mit;
+	}
+	public Set<Abteilung> getAbteilungSet() {
+		return this.abt;
 	}
 	public void printMitarbeiter() {
 		for(Mitarbeiter a : this.mit) {

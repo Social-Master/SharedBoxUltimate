@@ -1,9 +1,6 @@
 package sharedBoxUltimate;
 
 import java.io.File;
-import java.util.Set;
-
-import models.Firma;
 import models.Mitarbeiter;
 
 public class Main {
@@ -13,8 +10,8 @@ public class Main {
 		FirmenInitializer b = new FirmenInitializer();
 		b.readFirmen();
 
-		b.createFirma("Twitter");
-		b.createFirma("Reddit");
+		FirmenInitializer.createFirma("Twitter");
+		FirmenInitializer.createFirma("Reddit");
 		
 		FirmaController bla = b.getFirmaControllerByName("twitter");
 		bla.createMitarbeiter(1, "Heimbrodt", "Sten", "passwort1");
@@ -22,9 +19,15 @@ public class Main {
 		bla.createAbteilung("Development");
 		bla.createAbteilung("Research");
 		
-		Firma twitter = b.getFirmaByName("twitter");
-		twitter.printMitarbeiter();
-		twitter.printAbteilungen();
+		Mitarbeiter loggedin = bla.loginMitarbeiter("Heimbrodt", "passwort1");
+		MitarbeiterController loggedincont = new MitarbeiterController(loggedin);
+		System.out.println(loggedin.getName());
+		System.out.println(loggedincont.getUserFilesAsString(""));
+		System.out.println(loggedincont.getUserDirsAsString(""));
+		
+		//Firma twitter = b.getFirmaByName("twitter");
+		//twitter.printMitarbeiter();
+		//twitter.printAbteilungen();
 	}
 	
 	public static void initFileStructure() {

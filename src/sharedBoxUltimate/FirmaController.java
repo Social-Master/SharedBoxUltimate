@@ -36,13 +36,13 @@ public class FirmaController {
 			}
 			try {
 				FileWriter writer = new FileWriter(userDir.getPath() + "/userinfo.csv");
-				writer.write(id + "," + name + "," + vorname + "," + passwort);
+				writer.write(id + "," + name + "," + vorname + "," + passwort + "," + "Server/" + model.getName() + "/Mitarbeiter/" + name + "/Files");
 				writer.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			
-			Mitarbeiter neu = new Mitarbeiter(id, name, vorname, passwort);
+			Mitarbeiter neu = new Mitarbeiter(id, name, vorname, passwort, "Server/" + model.getName() + "/Mitarbeiter/" + name + "/Files", null);
 			model.addUser(neu);
 		}
 		
@@ -58,5 +58,15 @@ public class FirmaController {
 			Abteilung neu = new Abteilung(name);
 			model.addAbteilung(neu);
 		}
+	}
+	public Mitarbeiter loginMitarbeiter(String name, String passwort) {
+		for(Mitarbeiter m : model.getMitarbeiterSet()) {
+			if(m.getName().equals(name)) {
+				if(m.getPasswort().equals(passwort)) {
+					return m;
+				}
+			}
+		}
+		return null;
 	}
 }
