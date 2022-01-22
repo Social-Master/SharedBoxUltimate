@@ -3,6 +3,8 @@
  */
 
 import javax.swing.*;
+import javax.swing.text.html.HTMLEditorKit;
+
 import java.time.temporal.TemporalQueries;
 import java.awt.event.*;
 import java.awt.*;
@@ -16,8 +18,6 @@ public class Fileview {
 	 JFrame frame = null;
 	 FlowLayout topLayout = new FlowLayout();
 	 JMenuBar menuBar;
-	 JMenu menu;
-	 JMenuItem menuItem;
 	 
 	 public void fileviewGo() {
 		 
@@ -25,7 +25,7 @@ public class Fileview {
 		  * These set the properties of the window, i.e. the title, its default size and its default placement.
 		  */
 		  
-		  frame = new JFrame("Shared-Box Ultimate");
+		  frame = new JFrame("Shared-Box Ultimate (Firstname Lastname)");
 		  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		  frame.setSize(1000, 500);
 		  frame.setLocation(300, 300);
@@ -36,6 +36,10 @@ public class Fileview {
 		   */
 
 		  DefaultListModel<String> directoryContent = new DefaultListModel<>();
+		  directoryContent.addElement("Item0");
+		  directoryContent.addElement("Item1");
+		  directoryContent.addElement("Item2");
+		  directoryContent.addElement("Item3");
 		  JList<String> directoryContentList = new JList<>(directoryContent);
 
 		  /**
@@ -56,20 +60,53 @@ public class Fileview {
 
 		  /**
 		   * This is the menu bar at the very to of the window. It acts like the beautiful menubar at the top of the screen on macOS but with significantly less style and elegance.
-		   * With the menu bar, the file and folder operations can be accessed.
+		   * With the menu bar, the file and folder operations can be accessed via the appropriatly named menus.
 		   */
 
 		  menuBar = new JMenuBar();
-		  menu = new JMenu("File");
-		  menuBar.add(menu);
+		  JMenu fileMenu = new JMenu("File");
+		  JMenu directoryMenu = new JMenu("Directory");
+		  menuBar.add(fileMenu);
+		  menuBar.add(directoryMenu);
 
 		  /**
 		   * These are the menu bar items with which the before mentioned file and folder operations can be executed.
 		   */
-
-		  menuItem = new JMenuItem("See properties...", KeyEvent.VK_T);
-		  menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		  menu.add(menuItem);
+		  
+		  JMenuItem cutItem = new JMenuItem("Cut...", KeyEvent.VK_T);
+		  cutItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		  JMenuItem copyItem = new JMenuItem("Copy...", KeyEvent.VK_T);
+		  copyItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		  JMenuItem pasteItem = new JMenuItem("Paste...", KeyEvent.VK_T);
+		  pasteItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+		  JMenuItem renameItem = new JMenuItem("Rename...", KeyEvent.VK_T);
+		  renameItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+		  renameItem.addActionListener(new ActionListener() {
+			  public void actionPerformed(ActionEvent e) {
+				  dialogBoxRename();
+			  }
+		  });
+		  JMenuItem moveItem = new JMenuItem("Move...", KeyEvent.VK_T);
+		  moveItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
+		  moveItem.addActionListener(new ActionListener() {
+			  public void actionPerformed(ActionEvent e) {
+				  dialogBoxMove();
+			  }
+		  });
+		  JMenuItem deleteItem = new JMenuItem("Delete...");
+		  deleteItem.addActionListener(new ActionListener() {
+			  public void actionPerformed(ActionEvent e) {
+				  dialogBoxDelete();
+			  }
+		  });
+		  JMenuItem propertiesMenuItem = new JMenuItem("See properties...", KeyEvent.VK_T);
+		  fileMenu.add(cutItem);
+		  fileMenu.add(copyItem);
+		  fileMenu.add(pasteItem);
+		  fileMenu.add(renameItem);
+		  fileMenu.add(moveItem);
+		  fileMenu.add(deleteItem);
+		  fileMenu.add(propertiesMenuItem);
 
 		  JButton moveUpButton = new JButton("Move up directory");	// Move up a directory.
 		  JLabel filePathLabel = new JLabel("/user");	// This should display the current name of the directory.
@@ -87,7 +124,7 @@ public class Fileview {
 		   JButton deleteProfileButton = new JButton("Delete Profile");
 		   deleteProfileButton.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e) {
-				   dialogBoxDelete();	// When the deletePrifuleButton is clicked, this Method will be called. See a couple of lines below for a somewhat detailed description of what this method does and does not do.
+				   dialogBoxDeleteProfile();	// When the deletePrifuleButton is clicked, this Method will be called. See a couple of lines below for a somewhat detailed description of what this method does and does not do.
 			   }
 		   });
 		   JButton adminSettingsButton = new JButton("Admin Settings");
@@ -119,11 +156,23 @@ public class Fileview {
 	  * Clicking "No", however, will not do anything apart from closing the dialog box.
 	  */
 
-	 public void dialogBoxDelete() {
+	 public void dialogBoxDeleteProfile() {
 		 JOptionPane.showOptionDialog(null, "Are you sure you want to delete this profile?", "Delete Profile", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {"Yes", "No"}, "No");
 	 }
 
 	 public void dialogBoxLogout() {
 		JOptionPane.showOptionDialog(null, "Are you sure you want to logout?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {"Yes", "No"}, "No");
+	 }
+
+	 public void dialogBoxRename() {
+		 JOptionPane.showInputDialog(null, "Enter new file name", "Rename...", 1);
+	 }
+
+	 public void dialogBoxMove() {
+		 JOptionPane.showInputDialog(null, "Enter destination path", "Move...", 1);
+	 }
+
+	 public void dialogBoxDelete() {
+		JOptionPane.showOptionDialog(null, "Are you sure you want to delete this file?", "Delete...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {"Yes", "No"}, "No");
 	 }
 }

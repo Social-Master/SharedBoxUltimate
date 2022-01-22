@@ -14,7 +14,8 @@ public class Loginview {
 	 */
 
 	 JFrame frame = null;
-	 JTextArea textArea = null;
+	 JTextArea emailTextArea = null;
+	 JTextArea passwordTextArea = null;
 	 FlowLayout horizontalLayout = new FlowLayout();
 
 	 public void loginviewGo() {
@@ -28,9 +29,6 @@ public class Loginview {
 		 frame.setSize(400, 150);
 		 frame.setLocation(300, 300);
 		 frame.getContentPane();
-
-		 textArea = new JTextArea(1, 20);
-		 textArea.setEditable(true);
 		 
 		 /**
 		  * These deal with the area, where the user are expected to type in their e-mail address.
@@ -41,8 +39,10 @@ public class Loginview {
 		  emailPanel.setAlignmentX(FlowLayout.TRAILING);
 		  emailPanel.setOpaque(true);
 		  JLabel emailLabel = new JLabel("E-Mail");
+		  emailTextArea = new JTextArea(1, 20);
+		  emailTextArea.setEditable(true);
 		  emailPanel.add(emailLabel);
-		  emailPanel.add(textArea);
+		  emailPanel.add(emailTextArea);
 
 		  /**
 		   * These deal with the area, where the user are expected to type in their password.
@@ -52,8 +52,10 @@ public class Loginview {
 		  passwordPanel.setAlignmentX(FlowLayout.TRAILING);
 		  passwordPanel.setOpaque(true);
 		  JLabel passwordLabel = new JLabel("Password");
+		  passwordTextArea = new JTextArea(1, 20);
+		  passwordTextArea.setEditable(true);
 		  passwordPanel.add(passwordLabel);
-		  passwordPanel.add(textArea);
+		  passwordPanel.add(passwordTextArea);
 
 		  /**
 		   * These deal with the login and register buttons at the bottom of the window.

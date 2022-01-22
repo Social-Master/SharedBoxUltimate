@@ -14,7 +14,11 @@ public class Registerview {
 	*/
 
 	JFrame frame = null;
-	JTextArea textArea = null;
+	JTextArea firstnameTextArea = null;
+	JTextArea lastnameTextArea = null;
+	JTextArea emailTextArea = null;
+	JTextArea passwordTextArea = null;
+	JTextArea confirmPasswordTextArea = null;
 	FlowLayout horizontalLayout = new FlowLayout();
 
 	public void registerviewGo() {
@@ -45,10 +49,10 @@ public class Registerview {
 		firstnamePanel.setAlignmentX(FlowLayout.TRAILING);
 		firstnamePanel.setOpaque(true);
 		JLabel firstnameLabel = new JLabel("First Name");
-		textArea = new JTextArea(1, 20);
-		textArea.setEditable(true);
+		firstnameTextArea = new JTextArea(1, 20);
+		firstnameTextArea.setEditable(true);
 		firstnamePanel.add(firstnameLabel);
-		firstnamePanel.add(textArea);
+		firstnamePanel.add(firstnameTextArea);
 		windowPanel.add(firstnamePanel);
 
 		/**
@@ -60,10 +64,10 @@ public class Registerview {
 		lastnamePanel.setAlignmentX(FlowLayout.TRAILING);
 		lastnamePanel.setOpaque(true);
 		JLabel lastnameLabel = new JLabel("Last Name");
-		textArea = new JTextArea(1, 20);
-		textArea.setEditable(true);
+		lastnameTextArea = new JTextArea(1, 20);
+		lastnameTextArea.setEditable(true);
 		lastnamePanel.add(lastnameLabel);
-		lastnamePanel.add(textArea);
+		lastnamePanel.add(lastnameTextArea);
 		windowPanel.add(lastnamePanel);
 
 		/**
@@ -75,10 +79,10 @@ public class Registerview {
 		emailPanel.setAlignmentX(FlowLayout.TRAILING);
 		emailPanel.setOpaque(true);
 		JLabel emailLabel = new JLabel("E-Mail address");
-		textArea = new JTextArea(1, 20);
-		textArea.setEditable(true);
+		emailTextArea = new JTextArea(1, 20);
+		emailTextArea.setEditable(true);
 		emailPanel.add(emailLabel);
-		emailPanel.add(textArea);
+		emailPanel.add(emailTextArea);
 		windowPanel.add(emailPanel);
 
 		/**
@@ -90,9 +94,10 @@ public class Registerview {
 		passwordPanel.setAlignmentX(FlowLayout.TRAILING);
 		passwordPanel.setOpaque(true);
 		JLabel passwordLabel = new JLabel("Password");
-		textArea = new JTextArea(1, 20);
+		passwordTextArea = new JTextArea(1, 20);
+		passwordTextArea.setEditable(true);
 		passwordPanel.add(passwordLabel);
-		passwordPanel.add(textArea);
+		passwordPanel.add(passwordTextArea);
 		windowPanel.add(passwordPanel);
 
 		/**
@@ -104,9 +109,10 @@ public class Registerview {
 		confirmPasswordPanel.setAlignmentX(FlowLayout.TRAILING);
 		confirmPasswordPanel.setOpaque(true);
 		JLabel confirmPasswordLabel = new JLabel("Confirm Password");
-		textArea = new JTextArea(1, 20);
+		confirmPasswordTextArea = new JTextArea(1, 20);
+		confirmPasswordTextArea.setEditable(true);
 		confirmPasswordPanel.add(confirmPasswordLabel);
-		confirmPasswordPanel.add(textArea);
+		confirmPasswordPanel.add(confirmPasswordTextArea);
 		windowPanel.add(confirmPasswordPanel);
 
 		/**
