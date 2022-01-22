@@ -70,45 +70,85 @@ public class Fileview {
 		  menuBar.add(directoryMenu);
 
 		  /**
-		   * These are the menu bar items with which the before mentioned file and folder operations can be executed.
+		   * These are the fileMenu bar items with which the before mentioned file operations can be executed.
 		   */
 		  
-		  JMenuItem cutItem = new JMenuItem("Cut...", KeyEvent.VK_T);
-		  cutItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
-		  JMenuItem copyItem = new JMenuItem("Copy...", KeyEvent.VK_T);
-		  copyItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-		  JMenuItem pasteItem = new JMenuItem("Paste...", KeyEvent.VK_T);
-		  pasteItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
-		  JMenuItem renameItem = new JMenuItem("Rename...", KeyEvent.VK_T);
-		  renameItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		  renameItem.addActionListener(new ActionListener() {
+		  JMenuItem cutFileItem = new JMenuItem("Cut...", KeyEvent.VK_T);
+		  cutFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		  JMenuItem copyFileItem = new JMenuItem("Copy...", KeyEvent.VK_T);
+		  copyFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		  JMenuItem pasteFileItem = new JMenuItem("Paste...", KeyEvent.VK_T);
+		  pasteFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+		  JMenuItem renameFileItem = new JMenuItem("Rename...", KeyEvent.VK_T);
+		  renameFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+		  renameFileItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				  dialogBoxRename();
+				  dialogBoxRenameFile();
 			  }
 		  });
-		  JMenuItem moveItem = new JMenuItem("Move...", KeyEvent.VK_T);
-		  moveItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
-		  moveItem.addActionListener(new ActionListener() {
+		  JMenuItem moveFileItem = new JMenuItem("Move...", KeyEvent.VK_T);
+		  moveFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
+		  moveFileItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				  dialogBoxMove();
+				  dialogBoxMoveFile();
 			  }
 		  });
-		  JMenuItem deleteItem = new JMenuItem("Delete...");
-		  deleteItem.addActionListener(new ActionListener() {
+		  JMenuItem deleteFileItem = new JMenuItem("Delete...");
+		  deleteFileItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				  dialogBoxDelete();
+				  dialogBoxDeleteFile();
 			  }
 		  });
-		  JMenuItem propertiesMenuItem = new JMenuItem("See properties...", KeyEvent.VK_T);
-		  fileMenu.add(cutItem);
-		  fileMenu.add(copyItem);
-		  fileMenu.add(pasteItem);
-		  fileMenu.add(renameItem);
-		  fileMenu.add(moveItem);
-		  fileMenu.add(deleteItem);
-		  fileMenu.add(propertiesMenuItem);
+		  JMenuItem propertiesFileItem = new JMenuItem("See properties...", KeyEvent.VK_T);
+		  fileMenu.add(cutFileItem);
+		  fileMenu.add(copyFileItem);
+		  fileMenu.add(pasteFileItem);
+		  fileMenu.add(renameFileItem);
+		  fileMenu.add(moveFileItem);
+		  fileMenu.add(deleteFileItem);
+		  fileMenu.add(propertiesFileItem);
 
-		  JButton moveUpButton = new JButton("Move up directory");	// Move up a directory.
+		  /**
+		   * These are the directoryMenu items with which the before mentioned directory operations can be executed, including giving other users read, write and execute rights within the /user directory.
+		   * 
+		   */
+
+		  JMenuItem cutDirectoryItem = new JMenuItem("Cut...", KeyEvent.VK_T);
+		  cutDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		  JMenuItem copyDirectoryItem = new JMenuItem("Copy...", KeyEvent.VK_T);
+		  copyDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		  JMenuItem pasteDirectoryItem = new JMenuItem("Paste...", KeyEvent.VK_T);
+		  pasteDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+		  JMenuItem renameDirectoryItem = new JMenuItem("Rename...", KeyEvent.VK_T);
+		  renameDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, ActionEvent.ALT_MASK));
+		  /*renameDirectoryItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dialogBoxRenameDirectory();
+			}
+		  });*/
+		  JMenuItem moveDirectoryItem = new JMenuItem("Move...", KeyEvent.VK_T);
+		  moveDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4, ActionEvent.ALT_MASK));
+		  /*moveDirectoryItem.addActionListener(new ActionListener() {
+			  public void actionPerformed(ActionEvent e) {
+				  dialogBoxMoveDirectory();
+			  }
+		  });*/
+		  JMenuItem deleteDirectoryItem = new JMenuItem("Delete...");
+		  /*deleteDirectoryItem.addActionListener(new ActionListener() {
+			  public void actionPerformed(ActionEvent e) {
+				  dialogBoxDeleteDirectory();
+			  }
+		  });*/
+		  JMenuItem propertiesDirectoryItem = new JMenuItem("See properties...");
+		  directoryMenu.add(cutDirectoryItem);
+		  directoryMenu.add(copyDirectoryItem);
+		  directoryMenu.add(pasteDirectoryItem);
+		  directoryMenu.add(renameDirectoryItem);
+		  directoryMenu.add(moveDirectoryItem);
+		  directoryMenu.add(deleteDirectoryItem);
+		  directoryMenu.add(propertiesDirectoryItem);
+
+		  JButton moveUpButton = new JButton("Move Up Directory");
 		  JLabel filePathLabel = new JLabel("/user");	// This should display the current name of the directory.
 		  JButton reflectSelection = new JButton("Reflect Selection");
 		  topPanel.add(filePathLabel);
@@ -164,15 +204,15 @@ public class Fileview {
 		JOptionPane.showOptionDialog(null, "Are you sure you want to logout?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {"Yes", "No"}, "No");
 	 }
 
-	 public void dialogBoxRename() {
+	 public void dialogBoxRenameFile() {
 		 JOptionPane.showInputDialog(null, "Enter new file name", "Rename...", 1);
 	 }
 
-	 public void dialogBoxMove() {
+	 public void dialogBoxMoveFile() {
 		 JOptionPane.showInputDialog(null, "Enter destination path", "Move...", 1);
 	 }
 
-	 public void dialogBoxDelete() {
+	 public void dialogBoxDeleteFile() {
 		JOptionPane.showOptionDialog(null, "Are you sure you want to delete this file?", "Delete...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {"Yes", "No"}, "No");
 	 }
 }
