@@ -24,7 +24,7 @@ public class Loginview {
 		 * These set the properties of the window, i.e. the title, its default size and its default placement.
 		 */
 
-		 frame = new JFrame("Shared-Box Ultimate Login");
+		 frame = new JFrame("Shared-Box Ultimate Anmeldung");
 		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 frame.setSize(400, 150);
 		 frame.setLocation(300, 300);
@@ -51,7 +51,7 @@ public class Loginview {
 		  passwordPanel.setLayout(horizontalLayout);
 		  passwordPanel.setAlignmentX(FlowLayout.TRAILING);
 		  passwordPanel.setOpaque(true);
-		  JLabel passwordLabel = new JLabel("Password");
+		  JLabel passwordLabel = new JLabel("Passwort");
 		  passwordTextArea = new JTextArea(1, 20);
 		  passwordTextArea.setEditable(true);
 		  passwordPanel.add(passwordLabel);
@@ -61,8 +61,22 @@ public class Loginview {
 		   * These deal with the login and register buttons at the bottom of the window.
 		   */
 
-		   JButton loginButton = new JButton("Login");
-		   JButton registerButton = new JButton("Register");
+		   JButton loginButton = new JButton("Anmelden");
+		   loginButton.addActionListener(new ActionListener() {
+			   public void actionPerformed(ActionEvent e) {
+				   frame.dispose();
+				   Fileview fileview = new Fileview();
+				   fileview.fileviewGo();
+			   }
+		   });
+		   JButton registerButton = new JButton("Registrieren");
+		   registerButton.addActionListener(new ActionListener() {
+			   public void actionPerformed(ActionEvent e) {
+				   frame.dispose();
+				   Registerview registerview = new Registerview();
+				   registerview.registerviewGo();
+			   }
+		   });
 		   final JPanel buttonPanel = new JPanel();
 		   buttonPanel.setLayout(horizontalLayout);
 		   buttonPanel.setAlignmentX(FlowLayout.TRAILING);

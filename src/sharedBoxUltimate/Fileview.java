@@ -61,8 +61,8 @@ public class Fileview {
 		   */
 
 		  menuBar = new JMenuBar();
-		  JMenu fileMenu = new JMenu("File");
-		  JMenu directoryMenu = new JMenu("Directory");
+		  JMenu fileMenu = new JMenu("Datei");
+		  JMenu directoryMenu = new JMenu("Verzeichnis");
 		  menuBar.add(fileMenu);
 		  menuBar.add(directoryMenu);
 
@@ -70,33 +70,33 @@ public class Fileview {
 		   * These are the fileMenu bar items with which the before mentioned file operations can be executed.
 		   */
 		  
-		  JMenuItem cutFileItem = new JMenuItem("Cut...", KeyEvent.VK_T);
+		  JMenuItem cutFileItem = new JMenuItem("Ausschneiden...", KeyEvent.VK_T);
 		  cutFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
-		  JMenuItem copyFileItem = new JMenuItem("Copy...", KeyEvent.VK_T);
+		  JMenuItem copyFileItem = new JMenuItem("Kopieren...", KeyEvent.VK_T);
 		  copyFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-		  JMenuItem pasteFileItem = new JMenuItem("Paste...", KeyEvent.VK_T);
+		  JMenuItem pasteFileItem = new JMenuItem("Einfügen...", KeyEvent.VK_T);
 		  pasteFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
-		  JMenuItem renameFileItem = new JMenuItem("Rename...", KeyEvent.VK_T);
+		  JMenuItem renameFileItem = new JMenuItem("Umbenennen...", KeyEvent.VK_T);
 		  renameFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
 		  renameFileItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
 				  dialogBoxRenameFile();
 			  }
 		  });
-		  JMenuItem moveFileItem = new JMenuItem("Move...", KeyEvent.VK_T);
+		  JMenuItem moveFileItem = new JMenuItem("Verschieben...", KeyEvent.VK_T);
 		  moveFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
 		  moveFileItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
 				  dialogBoxMoveFile();
 			  }
 		  });
-		  JMenuItem deleteFileItem = new JMenuItem("Delete...");
+		  JMenuItem deleteFileItem = new JMenuItem("Löschen...");
 		  deleteFileItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
 				  dialogBoxDeleteFile();
 			  }
 		  });
-		  JMenuItem propertiesFileItem = new JMenuItem("See properties...", KeyEvent.VK_T);
+		  JMenuItem propertiesFileItem = new JMenuItem("Eigenschaften einsehen...", KeyEvent.VK_T);
 		  fileMenu.add(cutFileItem);
 		  fileMenu.add(copyFileItem);
 		  fileMenu.add(pasteFileItem);
@@ -110,34 +110,40 @@ public class Fileview {
 		   * 
 		   */
 
-		  JMenuItem cutDirectoryItem = new JMenuItem("Cut...", KeyEvent.VK_T);
+		  JMenuItem cutDirectoryItem = new JMenuItem("Ausschneiden...", KeyEvent.VK_T);
 		  cutDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
-		  JMenuItem copyDirectoryItem = new JMenuItem("Copy...", KeyEvent.VK_T);
+		  JMenuItem copyDirectoryItem = new JMenuItem("Kopieren...", KeyEvent.VK_T);
 		  copyDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-		  JMenuItem pasteDirectoryItem = new JMenuItem("Paste...", KeyEvent.VK_T);
+		  JMenuItem pasteDirectoryItem = new JMenuItem("Einfügen...", KeyEvent.VK_T);
 		  pasteDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
-		  JMenuItem renameDirectoryItem = new JMenuItem("Rename...", KeyEvent.VK_T);
+		  JMenuItem renameDirectoryItem = new JMenuItem("Umbenennen...", KeyEvent.VK_T);
 		  renameDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, ActionEvent.ALT_MASK));
 		  renameDirectoryItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dialogBoxRenameDirectory();
 			}
 		  });
-		  JMenuItem moveDirectoryItem = new JMenuItem("Move...", KeyEvent.VK_T);
+		  JMenuItem moveDirectoryItem = new JMenuItem("Verschieben...", KeyEvent.VK_T);
 		  moveDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4, ActionEvent.ALT_MASK));
 		  moveDirectoryItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
 				  dialogBoxMoveDirectory();
 			  }
 		  });
-		  JMenuItem deleteDirectoryItem = new JMenuItem("Delete...");
+		  JMenuItem deleteDirectoryItem = new JMenuItem("Löschen...");
 		  deleteDirectoryItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
 				  dialogBoxDeleteDirectory();
 			  }
 		  });
-		  JMenuItem inviteToHomeDirectoryItem = new JMenuItem("Invite to Home directory...");
-		  JMenuItem propertiesDirectoryItem = new JMenuItem("See properties...");
+		  JMenuItem inviteToHomeDirectoryItem = new JMenuItem("Zum Home-Verzeichnis einladen...");
+		  inviteToHomeDirectoryItem.addActionListener(new ActionListener() {
+			  public void actionPerformed(ActionEvent e) {
+				InviteToHomeDirectoryView inviteToHomeDirectoryView = new InviteToHomeDirectoryView();
+				inviteToHomeDirectoryView.inviteToHomeDirectoryViewGo();
+			  }
+		  });
+		  JMenuItem propertiesDirectoryItem = new JMenuItem("Eigenschaften einsehen...");
 		  directoryMenu.add(cutDirectoryItem);
 		  directoryMenu.add(copyDirectoryItem);
 		  directoryMenu.add(pasteDirectoryItem);
@@ -147,7 +153,7 @@ public class Fileview {
 		  directoryMenu.add(propertiesDirectoryItem);
 		  directoryMenu.add(inviteToHomeDirectoryItem);
 
-		  JButton moveUpButton = new JButton("Move Up Directory");
+		  JButton moveUpButton = new JButton("Zum Oberverzeichnis");
 		  JLabel filePathLabel = new JLabel("/user");	// This should display the current name of the directory.
 		  JButton reflectSelection = new JButton("Reflect Selection");
 		  topPanel.add(filePathLabel);
@@ -159,27 +165,27 @@ public class Fileview {
 		   */
 
 		   final JPanel userSettingsPanel = new JPanel();
-		   JButton editProfileButton = new JButton("Edit Profile");
+		   JButton editProfileButton = new JButton("Profil bearbeiten");
 		   editProfileButton.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e) {
 				   ProfileEditView profileEditView = new ProfileEditView();
 				   profileEditView.profileEditViewGo();
 			   }
 		   });
-		   JButton deleteProfileButton = new JButton("Delete Profile");
+		   JButton deleteProfileButton = new JButton("Profil löschen");
 		   deleteProfileButton.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e) {
 				   dialogBoxDeleteProfile();	// When the deletePrifuleButton is clicked, this Method will be called. See a couple of lines below for a somewhat detailed description of what this method does and does not do.
 			   }
 		   });
-		   JButton adminSettingsButton = new JButton("Admin Settings");
+		   JButton adminSettingsButton = new JButton("Adminfunktionen");
 		   adminSettingsButton.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e) {
 				String[] beispiel = {"Bei", "Spiel", "Abteilungen", "WOHER?"};
 				Adminview adminview = new Adminview(beispiel);
 			   }
 		   });
-		   JButton logoutButton = new JButton("Logout");
+		   JButton logoutButton = new JButton("Abmelden");
 		   logoutButton.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e) {
 				   dialogBoxLogout();
@@ -207,12 +213,15 @@ public class Fileview {
 	  * Clicking "No", however, will not do anything apart from closing the dialog box.
 	  */
 
-	 public void dialogBoxDeleteProfile() {
-		 JOptionPane.showOptionDialog(null, "Are you sure you want to delete this profile?", "Delete Profile", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {"Yes", "No"}, "No");
+	 public int dialogBoxDeleteProfile() {
+		 String[] options = {"Ja", "Nein"};
+		 int deleteProfileValue = JOptionPane.showOptionDialog(null, "Sind Sie sicher, dass Sie Ihr Profil löschen möchten?", "Profil löschen", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+		 return deleteProfileValue;
 	 }
 
 	 public void dialogBoxLogout() {
-		int logoutValue = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Logout", JOptionPane.YES_NO_OPTION);
+		String[] options = {"Ja", "Nein"};
+		int logoutValue = JOptionPane.showOptionDialog(null, "Sind Sie sicher, dass Sie sich abmelden möchten?", "Abmelden", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 		if (logoutValue == 0) {
 			frame.dispose();
 			Loginview loginview = new Loginview();
@@ -220,27 +229,35 @@ public class Fileview {
 		}
 	 }
 
-	 public void dialogBoxRenameFile() {
-		 JOptionPane.showInputDialog(null, "Enter new file name", "Rename file...", 1);
+	 public String dialogBoxRenameFile() {
+		 String newFileName = JOptionPane.showInputDialog(null, "Neuen Dateinamen eingeben", "Datei umbenennen...", 1);
+		 return newFileName;
 	 }
 
-	 public void dialogBoxMoveFile() {
-		 JOptionPane.showInputDialog(null, "Enter destination path", "Move file...", 1);
+	 public String dialogBoxMoveFile() {
+		 String destinationPathFile = JOptionPane.showInputDialog(null, "Zielverzeichnis eingeben", "Datei bewegen...", 1);
+		 return destinationPathFile;
 	 }
 
-	 public void dialogBoxDeleteFile() {
-		int deleteFileValue = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this file?", "Delete file...", JOptionPane.YES_NO_OPTION);
+	 public int dialogBoxDeleteFile() {
+		String[] options = {"Ja", "Nein"};
+		int deleteFileValue = JOptionPane.showOptionDialog(null, "Sind Sie sicher, dass Sie diese Datei löschen möchten?", "Datei löschen...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+		return deleteFileValue;
 	 }
 
-	 public void dialogBoxRenameDirectory() {
-		JOptionPane.showInputDialog(null, "Enter new directory name", "Rename directory...", 1);
+	 public String dialogBoxRenameDirectory() {
+		String newDirectoryName = JOptionPane.showInputDialog(null, "Neuen Verzeichnisnamen eingeben", "Verzeichnis umbenennen...", 1);
+		return newDirectoryName;
 	 }
 
-	 public void dialogBoxMoveDirectory() {
-		JOptionPane.showInputDialog(null, "Enter destination path", "Move directory...", 1);
+	 public String dialogBoxMoveDirectory() {
+		String destinationPathDirectory = JOptionPane.showInputDialog(null, "Zielverzeichnis eingeben", "Verzeichnis verschieben...", 1);
+		return destinationPathDirectory;
 	 }
 
-	 public void dialogBoxDeleteDirectory() {
-		JOptionPane.showOptionDialog(null, "Are you sure you want to delete this directory?", "Delete directory...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {"Yes", "No"}, "No");
+	 public int dialogBoxDeleteDirectory() {
+		String[] options = {"Ja", "Nein"};
+		int deleteDirectoryValue = JOptionPane.showOptionDialog(null, "Sind Sie sicher, dass Sie dieses Verzeichnis löschen wollen?", "Verzeichnis löschen...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+		return deleteDirectoryValue;
 	 }
 }

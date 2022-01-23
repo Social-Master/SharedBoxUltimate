@@ -40,6 +40,7 @@ public class Adminview {
 	private void showAdminview(String[] abteilungen) {
 		JFrame frame = new JFrame("Administrationsfunktionen");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setLocation(300, 300);
 		
 		names = abteilungen;
 		
@@ -74,13 +75,12 @@ public class Adminview {
 		
 		// actionlistener für die Knöpfe
 		// auslagern!
-		/*
+	
 		bDeleteGroup.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             delGroupWindow(groups.getSelectedValue().toString());
              }
             });
-		*/
 		
 		frame.setLayout(new FlowLayout());
         frame.add(panel1);

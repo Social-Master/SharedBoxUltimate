@@ -27,7 +27,7 @@ public class Registerview {
 		 * These set the properties of the window, i.e. the title, its default size and its default placement.
 		 */
 
-		frame = new JFrame("Shared-Box Ultimate Register");
+		frame = new JFrame("Shared-Box Ultimate Registrierung");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 300);
 		frame.setLocation(300, 300);
@@ -48,7 +48,7 @@ public class Registerview {
 		firstnamePanel.setLayout(horizontalLayout);
 		firstnamePanel.setAlignmentX(FlowLayout.TRAILING);
 		firstnamePanel.setOpaque(true);
-		JLabel firstnameLabel = new JLabel("First Name");
+		JLabel firstnameLabel = new JLabel("Vorname");
 		firstnameTextArea = new JTextArea(1, 20);
 		firstnameTextArea.setEditable(true);
 		firstnamePanel.add(firstnameLabel);
@@ -63,7 +63,7 @@ public class Registerview {
 		lastnamePanel.setLayout(horizontalLayout);
 		lastnamePanel.setAlignmentX(FlowLayout.TRAILING);
 		lastnamePanel.setOpaque(true);
-		JLabel lastnameLabel = new JLabel("Last Name");
+		JLabel lastnameLabel = new JLabel("Nachname");
 		lastnameTextArea = new JTextArea(1, 20);
 		lastnameTextArea.setEditable(true);
 		lastnamePanel.add(lastnameLabel);
@@ -78,7 +78,7 @@ public class Registerview {
 		emailPanel.setLayout(horizontalLayout);
 		emailPanel.setAlignmentX(FlowLayout.TRAILING);
 		emailPanel.setOpaque(true);
-		JLabel emailLabel = new JLabel("E-Mail address");
+		JLabel emailLabel = new JLabel("E-Mail-Adresse");
 		emailTextArea = new JTextArea(1, 20);
 		emailTextArea.setEditable(true);
 		emailPanel.add(emailLabel);
@@ -93,7 +93,7 @@ public class Registerview {
 		passwordPanel.setLayout(horizontalLayout);
 		passwordPanel.setAlignmentX(FlowLayout.TRAILING);
 		passwordPanel.setOpaque(true);
-		JLabel passwordLabel = new JLabel("Password");
+		JLabel passwordLabel = new JLabel("Passwort");
 		passwordTextArea = new JTextArea(1, 20);
 		passwordTextArea.setEditable(true);
 		passwordPanel.add(passwordLabel);
@@ -108,7 +108,7 @@ public class Registerview {
 		confirmPasswordPanel.setLayout(horizontalLayout);
 		confirmPasswordPanel.setAlignmentX(FlowLayout.TRAILING);
 		confirmPasswordPanel.setOpaque(true);
-		JLabel confirmPasswordLabel = new JLabel("Confirm Password");
+		JLabel confirmPasswordLabel = new JLabel("Passwort bestätigen");
 		confirmPasswordTextArea = new JTextArea(1, 20);
 		confirmPasswordTextArea.setEditable(true);
 		confirmPasswordPanel.add(confirmPasswordLabel);
@@ -123,8 +123,15 @@ public class Registerview {
 		buttonPanel.setLayout(horizontalLayout);
 		buttonPanel.setAlignmentX(FlowLayout.TRAILING);
 		buttonPanel.setOpaque(true);
-		JButton registerButton = new JButton("Register");
-		JButton cancelButton = new JButton("Cancel");
+		JButton registerButton = new JButton("Registrieren");
+		JButton cancelButton = new JButton("Abbrechen");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Loginview loginview = new Loginview();
+				loginview.loginviewGo();
+			}
+		});
 		buttonPanel.add(registerButton);
 		buttonPanel.add(cancelButton);
 		windowPanel.add(buttonPanel);
