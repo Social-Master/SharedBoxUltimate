@@ -39,7 +39,7 @@ public class Adminview {
 	 */
 	private void showAdminview(String[] abteilungen) {
 		JFrame frame = new JFrame("Administrationsfunktionen");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		names = abteilungen;
 		
@@ -125,13 +125,13 @@ public class Adminview {
 	}
 	
 	// TODO
-	public static showCompanyWindow() {
+	public static void showCompanyWindow() {
 	}
 	
-	/*
-	public static void main(String[] args) {
+	
+	/*public static void main(String[] args) {
 		String[] beispiel = {"Bei", "Spiel", "Abteilungen", "WOHER?"};
-		Adminview AdminFenser = new Adminview(beispiel);
-	}
-	*/
+		Adminview adminview = new Adminview(beispiel);
+	}*/
+	
 }

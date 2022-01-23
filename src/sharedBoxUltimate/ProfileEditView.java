@@ -8,7 +8,7 @@ import java.awt.event.*;
 import java.awt.*;
 
 public class ProfileEditView {
-	JFrame frame = null;
+	JFrame profileEditViewFrame = null;
 	FlowLayout horizontalLayout = new FlowLayout();
 	JTextArea setFirstnameTextArea = null;
 	JTextArea setLastnameTextArea = null;
@@ -18,11 +18,11 @@ public class ProfileEditView {
 
 	public void profileEditViewGo() {
 
-		frame = new JFrame("Edit Profile");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(450, 225);
-		frame.setLocation(300, 300);
-		frame.getContentPane();
+		profileEditViewFrame = new JFrame("Edit Profile");
+		profileEditViewFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		profileEditViewFrame.setSize(450, 225);
+		profileEditViewFrame.setLocation(300, 300);
+		profileEditViewFrame.getContentPane();
 
 		final JPanel windowPanel = new JPanel();
 		windowPanel.setLayout(new BoxLayout(windowPanel, BoxLayout.Y_AXIS));
@@ -88,12 +88,17 @@ public class ProfileEditView {
 		buttonPanel.setOpaque(true);
 		JButton saveChangesButton = new JButton("Save Changes");
 		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				profileEditViewFrame.dispose();
+			}
+		});
 		buttonPanel.add(saveChangesButton);
 		buttonPanel.add(cancelButton);
 		windowPanel.add(buttonPanel);
 
-		frame.getContentPane().add(BorderLayout.CENTER, windowPanel);
+		profileEditViewFrame.getContentPane().add(BorderLayout.CENTER, windowPanel);
 
-		frame.setVisible(true);
+		profileEditViewFrame.setVisible(true);
 	}
 }

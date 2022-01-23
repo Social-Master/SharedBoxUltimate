@@ -3,9 +3,6 @@
  */
 
 import javax.swing.*;
-import javax.swing.text.html.HTMLEditorKit;
-
-import java.time.temporal.TemporalQueries;
 import java.awt.event.*;
 import java.awt.*;
 
@@ -121,24 +118,25 @@ public class Fileview {
 		  pasteDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
 		  JMenuItem renameDirectoryItem = new JMenuItem("Rename...", KeyEvent.VK_T);
 		  renameDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, ActionEvent.ALT_MASK));
-		  /*renameDirectoryItem.addActionListener(new ActionListener() {
+		  renameDirectoryItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dialogBoxRenameDirectory();
 			}
-		  });*/
+		  });
 		  JMenuItem moveDirectoryItem = new JMenuItem("Move...", KeyEvent.VK_T);
 		  moveDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4, ActionEvent.ALT_MASK));
-		  /*moveDirectoryItem.addActionListener(new ActionListener() {
+		  moveDirectoryItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
 				  dialogBoxMoveDirectory();
 			  }
-		  });*/
+		  });
 		  JMenuItem deleteDirectoryItem = new JMenuItem("Delete...");
-		  /*deleteDirectoryItem.addActionListener(new ActionListener() {
+		  deleteDirectoryItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
 				  dialogBoxDeleteDirectory();
 			  }
-		  });*/
+		  });
+		  JMenuItem inviteToHomeDirectoryItem = new JMenuItem("Invite to Home directory...");
 		  JMenuItem propertiesDirectoryItem = new JMenuItem("See properties...");
 		  directoryMenu.add(cutDirectoryItem);
 		  directoryMenu.add(copyDirectoryItem);
@@ -147,6 +145,7 @@ public class Fileview {
 		  directoryMenu.add(moveDirectoryItem);
 		  directoryMenu.add(deleteDirectoryItem);
 		  directoryMenu.add(propertiesDirectoryItem);
+		  directoryMenu.add(inviteToHomeDirectoryItem);
 
 		  JButton moveUpButton = new JButton("Move Up Directory");
 		  JLabel filePathLabel = new JLabel("/user");	// This should display the current name of the directory.
@@ -161,6 +160,12 @@ public class Fileview {
 
 		   final JPanel userSettingsPanel = new JPanel();
 		   JButton editProfileButton = new JButton("Edit Profile");
+		   editProfileButton.addActionListener(new ActionListener() {
+			   public void actionPerformed(ActionEvent e) {
+				   ProfileEditView profileEditView = new ProfileEditView();
+				   profileEditView.profileEditViewGo();
+			   }
+		   });
 		   JButton deleteProfileButton = new JButton("Delete Profile");
 		   deleteProfileButton.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e) {
@@ -168,6 +173,12 @@ public class Fileview {
 			   }
 		   });
 		   JButton adminSettingsButton = new JButton("Admin Settings");
+		   adminSettingsButton.addActionListener(new ActionListener() {
+			   public void actionPerformed(ActionEvent e) {
+				String[] beispiel = {"Bei", "Spiel", "Abteilungen", "WOHER?"};
+				Adminview adminview = new Adminview(beispiel);
+			   }
+		   });
 		   JButton logoutButton = new JButton("Logout");
 		   logoutButton.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e) {
@@ -201,18 +212,35 @@ public class Fileview {
 	 }
 
 	 public void dialogBoxLogout() {
-		JOptionPane.showOptionDialog(null, "Are you sure you want to logout?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {"Yes", "No"}, "No");
+		int logoutValue = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Logout", JOptionPane.YES_NO_OPTION);
+		if (logoutValue == 0) {
+			frame.dispose();
+			Loginview loginview = new Loginview();
+			loginview.loginviewGo();
+		}
 	 }
 
 	 public void dialogBoxRenameFile() {
-		 JOptionPane.showInputDialog(null, "Enter new file name", "Rename...", 1);
+		 JOptionPane.showInputDialog(null, "Enter new file name", "Rename file...", 1);
 	 }
 
 	 public void dialogBoxMoveFile() {
-		 JOptionPane.showInputDialog(null, "Enter destination path", "Move...", 1);
+		 JOptionPane.showInputDialog(null, "Enter destination path", "Move file...", 1);
 	 }
 
 	 public void dialogBoxDeleteFile() {
-		JOptionPane.showOptionDialog(null, "Are you sure you want to delete this file?", "Delete...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {"Yes", "No"}, "No");
+		int deleteFileValue = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this file?", "Delete file...", JOptionPane.YES_NO_OPTION);
+	 }
+
+	 public void dialogBoxRenameDirectory() {
+		JOptionPane.showInputDialog(null, "Enter new directory name", "Rename directory...", 1);
+	 }
+
+	 public void dialogBoxMoveDirectory() {
+		JOptionPane.showInputDialog(null, "Enter destination path", "Move directory...", 1);
+	 }
+
+	 public void dialogBoxDeleteDirectory() {
+		JOptionPane.showOptionDialog(null, "Are you sure you want to delete this directory?", "Delete directory...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[] {"Yes", "No"}, "No");
 	 }
 }
