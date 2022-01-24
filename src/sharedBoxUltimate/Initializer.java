@@ -86,7 +86,7 @@ public class Initializer {
 			}
 		}
 		catch(Exception e) {
-			
+			System.out.println("ERROR WHILE PARSING");
 		}
 		
 	}
