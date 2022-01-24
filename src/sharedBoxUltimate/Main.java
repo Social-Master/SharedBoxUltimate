@@ -4,7 +4,6 @@ import java.io.File;
 
 import controller.AbteilungController;
 import controller.FirmaController;
-import controller.FirmenInitializer;
 import controller.MitarbeiterController;
 import models.Abteilung;
 import models.Mitarbeiter;
@@ -13,11 +12,11 @@ public class Main {
 	public static void main(String[] args) {
 		initFileStructure();
 		
-		FirmenInitializer b = new FirmenInitializer();
+		Initializer b = new Initializer();
 		b.readFirmen();
 
-		FirmenInitializer.createFirma("Twitter");
-		FirmenInitializer.createFirma("Reddit");
+		Initializer.createFirma("Twitter");
+		Initializer.createFirma("Reddit");
 		
 		FirmaController bla = b.getFirmaControllerByName("twitter");
 		bla.createMitarbeiter(1, "Heimbrodt", "Sten", "passwort1");

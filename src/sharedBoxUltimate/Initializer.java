@@ -1,4 +1,4 @@
-package controller;
+package sharedBoxUltimate;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,15 +11,17 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import controller.FirmaController;
+import controller.MitarbeiterController;
 import models.Abteilung;
 import models.Firma;
 import models.Mitarbeiter;
 
-public class FirmenInitializer {
+public class Initializer {
 	
 	public static HashMap<Firma, FirmaController> firmen = new HashMap<Firma, FirmaController>();
 	
-	public FirmenInitializer() {
+	public Initializer() {
 		
 	}
 	
@@ -75,7 +77,7 @@ public class FirmenInitializer {
 			String rawLine = reader.readLine();
 			reader.close();
 			String[] arr = rawLine.split(",");
-			FirmaController f = FirmenInitializer.firmen.get(this.getFirmaByName(mit.getFirmaName()));
+			FirmaController f = Initializer.firmen.get(this.getFirmaByName(mit.getFirmaName()));
 			MitarbeiterController c = new MitarbeiterController(mit);
 			for(int i = 0; i < arr.length; i++) {
 				if(!arr[i].equals("null")) {
@@ -104,7 +106,7 @@ public class FirmenInitializer {
 		}
 	}
 	public Firma getFirmaByName(String name) {
-		Set<Firma> bla = FirmenInitializer.firmen.keySet();
+		Set<Firma> bla = Initializer.firmen.keySet();
 		for(Firma blabla : bla) {
 			if(blabla.getName().equalsIgnoreCase(name)) {
 				return blabla;
@@ -113,10 +115,10 @@ public class FirmenInitializer {
 		return null;
 	}
 	public FirmaController getFirmaControllerByName(String name) {
-		Set<Firma> bla = FirmenInitializer.firmen.keySet();
+		Set<Firma> bla = Initializer.firmen.keySet();
 		for(Firma blabla : bla) {
 			if(blabla.getName().equalsIgnoreCase(name)) {
-				return FirmenInitializer.firmen.get(blabla);
+				return Initializer.firmen.get(blabla);
 			}
 		}
 		return null;
