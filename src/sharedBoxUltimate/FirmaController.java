@@ -36,13 +36,14 @@ public class FirmaController {
 			}
 			try {
 				FileWriter writer = new FileWriter(userDir.getPath() + "/userinfo.csv");
-				writer.write(id + "," + name + "," + vorname + "," + passwort + "," + "Server/" + model.getName() + "/Mitarbeiter/" + name + "/Files" + ",none");
+				new File(userDir.getPath() + "/abteilung.csv").createNewFile();
+				writer.write(id + "," + name + "," + vorname + "," + passwort + "," + "Server/" + model.getName() + "/Mitarbeiter/" + name + "/Files" + ",false");
 				writer.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			
-			Mitarbeiter neu = new Mitarbeiter(id, name, vorname, passwort, "Server/" + model.getName() + "/Mitarbeiter/" + name + "/Files", null);
+			Mitarbeiter neu = new Mitarbeiter(id, name, vorname, passwort, "Server/" + model.getName() + "/Mitarbeiter/" + name + "/Files", false);
 			model.addUser(neu);
 		}
 		
@@ -76,5 +77,8 @@ public class FirmaController {
 			}
 		}
 		return null;
+	}
+	public Firma getFirma() {
+		return this.model;
 	}
 }

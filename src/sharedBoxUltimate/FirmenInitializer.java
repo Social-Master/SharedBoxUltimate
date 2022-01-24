@@ -30,17 +30,17 @@ public class FirmenInitializer {
 			FirmaController tempcont = new FirmaController(temp);
 			firmen.put(temp, tempcont);
 			
-			File[] mitarbeiterDirs = new File("Server/" + datei.getName() + "/Mitarbeiter").listFiles(File::isDirectory);
-			for(File mitarbeiterFile : mitarbeiterDirs) {
-				Mitarbeiter temp2;
-				temp2 = parseMitarbeiterFile(new File(mitarbeiterFile.getPath() + "/userinfo.csv"));
-				temp.addUser(temp2);
-			}
-			
 			File[] abteilungDirs = new File("Server/" + datei.getName() + "/Abteilungen").listFiles(File::isDirectory);
 			for(File abteilungFile : abteilungDirs) {
 				Abteilung abt = new Abteilung(abteilungFile.getName());
 				temp.addAbteilung(abt);
+			}
+			File[] mitarbeiterDirs = new File("Server/" + datei.getName() + "/Mitarbeiter").listFiles(File::isDirectory);
+			for(File mitarbeiterFile : mitarbeiterDirs) {
+				Mitarbeiter temp2;
+				temp2 = parseMitarbeiterFile(new File(mitarbeiterFile.getPath() + "/userinfo.csv"));
+				parseAbteilungFile(new File(mitarbeiterFile.getPath() + "/abteilung.csv"), temp2);
+				temp.addUser(temp2);
 			}
 		}
 	}
@@ -52,13 +52,41 @@ public class FirmenInitializer {
 			String rawLine = reader.readLine();
 			reader.close();
 			String[] arr = rawLine.split(",");
-			mit = new Mitarbeiter(Integer.parseInt(arr[0]),arr[1], arr[2], arr[3], arr[4], arr[5]);
+			if(arr[5].equals("false")) {
+				mit = new Mitarbeiter(Integer.parseInt(arr[0]),arr[1], arr[2], arr[3], arr[4], false);
+			}
+			else if(arr[5].equals("true")) {
+				mit = new Mitarbeiter(Integer.parseInt(arr[0]),arr[1], arr[2], arr[3], arr[4], true);
+			}
+			else {
+				mit = new Mitarbeiter(Integer.parseInt(arr[0]),arr[1], arr[2], arr[3], arr[4], false);
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return mit;
+	}
+	private void parseAbteilungFile(File datei, Mitarbeiter mit) {
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(datei));
+			String rawLine = reader.readLine();
+			reader.close();
+			String[] arr = rawLine.split(",");
+			FirmaController f = FirmenInitializer.firmen.get(this.getFirmaByName(mit.getFirma()));
+			MitarbeiterController c = new MitarbeiterController(mit);
+			for(int i = 0; i < arr.length; i++) {
+				if(!arr[i].equals("null")) {
+					c.addAbteilung(f.getAbteilungByName(arr[i]));
+				}
+			}
+		}
+		catch(Exception e) {
+			
+		}
+		
 	}
 	public void printFirmen() {
 		for(Firma a : firmen.keySet()) {

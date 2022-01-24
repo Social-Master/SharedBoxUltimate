@@ -20,12 +20,21 @@ public class Main {
 		bla.createMitarbeiter(2, "Muhabbek", "Adam", "passwort2");
 		bla.createAbteilung("Development");
 		bla.createAbteilung("Research");
+		//bla.getFirma().printMitarbeiter();
 		
 		
 		Mitarbeiter loggedin = bla.loginMitarbeiter("Heimbrodt", "passwort1");
 		MitarbeiterController loggedincont = new MitarbeiterController(loggedin);
 		loggedincont.addAbteilung(bla.getAbteilungByName("Research"));
 		loggedincont.addAbteilung(bla.getAbteilungByName("Development"));
+		loggedincont.setOp(true);
+		loggedincont.uploadFile(new File("/Users/stenh/x.pdf"));
+		loggedincont.copyFileByName("x.pdf", "x1.pdf");
+		loggedincont.moveFileByName("x1.pdf", "x2.pdf");
+		//loggedincont.deleteFileByName("x.pdf");
+		//for(File f : loggedincont.getAbteilungFiles()) {
+		//	System.out.println(f.getName());
+		//}
 		
 	}
 	

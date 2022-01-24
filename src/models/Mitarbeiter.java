@@ -1,10 +1,7 @@
 package models;
 
-import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
-
-import sharedBoxUltimate.FirmenInitializer;
 
 public class Mitarbeiter {
 	private Set<Abteilung> abteilungen = new HashSet<Abteilung>();
@@ -13,34 +10,19 @@ public class Mitarbeiter {
 	private String passwort;
 	private int id;
 	private String userPath;
+	private boolean op;
 	
 	public Mitarbeiter(String name) {
 		this.name = name;
 	}
 	
-	public Mitarbeiter(int id, String name, String vorname, String passwort, String userPath, String abteilungenRaw) {
+	public Mitarbeiter(int id, String name, String vorname, String passwort, String userPath, boolean op) {
 		this.id = id;
 		this.name = name;
 		this.vorname = vorname;
 		this.passwort = passwort;
 		this.userPath = userPath;
-		try { //Evtl zum Konstruktoraufruf verlegen
-			String[] abtArr = abteilungenRaw.split(";");
-			if(!abtArr[0].equalsIgnoreCase("none")) {
-				for(Firma a : FirmenInitializer.firmen.keySet()) {
-					if(a.getName().equals(this.getFirma())) {
-						for(int i = 0; i < abtArr.length; i++) {
-							for(Abteilung b : a.getAbteilungSet()) {
-								if(b.getName().equals(abtArr[i]));
-							}
-						}
-					}
-				}
-			}
-		}
-		catch(Exception e) {
-			
-		}
+		this.op = op;
 	}
 	public String getName() {
 		return this.name;
@@ -62,6 +44,9 @@ public class Mitarbeiter {
 		return this.userPath;
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -71,10 +56,21 @@ public class Mitarbeiter {
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
 	}
+	public void setOp(boolean in) {
+		this.op = in;
+	}
 	public void addAbteilung(Abteilung in) {
 		this.abteilungen.add(in);
 	}
 	public Set<Abteilung> getAbteilungen() {
 		return this.abteilungen;
+	}
+	public boolean isOp() {
+		if(this.op == true) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
