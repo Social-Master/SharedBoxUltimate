@@ -6,7 +6,7 @@
 
 public class Main {
 	public static void main (String[] args) {
-		Loginview loginview = new Loginview();
+		Loginview loginview = new Loginview();		// Creates a new Loginview window. More about this window, see the comments in Loginview.java
 		loginview.loginviewGo();
 	}
 }

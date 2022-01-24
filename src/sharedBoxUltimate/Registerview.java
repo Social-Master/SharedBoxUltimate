@@ -21,16 +21,20 @@ public class Registerview {
 	JTextArea confirmPasswordTextArea = null;
 	FlowLayout horizontalLayout = new FlowLayout();
 
+	/**
+	* This method runs the view, that allows prompt the user to enter their credentials to create a new user account to login.
+	*/
+
 	public void registerviewGo() {
 
 		/**
 		 * These set the properties of the window, i.e. the title, its default size and its default placement.
 		 */
 
-		frame = new JFrame("Shared-Box Ultimate Registrierung");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(500, 300);
-		frame.setLocation(300, 300);
+		frame = new JFrame("Shared-Box Ultimate Registrierung");		// Creates the Registerview window, with the title specified in the brackets
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);			// When the close button is clicked, the program will terminate.
+		frame.setSize(500, 300);										// The window is 500x300 pixels big
+		frame.setLocation(300, 300);									// 
 		frame.getContentPane();
 
 		/**

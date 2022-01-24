@@ -178,7 +178,7 @@ public class Fileview {
 				   dialogBoxDeleteProfile();	// When the deletePrifuleButton is clicked, this Method will be called. See a couple of lines below for a somewhat detailed description of what this method does and does not do.
 			   }
 		   });
-		   JButton adminSettingsButton = new JButton("Adminfunktionen");
+		   JButton adminSettingsButton = new JButton("Administrationsfunktionen");
 		   adminSettingsButton.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e) {
 				String[] beispiel = {"Bei", "Spiel", "Abteilungen", "WOHER?"};
