@@ -34,33 +34,33 @@ public class Registerview {
 		frame = new JFrame("Shared-Box Ultimate Registrierung");		// Creates the Registerview window, with the title specified in the brackets
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);			// When the close button is clicked, the program will terminate.
 		frame.setSize(500, 300);										// The window is 500x300 pixels big
-		frame.setLocation(300, 300);									// 
+		frame.setLocation(300, 300);									// The window will open at location (300, 300)
 		frame.getContentPane();
 
 		/**
 		 * This panel is spread across the entire window and makes sure the following panels are arranged on top of each other
 		 */
 
-		final JPanel windowPanel = new JPanel();
-		windowPanel.setLayout(new BoxLayout(windowPanel, BoxLayout.Y_AXIS));
+		final JPanel windowPanel = new JPanel();								// This panel will hold all other panels so they can be arranged vertically across the window.
+		windowPanel.setLayout(new BoxLayout(windowPanel, BoxLayout.Y_AXIS));	// The BoxLayout will be responsible for arranging the other panels that way
 		
 		/**
 		 * These deal with with the area where the user are expected to enter their first name.
 		 */
 
-		final JPanel firstnamePanel = new JPanel();
-		firstnamePanel.setLayout(horizontalLayout);
+		final JPanel firstnamePanel = new JPanel();				// This panel holds the items necessary for the user to type in their first name and an explanatory label next to it.
+		firstnamePanel.setLayout(horizontalLayout);				// The items on the panel will be arranget horizontally.
 		firstnamePanel.setAlignmentX(FlowLayout.TRAILING);
 		firstnamePanel.setOpaque(true);
-		JLabel firstnameLabel = new JLabel("Vorname");
-		firstnameTextArea = new JTextArea(1, 20);
+		JLabel firstnameLabel = new JLabel("Vorname");			// Explanatory label
+		firstnameTextArea = new JTextArea(1, 20);				// Text area for the user to type in their first name.
 		firstnameTextArea.setEditable(true);
-		firstnamePanel.add(firstnameLabel);
+		firstnamePanel.add(firstnameLabel);						// Both are added to the panel.
 		firstnamePanel.add(firstnameTextArea);
-		windowPanel.add(firstnamePanel);
+		windowPanel.add(firstnamePanel);						// The panel is added to the window panel from above
 
 		/**
-		 * These deal with with the area where the user are expected to enter their last name.
+		 * These deal with with the area where the user are expected to enter their last name the same way as above with the first name.
 		 */
 
 		final JPanel lastnamePanel = new JPanel();
@@ -75,7 +75,7 @@ public class Registerview {
 		windowPanel.add(lastnamePanel);
 
 		/**
-		 * These deal with with the area where the user are expected to enter their e-mail address.
+		 * These deal with with the area where the user are expected to enter their e-mail address the same way as above.
 		 */
 
 		final JPanel emailPanel = new JPanel();
@@ -90,7 +90,7 @@ public class Registerview {
 		windowPanel.add(emailPanel);
 
 		/**
-		 * These deal with with the area where the user are expected to enter their new password.
+		 * These deal with with the area where the user are expected to enter their new password the same way as above.
 		 */
 
 		final JPanel passwordPanel = new JPanel();
@@ -105,7 +105,7 @@ public class Registerview {
 		windowPanel.add(passwordPanel);
 
 		/**
-		 * These deal with with the area where the user are expected to reenter their new password to confirm it.
+		 * These deal with with the area where the user are expected to reenter their new password to confirm it. Everything is arranged the same way as above.
 		 */
 
 		final JPanel confirmPasswordPanel = new JPanel();

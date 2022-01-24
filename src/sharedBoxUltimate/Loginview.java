@@ -38,7 +38,7 @@ public class Loginview {
 		  * These deal with the area, where the user are expected to type in their e-mail address.
 		  */
 
-		  final JPanel emailPanel = new JPanel();					// This panel holds the items necessary for the user to type in their email and an explanatory label next to it
+		  final JPanel emailPanel = new JPanel();					// This panel holds the items necessary for the user to type in their email and an explanatory label next to it.
 		  emailPanel.setLayout(horizontalLayout);					// The items on the panel will be arranget horizontally.
 		  emailPanel.setAlignmentX(FlowLayout.TRAILING);
 		  emailPanel.setOpaque(true);
@@ -49,9 +49,10 @@ public class Loginview {
 		  emailPanel.add(emailTextArea);
 
 		  /**
-		   * These deal with the area, where the user are expected to type in their password.
+		   * These deal with the area, where the user are expected to type in their password the same way as above woth the email address.
 		   */
-		  final JPanel passwordPanel = new JPanel();				// The same as above but with password instead of email address
+
+		  final JPanel passwordPanel = new JPanel();
 		  passwordPanel.setLayout(horizontalLayout);
 		  passwordPanel.setAlignmentX(FlowLayout.TRAILING);
 		  passwordPanel.setOpaque(true);
