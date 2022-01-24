@@ -2,6 +2,10 @@ package sharedBoxUltimate;
 
 import java.io.File;
 
+import controller.AbteilungController;
+import controller.FirmaController;
+import controller.FirmenInitializer;
+import controller.MitarbeiterController;
 import models.Abteilung;
 import models.Mitarbeiter;
 
@@ -35,6 +39,9 @@ public class Main {
 		//loggedincont.deleteFileByName("x.pdf");
 		AbteilungController abtcont = new AbteilungController(loggedincont.getAbteilungByName("Research"), loggedin);
 		abtcont.uploadFile(new File("/Users/stenh/x.pdf"));
+		for(File f : loggedincont.getUserFiles("wildes")) {
+			System.out.println(f.getName());
+		}
 	}
 	
 	public static void initFileStructure() {

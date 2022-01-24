@@ -1,4 +1,4 @@
-package sharedBoxUltimate;
+package controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +8,7 @@ import java.nio.file.StandardCopyOption;
 
 import models.Abteilung;
 import models.Mitarbeiter;
+import sharedBoxUltimate.Logger;
 
 public class AbteilungController {
 	Abteilung model;

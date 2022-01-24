@@ -1,4 +1,4 @@
-package sharedBoxUltimate;
+package controller;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,6 +17,7 @@ import java.util.Set;
 
 import models.Abteilung;
 import models.Mitarbeiter;
+import sharedBoxUltimate.Logger;
 
 public class MitarbeiterController {
 	Mitarbeiter model;
@@ -80,7 +81,7 @@ public class MitarbeiterController {
 	
 	
 	public Set<File> getUserFiles(String s) {
-		File userDir = new File(model.getUserPath() + s);
+		File userDir = new File(model.getUserPath() + "/" + s);
 		Set<File> out = new HashSet<File>();
 		for(File f : userDir.listFiles()) {
 			out.add(f);
