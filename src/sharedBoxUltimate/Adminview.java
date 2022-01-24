@@ -115,13 +115,13 @@ public class Adminview {
 	public static int delGroupWindow() {
 	
 		return JOptionPane.showOptionDialog(null,
-											"Wollen Sie die ausgewählte Gruppe wirklich löschen?",
-											"Gruppe löschen",
-											JOptionPane.YES_NO_OPTION,
-											JOptionPane.QUESTION_MESSAGE,
-											null, 
-											new String[]{"Ja", "Nein"},
-											"Nein");
+							"Wollen Sie die ausgewählte Gruppe wirklich löschen?",
+							"Gruppe löschen",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE,
+							null, 
+							new String[]{"Ja", "Nein"},
+							"Nein");
 	}
 	
 	
