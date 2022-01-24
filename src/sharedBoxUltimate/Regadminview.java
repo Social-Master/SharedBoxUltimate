@@ -83,13 +83,13 @@ public class Regadminview {
 	public static int acceptReq() {
 	
 		return JOptionPane.showOptionDialog(null,
-											"Wollen Sie die ausgewählte Registrierungsanfrage wirklich akzeptieren?",
-											"Anfrage Akzeptieren",
-											JOptionPane.YES_NO_OPTION,
-											JOptionPane.QUESTION_MESSAGE,
-											null, 
-											new String[]{"Ja", "Nein"},
-											"Nein");
+							"Wollen Sie die ausgewählte Registrierungsanfrage wirklich akzeptieren?",
+							"Anfrage Akzeptieren",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE,
+							null, 
+							new String[]{"Ja", "Nein"},
+							"Nein");
 	}
 	
 	
@@ -101,13 +101,13 @@ public class Regadminview {
 	public static int denyReq() {
 	
 		return JOptionPane.showOptionDialog(null,
-											"Wollen Sie die ausgewählte Registrierungsanfrage wirklich ablehnen?",
-											"Anfrage Ablehnen",
-											JOptionPane.YES_NO_OPTION,
-											JOptionPane.QUESTION_MESSAGE,
-											null, 
-											new String[]{"Ja", "Nein"},
-											"Nein");
+							"Wollen Sie die ausgewählte Registrierungsanfrage wirklich ablehnen?",
+							"Anfrage Ablehnen",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE,
+							null, 
+							new String[]{"Ja", "Nein"},
+							"Nein");
 	}
 	
 	
