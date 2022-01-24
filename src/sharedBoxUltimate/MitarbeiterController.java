@@ -67,9 +67,11 @@ public class MitarbeiterController {
 				try {
 					Files.copy(source, destination);
 					Logger.log(model, "Uploaded " + source.toFile().getAbsolutePath() + " to " + destination.toFile().getAbsolutePath(), new File(model.getUserPath() + "/" + dest));
-				} catch (IOException e) {
+				} catch(FileAlreadyExistsException e) {
+					System.out.println("Dieser Ordner existiert bereits!");
+				} catch(IOException e) {
 					e.printStackTrace();
-				}
+				} 
 			});
 		} catch (IOException e) {
 			e.printStackTrace();
