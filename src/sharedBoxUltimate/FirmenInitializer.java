@@ -75,7 +75,7 @@ public class FirmenInitializer {
 			String rawLine = reader.readLine();
 			reader.close();
 			String[] arr = rawLine.split(",");
-			FirmaController f = FirmenInitializer.firmen.get(this.getFirmaByName(mit.getFirma()));
+			FirmaController f = FirmenInitializer.firmen.get(this.getFirmaByName(mit.getFirmaName()));
 			MitarbeiterController c = new MitarbeiterController(mit);
 			for(int i = 0; i < arr.length; i++) {
 				if(!arr[i].equals("null")) {

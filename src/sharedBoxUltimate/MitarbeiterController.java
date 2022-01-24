@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,9 +24,9 @@ public class MitarbeiterController {
 		this.model = model;
 	}
 	
-	public void uploadFile(File in) {
+	public void uploadFile(File in, String dest) {
 		try {
-			Files.copy(in.toPath(), new File(model.getUserPath() + "/" + in.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(in.toPath(), new File(model.getUserPath() + "/" + dest + "/" + in.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
 			Logger.log(this.model, "Uploaded " + in.getName(), new File(model.getUserPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -59,32 +61,35 @@ public class MitarbeiterController {
 			e.printStackTrace();
 		}
 	}
+	public void uploadDir(File in, String dest) {
+		try {
+			Files.walk(Paths.get(in.getAbsolutePath())).forEach(source -> { Path destination = Paths.get(model.getUserPath() + "/" + dest, source.toString().substring(in.getAbsolutePath().length()));
+				try {
+					Files.copy(source, destination);
+					Logger.log(model, "Uploaded " + source.toFile().getAbsolutePath() + " to " + destination.toFile().getAbsolutePath(), new File(model.getUserPath() + "/" + dest));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	public Set<File> getUserFiles(String s) {
 		File userDir = new File(model.getUserPath() + s);
 		Set<File> out = new HashSet<File>();
 		for(File f : userDir.listFiles()) {
-			if(!f.isDirectory()) {
-				out.add(f);
-			}
+			out.add(f);
 		}
 		return out;
 	}
-	public Set<File> getUserDirs(String s) {
-		File userDir = new File(model.getUserPath() + s);
-		Set<File> out = new HashSet<File>();
-		for(File f : userDir.listFiles()) {
-			if(f.isDirectory()) {
-				out.add(f);
-			}
-		}
-		return out;
-	}
+
 	public Set<File> getAbteilungFiles() {
 		Set<File> out = new HashSet<File>();
 		for(Abteilung a : model.getAbteilungen()) {
-			File abteilungDir = new File("Server/" + model.getFirma() + "/Abteilungen/" + a.getName());
+			File abteilungDir = new File("Server/" + model.getFirmaName() + "/Abteilungen/" + a.getName());
 			for(File f : abteilungDir.listFiles()) {
 				out.add(f);
 			}
@@ -96,24 +101,20 @@ public class MitarbeiterController {
 		String out = "";
 		File userDir = new File(model.getUserPath() + s);
 		for(File f : userDir.listFiles()) {
-			if(!f.isDirectory()) {
-				out += f.getName() + " "; 
-			}
+			out += f.getName() + " "; 
 		}
 		return out;
 	}
-	public String getUserDirsAsString(String s) {
-		String out = "";
-		File userDir = new File(model.getUserPath() + s);
-		for(File f : userDir.listFiles()) {
-			if(f.isDirectory()) {
-				out += f.getName() + " "; 
+	public Abteilung getAbteilungByName(String name) {
+		for(Abteilung x : model.getAbteilungen()) {
+			if(x.getName().equals(name)) {
+				return x;
 			}
 		}
-		return out;
+		return null;
 	}
 	public void addAbteilung(Abteilung in) {
-		File config = new File("Server/" + model.getFirma() + "/Mitarbeiter/" + model.getName() + "/abteilung.csv"); //Hier gehts weiter
+		File config = new File("Server/" + model.getFirmaName() + "/Mitarbeiter/" + model.getName() + "/abteilung.csv"); //Hier gehts weiter
 		BufferedWriter bw = null;
 		BufferedReader reader = null;
 		boolean isNew = true;
@@ -150,31 +151,31 @@ public class MitarbeiterController {
 	}
 
 	public void setOp(boolean in) {
-		updateUser(model.getId(), model.getName(), model.getVorname(), model.getPasswort(), model.getUserPath(), in);
+		updateUser(model.getId(), model.getName(), model.getEmail(), model.getPasswort(), model.getUserPath(), in);
 		model.setOp(in);
 	}
 	public void setId(int in) {
-		updateUser(in, model.getName(), model.getVorname(), model.getPasswort(), model.getUserPath(), model.isOp());
+		updateUser(in, model.getName(), model.getEmail(), model.getPasswort(), model.getUserPath(), model.isOp());
 		model.setId(in);
 	}
 	public void setName(String in) {
-		updateUser(model.getId(), in, model.getVorname(), model.getPasswort(), model.getUserPath(), model.isOp());
+		updateUser(model.getId(), in, model.getEmail(), model.getPasswort(), model.getUserPath(), model.isOp());
 		model.setName(in);
 	}
 	public void setVorname(String in) {
 		updateUser(model.getId(), model.getName(), in, model.getPasswort(), model.getUserPath(), model.isOp());
-		model.setVorname(in);
+		model.setEmail(in);
 	}
 	public void setPasswort(String in) {
-		updateUser(model.getId(), model.getName(), model.getVorname(), in, model.getUserPath(), model.isOp());
+		updateUser(model.getId(), model.getName(), model.getEmail(), in, model.getUserPath(), model.isOp());
 		model.setPasswort(in);
 	}
 	
 	
 	private void updateUser(int id, String name, String vorname, String passwort, String userPath, boolean op) {
-		File useri = new File("Server/" + model.getFirma() + "/Mitarbeiter/" + model.getName() + "/userinfo.csv");
+		File useri = new File("Server/" + model.getFirmaName() + "/Mitarbeiter/" + model.getName() + "/userinfo.csv");
 		useri.delete();
-		useri = new File("Server/" + model.getFirma() + "/Mitarbeiter/" + model.getName() + "/userinfo.csv");
+		useri = new File("Server/" + model.getFirmaName() + "/Mitarbeiter/" + model.getName() + "/userinfo.csv");
 		try {
 			//useri.createNewFile();
 			BufferedWriter bw = null;
@@ -182,10 +183,10 @@ public class MitarbeiterController {
 			fw = new FileWriter(useri);
 			bw = new BufferedWriter(fw);
 			if(op == true) {
-				bw.write(id + "," + name + "," + vorname + "," + passwort + "," + "Server/" + model.getFirma() + "/Mitarbeiter/" + name + "/Files" + ",true");
+				bw.write(id + "," + name + "," + vorname + "," + passwort + "," + "Server/" + model.getFirmaName() + "/Mitarbeiter/" + name + "/Files" + ",true");
 			}
 			else {
-				bw.write(id + "," + name + "," + vorname + "," + passwort + "," + "Server/" + model.getFirma() + "/Mitarbeiter/" + name + "/Files" + ",false");
+				bw.write(id + "," + name + "," + vorname + "," + passwort + "," + "Server/" + model.getFirmaName() + "/Mitarbeiter/" + name + "/Files" + ",false");
 			}
 			bw.close();
 		} catch (IOException e) {

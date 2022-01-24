@@ -28,14 +28,13 @@ public class Main {
 		loggedincont.addAbteilung(bla.getAbteilungByName("Research"));
 		loggedincont.addAbteilung(bla.getAbteilungByName("Development"));
 		loggedincont.setOp(true);
-		loggedincont.uploadFile(new File("/Users/stenh/x.pdf"));
+		loggedincont.uploadDir(new File("/Users/stenh/wildes"), "wildes");
+		loggedincont.uploadFile(new File("/Users/stenh/x.pdf"), "");
 		loggedincont.copyFileByName("x.pdf", "x1.pdf");
 		loggedincont.moveFileByName("x1.pdf", "x2.pdf");
 		//loggedincont.deleteFileByName("x.pdf");
-		//for(File f : loggedincont.getAbteilungFiles()) {
-		//	System.out.println(f.getName());
-		//}
-		
+		AbteilungController abtcont = new AbteilungController(loggedincont.getAbteilungByName("Research"), loggedin);
+		abtcont.uploadFile(new File("/Users/stenh/x.pdf"));
 	}
 	
 	public static void initFileStructure() {

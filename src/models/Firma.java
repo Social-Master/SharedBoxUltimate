@@ -36,7 +36,7 @@ public class Firma {
 	}
 	public void printMitarbeiter() {
 		for(Mitarbeiter a : this.mit) {
-			System.out.println(a.getId() + " " + a.getName() + " " + a.getVorname() + " " + a.getPasswort());
+			System.out.println(a.getId() + " " + a.getName() + " " + a.getEmail() + " " + a.getPasswort());
 		}
 	}
 	public void printAbteilungen() {
