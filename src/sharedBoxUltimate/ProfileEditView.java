@@ -8,35 +8,56 @@ import java.awt.event.*;
 import java.awt.*;
 
 public class ProfileEditView {
+
+	/**
+	* These set the properties of the window, i.e. the title, its default size and its default placement.
+	*/
+
 	JFrame frame = null;
-	FlowLayout horizontalLayout = new FlowLayout();
+	FlowLayout horizontalLayout = new FlowLayout();		// This is a layout, that arranges items horizontally. Supposed to be used as "rows".
 	JTextArea setFirstnameTextArea = null;
 	JTextArea setLastnameTextArea = null;
 	JTextArea setEmailTextArea = null;
 	JTextArea setPasswordTextArea = null;
 	JTextArea confirmPasswordTextArea = null;
 
+	/**
+	* This method runs the view, that prompt the user to enter their credentials to create a new user account to login.
+	*/
+
 	public void profileEditViewGo() {
 
-		frame = new JFrame("Profil bearbeiten");
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setSize(450, 225);
-		frame.setLocation(300, 300);
+		frame = new JFrame("Profil bearbeiten");					// Creates the ProfileEditView window, with the title specified in the brackets.
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	// When the close button is clicked, the window will disappear without closing the program.
+		frame.setSize(450, 225);				// The window is 450x225 pixels big.
+		frame.setLocation(300, 300);			// The window will open at location (300, 300).
 		frame.getContentPane();
 
+
+		/**
+		 * This panel is spread across the entire window and makes sure the following panels are arranged vertically.
+		 */
 		final JPanel windowPanel = new JPanel();
 		windowPanel.setLayout(new BoxLayout(windowPanel, BoxLayout.Y_AXIS));
 
-		final JPanel setFirstnamePanel = new JPanel();
-		setFirstnamePanel.setLayout(horizontalLayout);
+		/**
+		 * The following lines deal with the area where the user are expected to enter their new first name.
+		 */
+
+		final JPanel setFirstnamePanel = new JPanel();		// This panel holds the item necessary for the user to type in their first name (a text area) and an explanatory label next to it.
+		setFirstnamePanel.setLayout(horizontalLayout);		// The items on the panel will be arranget horizontally according to the FlowLayout defined outside this method.
 		setFirstnamePanel.setAlignmentX(FlowLayout.TRAILING);
 		setFirstnamePanel.setOpaque(true);
-		JLabel setFirstnameLabel = new JLabel("Neuer Vormane");
-		setFirstnameTextArea = new JTextArea(1, 20);
+		JLabel setFirstnameLabel = new JLabel("Neuer Vormane");		// Explanatory label
+		setFirstnameTextArea = new JTextArea(1, 20);				// Text area for the user to type in their first name.
 		setFirstnameTextArea.setEditable(true);
-		setFirstnamePanel.add(setFirstnameLabel);
+		setFirstnamePanel.add(setFirstnameLabel);					// Both are added to the panel.
 		setFirstnamePanel.add(setFirstnameTextArea);
-		windowPanel.add(setFirstnamePanel);
+		windowPanel.add(setFirstnamePanel);							// The panel is added to the window panel from above.
+
+		/**
+		 * The following lines deal with the area where the user are expected to enter their new last name the same way as above with the new first name.
+		 */
 
 		final JPanel setLastnamePanel = new JPanel();
 		setLastnamePanel.setLayout(horizontalLayout);
@@ -49,6 +70,10 @@ public class ProfileEditView {
 		setLastnamePanel.add(setLastnameTextArea);
 		windowPanel.add(setLastnamePanel);
 
+		/**
+		 * The following lines deal with the area where the user are expected to enter their new e-mail address the same way as above.
+		 */
+
 		final JPanel setEmailPanel = new JPanel();
 		setEmailPanel.setLayout(horizontalLayout);
 		setEmailPanel.setAlignmentX(FlowLayout.TRAILING);
@@ -59,6 +84,10 @@ public class ProfileEditView {
 		setEmailPanel.add(setEmailLabel);
 		setEmailPanel.add(setEmailTextArea);
 		windowPanel.add(setEmailPanel);
+
+		/**
+		 * The following lines deal with the area where the user are expected to enter their new password the same way as above.
+		 */
 
 		final JPanel setPasswordPanel = new JPanel();
 		setPasswordPanel.setLayout(horizontalLayout);
@@ -71,6 +100,10 @@ public class ProfileEditView {
 		setPasswordPanel.add(setPasswordTextArea);
 		windowPanel.add(setPasswordPanel);
 
+		/**
+		 * The following lines deal with the area where the user are expected to reenter their new password to confirm it. Everything is arranged the same way as above.
+		 */
+
 		final JPanel confirmPasswordPanel = new JPanel();
 		confirmPasswordPanel.setLayout(horizontalLayout);
 		confirmPasswordPanel.setAlignmentX(FlowLayout.TRAILING);
@@ -82,22 +115,26 @@ public class ProfileEditView {
 		confirmPasswordPanel.add(confirmPasswordTextArea);
 		windowPanel.add(confirmPasswordPanel);
 
-		final JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(horizontalLayout);
+		/**
+		 * The following lines deal with the area where the buttons to save the new pieces of data or to cancel the process are placed.
+		 */
+
+		final JPanel buttonPanel = new JPanel();					// Panel to hold the buttons at the bottom of the window.
+		buttonPanel.setLayout(horizontalLayout);					// The items in the panel are arranged horizontally.
 		buttonPanel.setAlignmentX(FlowLayout.TRAILING);
 		buttonPanel.setOpaque(true);
-		JButton saveChangesButton = new JButton("Änderungen speichern");
-		JButton cancelButton = new JButton("Abbrechen");
-		cancelButton.addActionListener(new ActionListener() {
+		JButton saveChangesButton = new JButton("Änderungen speichern");	// Save changes button
+		JButton cancelButton = new JButton("Abbrechen");			// Cancel button
+		cancelButton.addActionListener(new ActionListener() {		// Adds an action to the cancel button, which is executed when clicked on.
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frame.dispose();				// When the cancel button is clicked, the window will be disposed.
 			}
 		});
-		buttonPanel.add(saveChangesButton);
+		buttonPanel.add(saveChangesButton);		// All buttons are added to the panel...
 		buttonPanel.add(cancelButton);
-		windowPanel.add(buttonPanel);
+		windowPanel.add(buttonPanel);			// ... and the panel with the buttons is added to the window panel.
 
-		frame.getContentPane().add(BorderLayout.CENTER, windowPanel);
+		frame.getContentPane().add(BorderLayout.CENTER, windowPanel);	// The window panel is added to the frame itself and arranges everything vertically.
 
 		frame.setVisible(true);
 	}

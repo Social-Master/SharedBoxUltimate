@@ -16,16 +16,20 @@ public class Fileview {
 	 FlowLayout topLayout = new FlowLayout();
 	 JMenuBar menuBar;
 	 
+	 /**
+	  * This method runs this view. Fileview is not only showing files in a selected directory but also allows acces to other views.
+	  */
+
 	 public void fileviewGo() {
 		 
 		 /**
 		  * These set the properties of the window, i.e. the title, its default size and its default placement.
 		  */
 		  
-		  frame = new JFrame("Shared-Box Ultimate (Firstname Lastname)");
-		  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		  frame.setSize(1000, 500);
-		  frame.setLocation(300, 300);
+		  frame = new JFrame("Shared-Box Ultimate (Firstname Lastname)");	// Creates the Fileview window, with the specified title in the brackets.
+		  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	// When the window is closed with the close button, the entire program will terminate.
+		  frame.setSize(1000, 500);		// The window is 1000x500 pixels big.
+		  frame.setLocation(300, 300);	// The window will open at location (300, 300).
 		  frame.getContentPane();
 		  
 		  /**
@@ -40,7 +44,7 @@ public class Fileview {
 		  JList<String> directoryContentList = new JList<>(directoryContent);
 
 		  /**
-		   * This directoryContentListPanel adds the directoryContentList from above to a panel, which is not at all obvious. The panel is added to the frame a couple of lines below.
+		   * This directoryContentListPanel adds the directoryContentList from above to a panel.
 		   */
 
 		  final JPanel directoryContentListPanel = new JPanel();
@@ -60,43 +64,48 @@ public class Fileview {
 		   * With the menu bar, the file and folder operations can be accessed via the appropriatly named menus.
 		   */
 
-		  menuBar = new JMenuBar();
-		  JMenu fileMenu = new JMenu("Datei");
-		  JMenu directoryMenu = new JMenu("Verzeichnis");
-		  menuBar.add(fileMenu);
+		  menuBar = new JMenuBar();					// This creates the menu bar itself.
+		  JMenu fileMenu = new JMenu("Datei");		// This creates a menu called "Datei".
+		  JMenu directoryMenu = new JMenu("Verzeichnis");	// This creates a menu called "Verzeichnis".
+		  menuBar.add(fileMenu);	// Both menus are then attatched to the menu bar.
 		  menuBar.add(directoryMenu);
 
 		  /**
-		   * These are the fileMenu bar items with which the before mentioned file operations can be executed.
+		   * The following lines add the menu items that will be part of the fileMenu. The fileMenu includes all necessary operations to files and supports keyboard shortcuts for cutting, copying, pasting, renaming and moving.
 		   */
 		  
 		  JMenuItem cutFileItem = new JMenuItem("Ausschneiden...", KeyEvent.VK_T);
-		  cutFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		  cutFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));		// Ctrl+X for cutting
 		  JMenuItem copyFileItem = new JMenuItem("Kopieren...", KeyEvent.VK_T);
-		  copyFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		  copyFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));	// Ctrl+C for copying
 		  JMenuItem pasteFileItem = new JMenuItem("Einfügen...", KeyEvent.VK_T);
-		  pasteFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+		  pasteFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));	// Ctrl+V for pasting
 		  JMenuItem renameFileItem = new JMenuItem("Umbenennen...", KeyEvent.VK_T);
-		  renameFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
+		  renameFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));	// Alt+1 for renaming.
 		  renameFileItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				  dialogBoxRenameFile();
+				  dialogBoxRenameFile();				// Upon clicking the rename button, an input dialog will be opened, where a valid filename must be entered, which the selected file will then be renamed to.
 			  }
 		  });
 		  JMenuItem moveFileItem = new JMenuItem("Verschieben...", KeyEvent.VK_T);
-		  moveFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
+		  moveFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));		// Alt+2 for moving
 		  moveFileItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				  dialogBoxMoveFile();
+				  dialogBoxMoveFile();		// The same kind of dialog opens when clicking the move button, however here a valid directory path must be entered.
 			  }
 		  });
 		  JMenuItem deleteFileItem = new JMenuItem("Löschen...");
 		  deleteFileItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				  dialogBoxDeleteFile();
+				  dialogBoxDeleteFile();		// When clicking the delete button, a confirmation dialog will be opened with the options "Yes" and "No". Clicking "Yes" will delete the selected file, clicking "No" will do nothing.
 			  }
 		  });
-		  JMenuItem propertiesFileItem = new JMenuItem("Eigenschaften einsehen...", KeyEvent.VK_T);
+		  JMenuItem propertiesFileItem = new JMenuItem("Eigenschaften einsehen...");
+
+		  /**
+		   * The following lines add the items from above to the fileMenu.
+		   */
+
 		  fileMenu.add(cutFileItem);
 		  fileMenu.add(copyFileItem);
 		  fileMenu.add(pasteFileItem);
@@ -106,44 +115,49 @@ public class Fileview {
 		  fileMenu.add(propertiesFileItem);
 
 		  /**
-		   * These are the directoryMenu items with which the before mentioned directory operations can be executed, including giving other users read, write and execute rights within the /user directory.
-		   * 
+		   * The following lines add the menu items that will be part of the directoryMenu. The directoryMenu includes all necessary operations to directories and supports keyboard shortcuts for cutting, copying, pasting, renaming and moving.
+		   * Additionally, other users within the same company can be "invited" to the current user's /user directory from here.
 		   */
 
 		  JMenuItem cutDirectoryItem = new JMenuItem("Ausschneiden...", KeyEvent.VK_T);
-		  cutDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		  cutDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));	// Ctrl+X for cutting
 		  JMenuItem copyDirectoryItem = new JMenuItem("Kopieren...", KeyEvent.VK_T);
-		  copyDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		  copyDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));	// Ctrl+C for copying
 		  JMenuItem pasteDirectoryItem = new JMenuItem("Einfügen...", KeyEvent.VK_T);
-		  pasteDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+		  pasteDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));	// Ctrl+V for pasting
 		  JMenuItem renameDirectoryItem = new JMenuItem("Umbenennen...", KeyEvent.VK_T);
-		  renameDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, ActionEvent.ALT_MASK));
+		  renameDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, ActionEvent.ALT_MASK));	// Alt+3 for renaming
 		  renameDirectoryItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dialogBoxRenameDirectory();
+				dialogBoxRenameDirectory();		// Upon clicking the rename button, an input dialog will be opened, where a valid directrory name must be entered, which the selected file will then be renamed to.
 			}
 		  });
 		  JMenuItem moveDirectoryItem = new JMenuItem("Verschieben...", KeyEvent.VK_T);
 		  moveDirectoryItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4, ActionEvent.ALT_MASK));
 		  moveDirectoryItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				  dialogBoxMoveDirectory();
+				  dialogBoxMoveDirectory();		// The same kind of dialog opens when clicking the move button, however here a valid directory path must be entered.
 			  }
 		  });
 		  JMenuItem deleteDirectoryItem = new JMenuItem("Löschen...");
 		  deleteDirectoryItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				  dialogBoxDeleteDirectory();
+				  dialogBoxDeleteDirectory();	// When clicking the delete button, a confirmation dialog will be opened with the options "Yes" and "No". Clicking "Yes" will delete the selected directory and its contents, clicking "No" will do nothing.
 			  }
 		  });
-		  JMenuItem inviteToHomeDirectoryItem = new JMenuItem("Zum Home-Verzeichnis einladen...");
+		  JMenuItem inviteToHomeDirectoryItem = new JMenuItem("Zum Home-Verzeichnis einladen...");	// This is the menu item allowing access to the InviteToHomeDirectoryView.
 		  inviteToHomeDirectoryItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				InviteToHomeDirectoryView inviteToHomeDirectoryView = new InviteToHomeDirectoryView();
-				inviteToHomeDirectoryView.inviteToHomeDirectoryViewGo();
+				InviteToHomeDirectoryView inviteToHomeDirectoryView = new InviteToHomeDirectoryView();	// The action associated with the button is: Creating a new InviteToHomeDirectoryView object...
+				inviteToHomeDirectoryView.inviteToHomeDirectoryViewGo();	//... and then running its inviteToHomeDirectoryViewGo method, creating the appropriate window. More on that in InviteToHomeDirectoryView.java
 			  }
 		  });
 		  JMenuItem propertiesDirectoryItem = new JMenuItem("Eigenschaften einsehen...");
+
+		  /**
+		   * The following lines add the items above to the directory menu.
+		   */
+
 		  directoryMenu.add(cutDirectoryItem);
 		  directoryMenu.add(copyDirectoryItem);
 		  directoryMenu.add(pasteDirectoryItem);
@@ -153,7 +167,7 @@ public class Fileview {
 		  directoryMenu.add(propertiesDirectoryItem);
 		  directoryMenu.add(inviteToHomeDirectoryItem);
 
-		  JButton moveUpButton = new JButton("Zum Oberverzeichnis");
+		  JButton moveUpButton = new JButton("Zum Oberverzeichnis");	// This button brings the current user to the top directory.
 		  JLabel filePathLabel = new JLabel("/user");	// This should display the current name of the directory.
 		  JButton reflectSelection = new JButton("Reflect Selection");
 		  topPanel.add(filePathLabel);
@@ -161,7 +175,11 @@ public class Fileview {
 		  topPanel.add(reflectSelection);
 
 		  /**
-		   * This deals with the settings of the current user. If an admin are logged in, the department related buttons will also appear; they are invisible to the user.
+		   * This deals with the settings of the current user. If an admin are logged in, the department related buttons will also appear; they are invisible to a normal user.
+		   */
+
+		  /**
+		   * The following lines deal with the user's ability to change their data, e.g. their first name, last name or emai address.
 		   */
 
 		   final JPanel userSettingsPanel = new JPanel();
@@ -172,10 +190,15 @@ public class Fileview {
 				   profileEditView.profileEditViewGo();
 			   }
 		   });
+
+		   /**
+			* The following lines deal with the user's ability to delete their profile.
+		    */
+
 		   JButton deleteProfileButton = new JButton("Profil löschen");
 		   deleteProfileButton.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e) {
-				   dialogBoxDeleteProfile();	// When the deletePrifuleButton is clicked, this Method will be called. See a couple of lines below for a somewhat detailed description of what this method does and does not do.
+				   dialogBoxDeleteProfile();	// When the deletePrifuleButton is clicked, this Method will be called. See a couple of lines below for more details.
 			   }
 		   });
 		   JButton adminSettingsButton = new JButton("Administrationsfunktionen");

@@ -19,7 +19,7 @@ public class Registerview {
 	JTextArea emailTextArea = null;
 	JTextArea passwordTextArea = null;
 	JTextArea confirmPasswordTextArea = null;
-	FlowLayout horizontalLayout = new FlowLayout();
+	FlowLayout horizontalLayout = new FlowLayout();		// This is a layout, that arranges items horizontally. Supposed to be used as "rows".
 
 	/**
 	* This method runs the view, that allows prompt the user to enter their credentials to create a new user account to login.
@@ -33,23 +33,23 @@ public class Registerview {
 
 		frame = new JFrame("Shared-Box Ultimate Registrierung");		// Creates the Registerview window, with the title specified in the brackets
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);			// When the close button is clicked, the program will terminate.
-		frame.setSize(500, 300);										// The window is 500x300 pixels big
-		frame.setLocation(300, 300);									// The window will open at location (300, 300)
+		frame.setSize(500, 250);										// The window is 500x300 pixels big.
+		frame.setLocation(300, 300);									// The window will open at location (300, 300).
 		frame.getContentPane();
 
 		/**
-		 * This panel is spread across the entire window and makes sure the following panels are arranged on top of each other
+		 * This panel is spread across the entire window and makes sure the following panels are arranged vertically.
 		 */
 
 		final JPanel windowPanel = new JPanel();								// This panel will hold all other panels so they can be arranged vertically across the window.
 		windowPanel.setLayout(new BoxLayout(windowPanel, BoxLayout.Y_AXIS));	// The BoxLayout will be responsible for arranging the other panels that way
 		
 		/**
-		 * These deal with with the area where the user are expected to enter their first name.
+		 * The following lines deal with the area where the user are expected to enter their first name.
 		 */
 
-		final JPanel firstnamePanel = new JPanel();				// This panel holds the items necessary for the user to type in their first name and an explanatory label next to it.
-		firstnamePanel.setLayout(horizontalLayout);				// The items on the panel will be arranget horizontally.
+		final JPanel firstnamePanel = new JPanel();				// This panel holds the item necessary for the user to type in their first name (a text area) and an explanatory label next to it.
+		firstnamePanel.setLayout(horizontalLayout);				// The items on the panel will be arranget horizontally according to the FlowLayout defined outside this method.
 		firstnamePanel.setAlignmentX(FlowLayout.TRAILING);
 		firstnamePanel.setOpaque(true);
 		JLabel firstnameLabel = new JLabel("Vorname");			// Explanatory label
@@ -57,10 +57,10 @@ public class Registerview {
 		firstnameTextArea.setEditable(true);
 		firstnamePanel.add(firstnameLabel);						// Both are added to the panel.
 		firstnamePanel.add(firstnameTextArea);
-		windowPanel.add(firstnamePanel);						// The panel is added to the window panel from above
+		windowPanel.add(firstnamePanel);						// The panel is added to the window panel from above.
 
 		/**
-		 * These deal with with the area where the user are expected to enter their last name the same way as above with the first name.
+		 * The following lines deal with the area where the user are expected to enter their last name the same way as above with the first name.
 		 */
 
 		final JPanel lastnamePanel = new JPanel();
@@ -75,7 +75,7 @@ public class Registerview {
 		windowPanel.add(lastnamePanel);
 
 		/**
-		 * These deal with with the area where the user are expected to enter their e-mail address the same way as above.
+		 * The following lines deal with the area where the user are expected to enter their e-mail address the same way as above.
 		 */
 
 		final JPanel emailPanel = new JPanel();
@@ -90,7 +90,7 @@ public class Registerview {
 		windowPanel.add(emailPanel);
 
 		/**
-		 * These deal with with the area where the user are expected to enter their new password the same way as above.
+		 * The following lines deal with the area where the user are expected to enter their new password the same way as above.
 		 */
 
 		final JPanel passwordPanel = new JPanel();
@@ -105,7 +105,7 @@ public class Registerview {
 		windowPanel.add(passwordPanel);
 
 		/**
-		 * These deal with with the area where the user are expected to reenter their new password to confirm it. Everything is arranged the same way as above.
+		 * The following lines deal with the area where the user are expected to reenter their new password to confirm it. Everything is arranged the same way as above.
 		 */
 
 		final JPanel confirmPasswordPanel = new JPanel();
@@ -120,27 +120,27 @@ public class Registerview {
 		windowPanel.add(confirmPasswordPanel);
 
 		/**
-		 * These deal with with the area where the buttons to register or to cancel the registration process are placed.
+		 * The following lines deal with the area where the buttons to register or to cancel the registration process are placed.
 		 */
 
-		final JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(horizontalLayout);
+		final JPanel buttonPanel = new JPanel();				// Panel to hold the buttons at the bottom of the window.
+		buttonPanel.setLayout(horizontalLayout);				// The items in the panel are arranged horizontally.
 		buttonPanel.setAlignmentX(FlowLayout.TRAILING);
 		buttonPanel.setOpaque(true);
-		JButton registerButton = new JButton("Registrieren");
-		JButton cancelButton = new JButton("Abbrechen");
-		cancelButton.addActionListener(new ActionListener() {
+		JButton registerButton = new JButton("Registrieren");	// Register button
+		JButton cancelButton = new JButton("Abbrechen");		// Cancel button
+		cancelButton.addActionListener(new ActionListener() {	// Adds an action to the cancel button, which is executed when clicked on.
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				Loginview loginview = new Loginview();
+				frame.dispose();								// When the cancel button is clicked, the Registerview window will disappear without closing the program...
+				Loginview loginview = new Loginview();			// ... and then a new Loginview window will open. More on that in Loginview.java.
 				loginview.loginviewGo();
 			}
 		});
-		buttonPanel.add(registerButton);
+		buttonPanel.add(registerButton);						// All buttons are added to the panel...
 		buttonPanel.add(cancelButton);
-		windowPanel.add(buttonPanel);
+		windowPanel.add(buttonPanel);							// ...and the panel with the buttons is added to the window panel.
 
-		frame.getContentPane().add(BorderLayout.CENTER, windowPanel);
+		frame.getContentPane().add(BorderLayout.CENTER, windowPanel);		// The window panel is added to the frame itself and arranges everything vertically.
 
 		frame.setVisible(true);
 	}
