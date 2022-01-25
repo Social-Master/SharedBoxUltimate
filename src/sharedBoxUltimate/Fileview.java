@@ -201,19 +201,35 @@ public class Fileview {
 				   dialogBoxDeleteProfile();	// When the deletePrifuleButton is clicked, this Method will be called. See a couple of lines below for more details.
 			   }
 		   });
+
+		   /**
+			* The following lines deal with the admin's settings. See Adminview.java for more details.
+		    */
+
 		   JButton adminSettingsButton = new JButton("Administrationsfunktionen");
 		   adminSettingsButton.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e) {
-				String[] beispiel = {"Bei", "Spiel", "Abteilungen", "WOHER?"};
-				Adminview adminview = new Adminview(beispiel);
+					String[] beispiel = {"Bei", "Spiel", "Abteilungen", "WOHER?"};
+					Adminview adminview = new Adminview(beispiel);
 			   }
 		   });
+
+		   /**
+			* The following lines deal with the user's ability to logout of the program. Clicking it opens a dialog box with the options "Yes" and "No".
+			* Clicking "Yes" will dispose the Fileview window and create a new Loginview window, clicking "No" will do nothing.
+		    */
+
 		   JButton logoutButton = new JButton("Abmelden");
 		   logoutButton.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e) {
 				   dialogBoxLogout();
 			   }
 		   });
+
+		   /**
+			* The following lines add everything to the panel. This userSettingsPanel is then added to the left of the window.
+		    */
+
 		   userSettingsPanel.setLayout(new BoxLayout(userSettingsPanel, BoxLayout.PAGE_AXIS));
 		   userSettingsPanel.add(editProfileButton);
 		   userSettingsPanel.add(deleteProfileButton);
@@ -231,7 +247,7 @@ public class Fileview {
 
 	 /**
 	  * This method is called, when the deleteProfileButton is clicked, as probably mentioned above. It opens a dialog box with the options "Yes" and "No".
-	  * As one probably can guess, clicking "Yes", the logged in user's profile is gotten rid of from the appropriate database file and the user won't be able to log in
+	  * Clicking "Yes", the logged in user's profile is gotten rid of from the appropriate database file and the user won't be able to log in
 	  * to the service. The loginView should then pop uo automatically.
 	  * Clicking "No", however, will not do anything apart from closing the dialog box.
 	  */
@@ -241,6 +257,11 @@ public class Fileview {
 		 int deleteProfileValue = JOptionPane.showOptionDialog(null, "Sind Sie sicher, dass Sie Ihr Profil löschen möchten?", "Profil löschen", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 		 return deleteProfileValue;
 	 }
+
+	 /**
+	  * This method is called, when the logoutButton is clicked. When clicking "Yes", the Fileview window is disposed and a new Loginview window is opened.
+	  * Clicking "No" will do nothing.
+	  */
 
 	 public void dialogBoxLogout() {
 		String[] options = {"Ja", "Nein"};
@@ -252,15 +273,30 @@ public class Fileview {
 		}
 	 }
 
+	 /**
+	  * This method is called, when the renameFile menu item is clicked. An input dialog is opened, where a new file name can be typed in.
+	  * @return This will be the new name of the selected file.
+	  */
+
 	 public String dialogBoxRenameFile() {
 		 String newFileName = JOptionPane.showInputDialog(null, "Neuen Dateinamen eingeben", "Datei umbenennen...", 1);
 		 return newFileName;
 	 }
 
+	 /**
+	  * This method is called, when the moveFile menu item is clicked. An input dialog is opened, where a valid directory path can be typed in
+	  * @return the target directory, where the selected file will be moved to.
+	  */
+
 	 public String dialogBoxMoveFile() {
 		 String destinationPathFile = JOptionPane.showInputDialog(null, "Zielverzeichnis eingeben", "Datei bewegen...", 1);
 		 return destinationPathFile;
 	 }
+
+	 /**
+	  * The following method is called, whem the deleteFile menu item is clicked: A confirmation dialog is opened, where the options "Yes" and "No" appear.
+	  * @return If the return value is 0 (meaning "Yes"), the selected file will be delete. Otherwise nothing happens.
+	  */
 
 	 public int dialogBoxDeleteFile() {
 		String[] options = {"Ja", "Nein"};
@@ -268,6 +304,10 @@ public class Fileview {
 		return deleteFileValue;
 	 }
 
+	 /**
+	  * The following methods are the same as the equivalent methods for files.
+	  */
+	
 	 public String dialogBoxRenameDirectory() {
 		String newDirectoryName = JOptionPane.showInputDialog(null, "Neuen Verzeichnisnamen eingeben", "Verzeichnis umbenennen...", 1);
 		return newDirectoryName;
