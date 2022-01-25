@@ -216,6 +216,9 @@ public class MitarbeiterController {
 			e.printStackTrace();
 		}
 	}
+	public void removeAbteilung(Abteilung in) {
+		model.removeAbteilung(in);
+	}
 	public void shareDirectory(Mitarbeiter dst) {
 		File config = new File("Server/" + model.getFirmaName() + "/Mitarbeiter/" + dst.getName() + "/geteilte.txt");
 		BufferedWriter bw = null;

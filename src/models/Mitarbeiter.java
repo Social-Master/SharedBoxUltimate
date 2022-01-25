@@ -70,6 +70,9 @@ public class Mitarbeiter {
 	public void addAbteilung(Abteilung in) {
 		this.abteilungen.add(in);
 	}
+	public void removeAbteilung(Abteilung in) {
+		this.abteilungen.remove(in);
+	}
 	public Set<Abteilung> getAbteilungen() {
 		return this.abteilungen;
 	}

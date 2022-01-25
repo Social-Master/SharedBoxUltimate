@@ -106,7 +106,7 @@ public class Initializer {
 			firmen.put(neu, new FirmaController(neu));
 		}
 	}
-	public Firma getFirmaByName(String name) {
+	public static Firma getFirmaByName(String name) {
 		Set<Firma> bla = Initializer.firmen.keySet();
 		for(Firma blabla : bla) {
 			if(blabla.getName().equalsIgnoreCase(name)) {
@@ -115,7 +115,7 @@ public class Initializer {
 		}
 		return null;
 	}
-	public FirmaController getFirmaControllerByName(String name) {
+	public static FirmaController getFirmaControllerByName(String name) {
 		Set<Firma> bla = Initializer.firmen.keySet();
 		for(Firma blabla : bla) {
 			if(blabla.getName().equalsIgnoreCase(name)) {

@@ -3,17 +3,23 @@
  */
 package sharedBoxUltimate;
 import javax.swing.*;
+
+import controller.ProfileEditViewController;
+
 import java.awt.event.*;
 import java.awt.*;
 
 public class ProfileEditView {
 	JFrame frame = null;
 	FlowLayout horizontalLayout = new FlowLayout();
-	JTextArea setFirstnameTextArea = null;
-	JTextArea setLastnameTextArea = null;
-	JTextArea setEmailTextArea = null;
-	JTextArea setPasswordTextArea = null;
-	JTextArea confirmPasswordTextArea = null;
+	public JTextArea firstnameTextArea = null;
+	public JTextArea lastnameTextArea = null;
+	public JTextArea emailTextArea = null;
+	public JTextArea passwordTextArea = null;
+	public JTextArea confirmPasswordTextArea = null;
+	public JButton saveChangesButton = null;
+	public JButton cancelButton = null;
+	private ProfileEditViewController pevc = new ProfileEditViewController(this);
 
 	public void profileEditViewGo() {
 
@@ -31,10 +37,10 @@ public class ProfileEditView {
 		setFirstnamePanel.setAlignmentX(FlowLayout.TRAILING);
 		setFirstnamePanel.setOpaque(true);
 		JLabel setFirstnameLabel = new JLabel("Neuer Vormane");
-		setFirstnameTextArea = new JTextArea(1, 20);
-		setFirstnameTextArea.setEditable(true);
+		firstnameTextArea = new JTextArea(1, 20);
+		firstnameTextArea.setEditable(true);
 		setFirstnamePanel.add(setFirstnameLabel);
-		setFirstnamePanel.add(setFirstnameTextArea);
+		setFirstnamePanel.add(firstnameTextArea);
 		windowPanel.add(setFirstnamePanel);
 
 		final JPanel setLastnamePanel = new JPanel();
@@ -42,10 +48,10 @@ public class ProfileEditView {
 		setLastnamePanel.setAlignmentX(FlowLayout.TRAILING);
 		setLastnamePanel.setOpaque(true);
 		JLabel setLastnameLabel = new JLabel("Neuer Nachname");
-		setLastnameTextArea = new JTextArea(1, 20);
-		setLastnameTextArea.setEditable(true);
+		lastnameTextArea = new JTextArea(1, 20);
+		lastnameTextArea.setEditable(true);
 		setLastnamePanel.add(setLastnameLabel);
-		setLastnamePanel.add(setLastnameTextArea);
+		setLastnamePanel.add(lastnameTextArea);
 		windowPanel.add(setLastnamePanel);
 
 		final JPanel setEmailPanel = new JPanel();
@@ -53,10 +59,10 @@ public class ProfileEditView {
 		setEmailPanel.setAlignmentX(FlowLayout.TRAILING);
 		setEmailPanel.setOpaque(true);
 		JLabel setEmailLabel = new JLabel("Neue E-Mail-Adresse");
-		setEmailTextArea = new JTextArea(1, 20);
-		setEmailTextArea.setEditable(true);
+		emailTextArea = new JTextArea(1, 20);
+		emailTextArea.setEditable(true);
 		setEmailPanel.add(setEmailLabel);
-		setEmailPanel.add(setEmailTextArea);
+		setEmailPanel.add(emailTextArea);
 		windowPanel.add(setEmailPanel);
 
 		final JPanel setPasswordPanel = new JPanel();
@@ -64,10 +70,10 @@ public class ProfileEditView {
 		setPasswordPanel.setAlignmentX(FlowLayout.TRAILING);
 		setPasswordPanel.setOpaque(true);
 		JLabel setPasswordLabel = new JLabel("Neues Passwort");
-		setPasswordTextArea = new JTextArea(1, 20);
-		setPasswordTextArea.setEditable(true);
+		passwordTextArea = new JTextArea(1, 20);
+		passwordTextArea.setEditable(true);
 		setPasswordPanel.add(setPasswordLabel);
-		setPasswordPanel.add(setPasswordTextArea);
+		setPasswordPanel.add(passwordTextArea);
 		windowPanel.add(setPasswordPanel);
 
 		final JPanel confirmPasswordPanel = new JPanel();
@@ -85,8 +91,9 @@ public class ProfileEditView {
 		buttonPanel.setLayout(horizontalLayout);
 		buttonPanel.setAlignmentX(FlowLayout.TRAILING);
 		buttonPanel.setOpaque(true);
-		JButton saveChangesButton = new JButton("Änderungen speichern");
-		JButton cancelButton = new JButton("Abbrechen");
+		saveChangesButton = new JButton("Änderungen speichern");
+		saveChangesButton.addActionListener(pevc);
+		cancelButton = new JButton("Abbrechen");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();

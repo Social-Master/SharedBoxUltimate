@@ -6,20 +6,25 @@
 package sharedBoxUltimate;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+
 import javax.swing.*;
+
+import controller.AdminViewController;
+import controller.MitarbeiterController;
+
 import java.util.*;
 
 /**
  * Adminview provides the graphical user interface that allows
  * access to administration functionality.
  */
-public class Adminview {
+public class AdminView {
 		
 		public JButton bCreateGroup;
 		public JButton bDeleteGroup;
 		// edit beschriftet mit "Umbenennen", weil alle andere Edit-
 		// Funktionalität bereits vorhanden
-		public JButton bEditGroup;
 		public JButton bAddEmployee;
 		public JButton bRMEmployee;
 		// alle Dateien der Firma anzeigen, benötigt eigenes Fileview-
@@ -32,7 +37,8 @@ public class Adminview {
 		
 		// Liste der Abteilungsnamen der Firma zum Anzeigen
 		// idealerweise auf Grundlage einer hashmap oder so...
-		public JList groups;
+		public JList<String> groups;
+		private AdminViewController avc = new AdminViewController(this);
 		
 		
 	/**
@@ -41,7 +47,7 @@ public class Adminview {
 	 * @param	abteilungen	Array of Strings containing the names of the groups
 	 * @return	none
 	 */
-	Adminview(String[] abteilungen) {
+	AdminView(String[] abteilungen) {
 		showAdminview(abteilungen);
 	}
 	
@@ -59,10 +65,13 @@ public class Adminview {
 		
 		// Buttoninitialisierung
 		bCreateGroup = new JButton("Abteilung erstellen");
+		bCreateGroup.addActionListener(avc);
 		bDeleteGroup = new JButton("Abteilung löschen");
-		bEditGroup = new JButton("Abteilung Umbenennen");
+		bDeleteGroup.addActionListener(avc);
 		bAddEmployee = new JButton("Mitarbeiter hinzufügen");
+		bAddEmployee.addActionListener(avc);
 		bRMEmployee = new JButton("Mitarbeiter entfernen");
+		bRMEmployee.addActionListener(avc);
 		bShowCompany = new JButton("Alle Dateien anzeigen");
 		bRegister = new JButton("Registrationsverwaltung");
 		bBack = new JButton("Zurück");
@@ -82,13 +91,18 @@ public class Adminview {
 		// Buttons (und JList) zu Panels
 		panel1.add(bCreateGroup);
 		panel1.add(bDeleteGroup);
-		panel1.add(bEditGroup);
 		panel1.add(bAddEmployee);
 		panel1.add(bRMEmployee);
 		panel1.add(bShowCompany);
 		panel1.add(bBack); // Positionierung?
-		
-		groups = new JList(abteilungen);
+
+		DefaultListModel<String> directoryContent = new DefaultListModel<>();
+		for(File f : new File("Server/" + Main.user.getFirmaName() + "/Abteilungen/").listFiles()) {
+			if(f.isDirectory()) {
+				directoryContent.addElement(f.getName());
+			}
+		}
+		groups = new JList<String>(directoryContent);
 		groups.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		panel2.add(groups);
 		

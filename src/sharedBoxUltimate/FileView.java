@@ -63,12 +63,6 @@ public class FileView {
 		  }
 		  directoryContentList = new JList<>(directoryContent);
 		  
-		  DefaultListModel<String> directoryContent2 = new DefaultListModel<>();
-		  for(File f : x.getAbteilungFiles()) {
-			  directoryContent2.addElement(f.getName());
-		  }
-		  directoryContentList = new JList<>(directoryContent);
-		  abteilungContentList = new JList<>(directoryContent2);
 
 		  /**
 		   * This directoryContentListPanel adds the directoryContentList from above to a panel, which is not at all obvious. The panel is added to the frame a couple of lines below.
@@ -76,7 +70,6 @@ public class FileView {
 
 		  directoryContentListPanel = new JPanel();
 		  directoryContentListPanel.add(directoryContentList);
-		  directoryContentListPanel.add(abteilungContentList);
 		  directoryContentListPanel.setOpaque(true);
 
 		  /**
@@ -170,7 +163,7 @@ public class FileView {
 			   adminSettingsButton.addActionListener(new ActionListener() {
 				   public void actionPerformed(ActionEvent e) {
 					String[] beispiel = {"Bei", "Spiel", "Abteilungen", "WOHER?"};
-					Adminview adminview = new Adminview(beispiel);
+					AdminView adminview = new AdminView(beispiel);
 				   }
 			   });
 		   }

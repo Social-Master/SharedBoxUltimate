@@ -61,6 +61,32 @@ public class FirmaController {
 			model.addAbteilung(neu);
 		}
 	}
+	public void deleteAbteilung(String name) {
+		for(Abteilung x : model.getAbteilungSet()) {
+			try {
+				if(name.equalsIgnoreCase(x.getName())) {
+					model.getAbteilungSet().remove(x);
+					deleteFolder(new File("Server/" + model.getName() + "/Abteilungen/" + name));
+				}
+			} 
+			catch(Exception e) {
+				
+			}
+		}
+	}
+	public void deleteFolder(File folder) {
+	    File[] files = folder.listFiles();
+	    if(files != null) {
+	        for(File f: files) {
+	            if(f.isDirectory()) {
+	                deleteFolder(f);
+	            } else {
+	                f.delete();
+	            }
+	        }
+	    }
+	    folder.delete();
+	}
 	public Mitarbeiter loginMitarbeiter(String name, String passwort) {
 		for(Mitarbeiter m : model.getMitarbeiterSet()) {
 			if(m.getEmail().equals(name)) {
