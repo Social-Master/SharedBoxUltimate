@@ -1,0 +1,11 @@
+package sharedBoxUltimate;
+
+/**
+ * This is the Main class, that implements everything.
+ * 
+ * Shared-Box Ultimate is a program that 
+ */
+
+public class Gui {
+	
+}

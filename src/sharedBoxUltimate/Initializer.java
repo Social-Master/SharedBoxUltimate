@@ -17,6 +17,7 @@ import models.Abteilung;
 import models.Firma;
 import models.Mitarbeiter;
 
+@SuppressWarnings("unused")
 public class Initializer {
 	
 	public static HashMap<Firma, FirmaController> firmen = new HashMap<Firma, FirmaController>();
@@ -54,14 +55,14 @@ public class Initializer {
 			String rawLine = reader.readLine();
 			reader.close();
 			String[] arr = rawLine.split(",");
-			if(arr[5].equals("false")) {
-				mit = new Mitarbeiter(Integer.parseInt(arr[0]),arr[1], arr[2], arr[3], arr[4], false);
+			if(arr[6].equals("false")) {
+				mit = new Mitarbeiter(Integer.parseInt(arr[0]),arr[1], arr[2], arr[3], arr[4], arr[5], false);
 			}
-			else if(arr[5].equals("true")) {
-				mit = new Mitarbeiter(Integer.parseInt(arr[0]),arr[1], arr[2], arr[3], arr[4], true);
+			else if(arr[6].equals("true")) {
+				mit = new Mitarbeiter(Integer.parseInt(arr[0]),arr[1], arr[2], arr[3], arr[4], arr[5], true);
 			}
 			else {
-				mit = new Mitarbeiter(Integer.parseInt(arr[0]),arr[1], arr[2], arr[3], arr[4], false);
+				mit = new Mitarbeiter(Integer.parseInt(arr[0]),arr[1], arr[2], arr[3], arr[4], arr[5], false);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -86,7 +87,7 @@ public class Initializer {
 			}
 		}
 		catch(Exception e) {
-			System.out.println("ERROR WHILE PARSING");
+			System.out.println("ERROR while parsing Abteilungen. Maybe this Firma has no Abteilungen?");
 		}
 		
 	}

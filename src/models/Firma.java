@@ -34,6 +34,14 @@ public class Firma {
 	public Set<Abteilung> getAbteilungSet() {
 		return this.abt;
 	}
+	public Mitarbeiter getMitarbeiterByName(String name) {
+		for(Mitarbeiter a : this.mit) {
+			if(a.getName().equalsIgnoreCase(name)) {
+				return a;
+			}
+		}
+		return null;
+	}
 	public void printMitarbeiter() {
 		for(Mitarbeiter a : this.mit) {
 			System.out.println(a.getId() + " " + a.getName() + " " + a.getEmail() + " " + a.getPasswort());

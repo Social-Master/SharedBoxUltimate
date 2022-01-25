@@ -18,7 +18,7 @@ public class FirmaController {
 	public void readFirmaData() {
 		
 	}
-	public void createMitarbeiter(int id, String name, String email, String passwort) {
+	public void createMitarbeiter(int id, String name, String vorname, String email, String passwort) {
 		File mitarbeiterDir = new File("Server/" + model.getName() + "/Mitarbeiter");
 		if(!mitarbeiterDir.exists()) {
 			mitarbeiterDir.mkdir();
@@ -37,13 +37,14 @@ public class FirmaController {
 			try {
 				FileWriter writer = new FileWriter(userDir.getPath() + "/userinfo.csv");
 				new File(userDir.getPath() + "/abteilung.csv").createNewFile();
-				writer.write(id + "," + name + "," + email + "," + passwort + "," + "Server/" + model.getName() + "/Mitarbeiter/" + name + "/Files" + ",false");
+				new File(userDir.getPath() + "/geteilte.txt").createNewFile();
+				writer.write(id + "," + name + "," + vorname + "," + email + "," + passwort + "," + "Server/" + model.getName() + "/Mitarbeiter/" + name + "/Files" + ",false");
 				writer.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			
-			Mitarbeiter neu = new Mitarbeiter(id, name, email, passwort, "Server/" + model.getName() + "/Mitarbeiter/" + name + "/Files", false);
+			Mitarbeiter neu = new Mitarbeiter(id, name, vorname, email, passwort, "Server/" + model.getName() + "/Mitarbeiter/" + name + "/Files", false);
 			model.addUser(neu);
 		}
 		
@@ -62,7 +63,7 @@ public class FirmaController {
 	}
 	public Mitarbeiter loginMitarbeiter(String name, String passwort) {
 		for(Mitarbeiter m : model.getMitarbeiterSet()) {
-			if(m.getName().equals(name)) {
+			if(m.getEmail().equals(name)) {
 				if(m.getPasswort().equals(passwort)) {
 					return m;
 				}

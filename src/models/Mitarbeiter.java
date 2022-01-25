@@ -6,6 +6,7 @@ import java.util.Set;
 public class Mitarbeiter {
 	private Set<Abteilung> abteilungen = new HashSet<Abteilung>();
 	private String name;
+	private String vorname;
 	private String email;
 	private String passwort;
 	private int id;
@@ -16,9 +17,10 @@ public class Mitarbeiter {
 		this.name = name;
 	}
 	
-	public Mitarbeiter(int id, String name, String email, String passwort, String userPath, boolean op) {
+	public Mitarbeiter(int id, String name, String vorname, String email, String passwort, String userPath, boolean op) {
 		this.id = id;
 		this.name = name;
+		this.vorname = vorname;
 		this.email = email;
 		this.passwort = passwort;
 		this.userPath = userPath;
@@ -29,6 +31,9 @@ public class Mitarbeiter {
 	}
 	public String getEmail() {
 		return this.email;
+	}
+	public String getVorname() {
+		return this.vorname;
 	}
 	public String getPasswort() {
 		return this.passwort;
@@ -50,8 +55,11 @@ public class Mitarbeiter {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setEmail(String vorname) {
-		this.email = vorname;
+	public void setVorname(String vorname) {
+		this.vorname = vorname;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
