@@ -7,7 +7,7 @@ import java.awt.event.*;
 //import java.io.File;
 import java.awt.*;
 
-public class DepartmentView {
+public class InvitedFoldersView {
 	
 	/**
 	 * These are the main things, that allow a window to appear and all the items it will contain.
@@ -36,7 +36,7 @@ public class DepartmentView {
 		 * The following lines set up the window itself (e.g. its size etc.)
 		 */
 
-		frame = new JFrame("Departments");
+		frame = new JFrame("Kollegenordner");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(1000, 500);
 		frame.setLocation(300, 300);
