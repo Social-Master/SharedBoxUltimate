@@ -24,8 +24,12 @@ public class FileView {
 	 public JPanel directoryContentListPanel = null;
 	 public JMenuItem uploadFileItem = null;
 	 public JMenuItem deleteFileItem = null;
+	 public JMenuItem copyFileItem = null;
+	 public JMenuItem pasteFileItem = null;
+	 public JMenuItem cutFileItem = null;
+	 public JMenuItem renameFileItem = null;
 	 private FileViewController fvc = null;
-	 public static String currPath = "";
+	 public String currPath = "";
 	 public JButton moveDownButton = null;
 	 public JList<String> directoryContentList = null;
 	 public JLabel filePathLabel = null;
@@ -80,54 +84,28 @@ public class FileView {
 		   */
 
 		  menuBar = new JMenuBar();
-		  JMenu fileMenu = new JMenu("Datei");
-		  JMenu directoryMenu = new JMenu("Verzeichnis");
+		  JMenu fileMenu = new JMenu("Operationen");
 		  menuBar.add(fileMenu);
-		  menuBar.add(directoryMenu);
 
 		  /**
 		   * These are the fileMenu bar items with which the before mentioned file operations can be executed.
 		   */
 		  uploadFileItem = new JMenuItem("Datei hochladen");
 		  uploadFileItem.addActionListener(fvc);
-		  JMenuItem cutFileItem = new JMenuItem("Ausschneiden...", KeyEvent.VK_T);
+		  cutFileItem = new JMenuItem("Ausschneiden", KeyEvent.VK_T);
 		  cutFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
-		  JMenuItem copyFileItem = new JMenuItem("Kopieren...", KeyEvent.VK_T);
+		  cutFileItem.addActionListener(fvc);
+		  copyFileItem = new JMenuItem("Kopieren", KeyEvent.VK_T);
 		  copyFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-		  JMenuItem pasteFileItem = new JMenuItem("Einfügen...", KeyEvent.VK_T);
+		  copyFileItem.addActionListener(fvc);
+		  pasteFileItem = new JMenuItem("Einfügen", KeyEvent.VK_T);
 		  pasteFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
-		  JMenuItem renameFileItem = new JMenuItem("Umbenennen...", KeyEvent.VK_T);
+		  pasteFileItem.addActionListener(fvc);
+		  renameFileItem = new JMenuItem("Umbenennen", KeyEvent.VK_T);
 		  renameFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		  renameFileItem.addActionListener(new ActionListener() {
-			  public void actionPerformed(ActionEvent e) {
-				  dialogBoxRenameFile();
-			  }
-		  });
-		  JMenuItem moveFileItem = new JMenuItem("Verschieben...", KeyEvent.VK_T);
-		  moveFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, ActionEvent.ALT_MASK));
-		  moveFileItem.addActionListener(new ActionListener() {
-			  public void actionPerformed(ActionEvent e) {
-				  dialogBoxMoveFile();
-			  }
-		  });
+		  renameFileItem.addActionListener(fvc);
 		  deleteFileItem = new JMenuItem("Löschen");
 		  deleteFileItem.addActionListener(fvc);
-		  JMenuItem propertiesFileItem = new JMenuItem("Eigenschaften einsehen...", KeyEvent.VK_T);
-		  fileMenu.add(uploadFileItem);
-		  fileMenu.add(cutFileItem);
-		  fileMenu.add(copyFileItem);
-		  fileMenu.add(pasteFileItem);
-		  fileMenu.add(renameFileItem);
-		  fileMenu.add(moveFileItem);
-		  fileMenu.add(deleteFileItem);
-		  fileMenu.add(propertiesFileItem);
-
-		  /**
-		   * These are the directoryMenu items with which the before mentioned directory operations can be executed, including giving other users read, write and execute rights within the /user directory.
-		   * 
-		   */
-
-		  
 		  JMenuItem inviteToHomeDirectoryItem = new JMenuItem("Zum Home-Verzeichnis einladen...");
 		  inviteToHomeDirectoryItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
@@ -135,7 +113,21 @@ public class FileView {
 				inviteToHomeDirectoryView.inviteToHomeDirectoryViewGo();
 			  }
 		  });
-		  JMenuItem propertiesDirectoryItem = new JMenuItem("Eigenschaften einsehen...");
+		  fileMenu.add(uploadFileItem);
+		  fileMenu.add(cutFileItem);
+		  fileMenu.add(copyFileItem);
+		  fileMenu.add(pasteFileItem);
+		  fileMenu.add(renameFileItem);
+		  fileMenu.add(deleteFileItem);
+		  fileMenu.add(inviteToHomeDirectoryItem);
+
+		  /**
+		   * These are the directoryMenu items with which the before mentioned directory operations can be executed, including giving other users read, write and execute rights within the /user directory.
+		   * 
+		   */
+
+		  
+		  
 
 		  moveUpButton = new JButton("Zum Oberverzeichnis");
 		  moveUpButton.addActionListener(fvc);

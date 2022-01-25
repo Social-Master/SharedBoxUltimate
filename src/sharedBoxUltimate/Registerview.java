@@ -5,6 +5,7 @@ package sharedBoxUltimate;
 import javax.swing.*;
 
 import controller.RegisterViewController;
+import models.Firma;
 
 import java.awt.event.*;
 import java.awt.*;
@@ -23,6 +24,7 @@ public class Registerview {
 	public JTextArea passwordTextArea = null;
 	public JButton registerButton = new JButton("Registrieren");
 	public JButton cancelButton = new JButton("Abbrechen");
+	public JComboBox<String> cb;
 	JTextArea confirmPasswordTextArea = null;
 	FlowLayout horizontalLayout = new FlowLayout();
 
@@ -57,6 +59,19 @@ public class Registerview {
 		 * These deal with with the area where the user are expected to enter their first name.
 		 */
 
+		final JPanel firmaPanel = new JPanel();
+		firmaPanel.setLayout(horizontalLayout);
+		firmaPanel.setAlignmentX(FlowLayout.TRAILING);
+		firmaPanel.setOpaque(true);
+		JLabel firmaLabel = new JLabel("Firma");
+		cb = new JComboBox<String>();
+		for(Firma f : Initializer.firmen.keySet()) {
+			cb.addItem(f.getName());
+		}
+		firmaPanel.add(firmaLabel);
+		firmaPanel.add(cb);
+		windowPanel.add(firmaPanel);
+		
 		final JPanel firstnamePanel = new JPanel();
 		firstnamePanel.setLayout(horizontalLayout);
 		firstnamePanel.setAlignmentX(FlowLayout.TRAILING);
@@ -114,21 +129,6 @@ public class Registerview {
 		windowPanel.add(passwordPanel);
 
 		/**
-		 * These deal with with the area where the user are expected to reenter their new password to confirm it.
-		 */
-
-		final JPanel confirmPasswordPanel = new JPanel();
-		confirmPasswordPanel.setLayout(horizontalLayout);
-		confirmPasswordPanel.setAlignmentX(FlowLayout.TRAILING);
-		confirmPasswordPanel.setOpaque(true);
-		JLabel confirmPasswordLabel = new JLabel("Passwort bestätigen");
-		confirmPasswordTextArea = new JTextArea(1, 20);
-		confirmPasswordTextArea.setEditable(true);
-		confirmPasswordPanel.add(confirmPasswordLabel);
-		confirmPasswordPanel.add(confirmPasswordTextArea);
-		windowPanel.add(confirmPasswordPanel);
-
-		/**
 		 * These deal with with the area where the buttons to register or to cancel the registration process are placed.
 		 */
 
@@ -137,6 +137,7 @@ public class Registerview {
 		buttonPanel.setAlignmentX(FlowLayout.TRAILING);
 		buttonPanel.setOpaque(true);
 		registerButton = new JButton("Registrieren");
+		registerButton.addActionListener(controller);
 		cancelButton = new JButton("Abbrechen");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

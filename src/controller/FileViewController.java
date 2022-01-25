@@ -14,6 +14,8 @@ import sharedBoxUltimate.Main;
 public class FileViewController implements ActionListener {
 	
 	private FileView view = null;
+	private File src = null;
+	private int cop = 0;
 	
 	public FileViewController(FileView view) {
 		this.view = view;
@@ -65,6 +67,31 @@ public class FileViewController implements ActionListener {
 			MitarbeiterController c = new MitarbeiterController(Main.user);
 			String target = view.directoryContentList.getSelectedValue();
 			c.deleteFileByName(view.currPath + target);
+			updateFileView();
+		}
+		if(e.getSource() == view.copyFileItem) {
+			src = new File(view.currPath + view.directoryContentList.getSelectedValue());
+			cop = 1;
+		}
+		if(e.getSource() == view.pasteFileItem) {
+			MitarbeiterController c = new MitarbeiterController(Main.user);
+			if(cop == 1) {
+				c.copyFileByName(src.getPath(), view.currPath + src.getName());
+			}
+			else if(cop == 2) {
+				c.moveFileByName(src.getPath(), view.currPath + src.getName());
+			}
+			updateFileView();
+		}
+		if(e.getSource() == view.cutFileItem) {
+			src = new File(view.currPath + view.directoryContentList.getSelectedValue());
+			cop = 2;
+		}
+		if(e.getSource() == view.renameFileItem) {
+			MitarbeiterController c = new MitarbeiterController(Main.user);
+			String target = view.directoryContentList.getSelectedValue();
+			String name = JOptionPane.showInputDialog("Geben sie den neuen Dateinamen an:");
+			c.renameFile(new File(target), name);
 			updateFileView();
 		}
 	}

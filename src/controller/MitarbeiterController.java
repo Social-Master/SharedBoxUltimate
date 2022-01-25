@@ -35,15 +35,44 @@ public class MitarbeiterController {
 	}
 	public void deleteFileByName(String name) {
 		File del = new File(model.getUserPath() + "/" + name);
-		del.delete();
-		Logger.log(this.model, "Deleted " + name, new File(model.getUserPath()));
+		if(del.isDirectory()) {
+			deleteFolder(del);
+			Logger.log(this.model, "Deleted " + name, new File(model.getUserPath()));
+		}
+		else {
+			del.delete();
+			Logger.log(this.model, "Deleted " + name, new File(model.getUserPath()));
+	
+		}
+	}
+	public void deleteFolder(File folder) {
+	    File[] files = folder.listFiles();
+	    if(files != null) {
+	        for(File f: files) {
+	            if(f.isDirectory()) {
+	                deleteFolder(f);
+	            } else {
+	                f.delete();
+	            }
+	        }
+	    }
+	    folder.delete();
 	}
 	public void copyFileByName(String src, String dest) {
 		File srcFile = new File(model.getUserPath() + "/" + src);
 		File destFile = new File(model.getUserPath() + "/" + dest);
 		try {
-			Files.copy(srcFile.toPath(), destFile.toPath());
-			Logger.log(this.model, "Copied " + srcFile.getPath() + " to " + destFile.getPath(), new File(destFile.getParent()));
+			if(srcFile.isDirectory()) {
+				Files.copy(srcFile.toPath(), destFile.toPath());
+				for(File f : srcFile.listFiles()) {
+					Files.copy(f.toPath(), new File(model.getUserPath() + "/" + dest + "/" + f.getName()).toPath());
+					Logger.log(this.model, "Copied " + srcFile.getPath() + " to " + destFile.getPath(), new File(destFile.getParent()));
+				}
+			}
+			else {
+				Files.copy(srcFile.toPath(), destFile.toPath());
+				Logger.log(this.model, "Copied " + srcFile.getPath() + " to " + destFile.getPath(), new File(destFile.getParent()));
+			}
 		} catch (FileAlreadyExistsException e) {
 			System.out.println("Die Datei existiert bereits! Überspringe...");
 		} catch (IOException e) {
@@ -55,7 +84,17 @@ public class MitarbeiterController {
 		File destFile = new File(model.getUserPath() + "/" + dest);
 		try {
 			Files.move(srcFile.toPath(), destFile.toPath());
-			Logger.log(this.model, "Moved " + srcFile.getPath() + " to " + destFile.getPath(), new File(destFile.getParent()));
+			Logger.log(this.model, "Copied " + srcFile.getPath() + " to " + destFile.getPath(), new File(destFile.getParent()));
+		} catch (FileAlreadyExistsException e) {
+			System.out.println("Die Datei existiert bereits! Überspringe...");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void renameFile(File in, String name) {
+		try {
+			Files.move(in.toPath(), new File(in.getPath() + "/" + name).toPath());
+			Logger.log(this.model, "Copied " + in.getPath() + " to " + in.getPath() + "/" + name, new File(in.getPath() + "/"));
 		} catch (FileAlreadyExistsException e) {
 			System.out.println("Die Datei existiert bereits! Überspringe...");
 		} catch (IOException e) {
