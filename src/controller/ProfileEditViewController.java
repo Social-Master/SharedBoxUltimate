@@ -3,6 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import sharedBoxUltimate.Main;
 import sharedBoxUltimate.ProfileEditView;
 
@@ -21,10 +23,8 @@ public class ProfileEditViewController implements ActionListener {
 			cont.setVorname(view.firstnameTextArea.getText());
 			cont.setEmail(view.emailTextArea.getText());
 			cont.setPasswort(view.passwordTextArea.getText());
-		}
-		
+			JOptionPane.showMessageDialog(null, "Daten wurden geändert!");
+			view.frame.dispose();
+		}	
 	}
-	
-	
-
 }

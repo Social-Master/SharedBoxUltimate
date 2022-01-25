@@ -10,7 +10,7 @@ import java.awt.event.*;
 import java.awt.*;
 
 public class ProfileEditView {
-	JFrame frame = null;
+	public JFrame frame = null;
 	FlowLayout horizontalLayout = new FlowLayout();
 	public JTextArea firstnameTextArea = null;
 	public JTextArea lastnameTextArea = null;
