@@ -9,13 +9,13 @@ import models.Firma;
 import sharedBoxUltimate.FileView;
 import sharedBoxUltimate.Initializer;
 import sharedBoxUltimate.Main;
-import sharedBoxUltimate.Registerview;
+import sharedBoxUltimate.RegisterView;
 
 public class RegisterViewController implements ActionListener {
 	
-	private Registerview view;
+	private RegisterView view;
 	
-	public RegisterViewController(Registerview view) {
+	public RegisterViewController(RegisterView view) {
 		this.view = view;
 	}
 

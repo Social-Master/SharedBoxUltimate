@@ -10,7 +10,7 @@ import sharedBoxUltimate.FileView;
 import sharedBoxUltimate.Initializer;
 import sharedBoxUltimate.LoginView;
 import sharedBoxUltimate.Main;
-import sharedBoxUltimate.Registerview;
+import sharedBoxUltimate.RegisterView;
 
 public class LoginViewController implements ActionListener {
 	
@@ -40,7 +40,7 @@ public class LoginViewController implements ActionListener {
 			}
 		}
 		if(e.getSource() == view.registerButton) {
-			Registerview reg = new Registerview();
+			RegisterView reg = new RegisterView();
 			reg.registerviewGo();
 		}
 	}

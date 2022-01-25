@@ -91,7 +91,7 @@ public class FileViewController implements ActionListener {
 			MitarbeiterController c = new MitarbeiterController(Main.user);
 			String target = view.directoryContentList.getSelectedValue();
 			String name = JOptionPane.showInputDialog("Geben sie den neuen Dateinamen an:");
-			c.renameFile(new File(target), name);
+			c.renameFile(view.currPath + target, name);
 			updateFileView();
 		}
 	}

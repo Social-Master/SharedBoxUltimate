@@ -10,7 +10,7 @@ import models.Firma;
 import java.awt.event.*;
 import java.awt.*;
 
-public class Registerview {
+public class RegisterView {
 	private RegisterViewController controller = null;
 
 	/**
@@ -32,7 +32,7 @@ public class Registerview {
 	* This method runs the view, that allows prompt the user to enter their credentials to create a new user account to login.
 	*/
 	
-	public Registerview() {
+	public RegisterView() {
 		controller = new RegisterViewController(this);
 	}
 	

@@ -91,10 +91,12 @@ public class MitarbeiterController {
 			e.printStackTrace();
 		}
 	}
-	public void renameFile(File in, String name) {
+	public void renameFile(String src, String name) {
+		File srcFile = new File(model.getUserPath() + "/" + src);
+		File destFile = new File(srcFile.getParent() + "/" + name);
 		try {
-			Files.move(in.toPath(), new File(in.getPath() + "/" + name).toPath());
-			Logger.log(this.model, "Copied " + in.getPath() + " to " + in.getPath() + "/" + name, new File(in.getPath() + "/"));
+			Files.move(srcFile.toPath(), destFile.toPath());
+			Logger.log(this.model, "Copied " + srcFile.getPath() + " to " + destFile.getPath(), new File(destFile.getParent()));
 		} catch (FileAlreadyExistsException e) {
 			System.out.println("Die Datei existiert bereits! Überspringe...");
 		} catch (IOException e) {

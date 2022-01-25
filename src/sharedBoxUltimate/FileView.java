@@ -109,8 +109,8 @@ public class FileView {
 		  JMenuItem inviteToHomeDirectoryItem = new JMenuItem("Zum Home-Verzeichnis einladen...");
 		  inviteToHomeDirectoryItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				InviteToHomeDirectoryView inviteToHomeDirectoryView = new InviteToHomeDirectoryView();
-				inviteToHomeDirectoryView.inviteToHomeDirectoryViewGo();
+				//InviteToHomeDirectoryView inviteToHomeDirectoryView = new InviteToHomeDirectoryView();
+				//inviteToHomeDirectoryView.inviteToHomeDirectoryViewGo();
 			  }
 		  });
 		  fileMenu.add(uploadFileItem);
