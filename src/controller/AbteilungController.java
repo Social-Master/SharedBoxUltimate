@@ -11,6 +11,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import javax.swing.JOptionPane;
+
 import models.Abteilung;
 import models.Mitarbeiter;
 import sharedBoxUltimate.Logger;
@@ -42,7 +44,7 @@ public class AbteilungController {
 			JOptionPane.showMessageDialog(null, "Die Datei überschreitet die Maximalgröße von 5 MB.", "Dateigröße Überschritten", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
-		if(countSize(Paths.get(model.getUserPath()))/(1024*1024) + fs > 25) {
+		if(countSize(Paths.get("Server/" + mit.getFirmaName() + "/Abteilungen/" + model.getName()))/(1024*1024) + fs > 25) {
 			JOptionPane.showMessageDialog(null, "Der Upload würde die Speicherplatzbegrenzung von 25 MB überschreiten.", "Speicherplatzbegrenzung Überschritten", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
