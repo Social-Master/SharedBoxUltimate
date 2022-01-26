@@ -5,6 +5,7 @@ package views;
 import javax.swing.*;
 
 import controller.ProfileEditViewController;
+import sharedBoxUltimate.Main;
 
 import java.awt.event.*;
 import java.awt.*;
@@ -36,9 +37,10 @@ public class ProfileEditView {
 		setFirstnamePanel.setLayout(horizontalLayout);
 		setFirstnamePanel.setAlignmentX(FlowLayout.TRAILING);
 		setFirstnamePanel.setOpaque(true);
-		JLabel setFirstnameLabel = new JLabel("Neuer Vormane");
+		JLabel setFirstnameLabel = new JLabel("Vorname");
 		firstnameTextArea = new JTextArea(1, 20);
 		firstnameTextArea.setEditable(true);
+		firstnameTextArea.setText(Main.user.getVorname());
 		setFirstnamePanel.add(setFirstnameLabel);
 		setFirstnamePanel.add(firstnameTextArea);
 		windowPanel.add(setFirstnamePanel);
@@ -47,9 +49,10 @@ public class ProfileEditView {
 		setLastnamePanel.setLayout(horizontalLayout);
 		setLastnamePanel.setAlignmentX(FlowLayout.TRAILING);
 		setLastnamePanel.setOpaque(true);
-		JLabel setLastnameLabel = new JLabel("Neuer Nachname");
+		JLabel setLastnameLabel = new JLabel("Nachname");
 		lastnameTextArea = new JTextArea(1, 20);
 		lastnameTextArea.setEditable(true);
+		lastnameTextArea.setText(Main.user.getName());
 		setLastnamePanel.add(setLastnameLabel);
 		setLastnamePanel.add(lastnameTextArea);
 		windowPanel.add(setLastnamePanel);
@@ -58,9 +61,10 @@ public class ProfileEditView {
 		setEmailPanel.setLayout(horizontalLayout);
 		setEmailPanel.setAlignmentX(FlowLayout.TRAILING);
 		setEmailPanel.setOpaque(true);
-		JLabel setEmailLabel = new JLabel("Neue E-Mail-Adresse");
+		JLabel setEmailLabel = new JLabel("E-Mail-Adresse");
 		emailTextArea = new JTextArea(1, 20);
 		emailTextArea.setEditable(true);
+		emailTextArea.setText(Main.user.getEmail());
 		setEmailPanel.add(setEmailLabel);
 		setEmailPanel.add(emailTextArea);
 		windowPanel.add(setEmailPanel);
@@ -69,23 +73,14 @@ public class ProfileEditView {
 		setPasswordPanel.setLayout(horizontalLayout);
 		setPasswordPanel.setAlignmentX(FlowLayout.TRAILING);
 		setPasswordPanel.setOpaque(true);
-		JLabel setPasswordLabel = new JLabel("Neues Passwort");
+		JLabel setPasswordLabel = new JLabel("Passwort");
 		passwordTextArea = new JTextArea(1, 20);
 		passwordTextArea.setEditable(true);
+		passwordTextArea.setText(Main.user.getPasswort());
 		setPasswordPanel.add(setPasswordLabel);
 		setPasswordPanel.add(passwordTextArea);
 		windowPanel.add(setPasswordPanel);
 
-		final JPanel confirmPasswordPanel = new JPanel();
-		confirmPasswordPanel.setLayout(horizontalLayout);
-		confirmPasswordPanel.setAlignmentX(FlowLayout.TRAILING);
-		confirmPasswordPanel.setOpaque(true);
-		JLabel confirmPasswordLabel = new JLabel("Neues Passwort bestätigen");
-		confirmPasswordTextArea = new JTextArea(1, 20);
-		confirmPasswordTextArea.setEditable(true);
-		confirmPasswordPanel.add(confirmPasswordLabel);
-		confirmPasswordPanel.add(confirmPasswordTextArea);
-		windowPanel.add(confirmPasswordPanel);
 
 		final JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(horizontalLayout);

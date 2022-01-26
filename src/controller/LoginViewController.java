@@ -29,6 +29,7 @@ public class LoginViewController implements ActionListener {
 				if(fc.loginMitarbeiter(view.emailTextArea.getText(), view.passwordTextArea.getText()) != null) {
 					Main.user = fc.loginMitarbeiter(view.emailTextArea.getText(), view.passwordTextArea.getText());
 					System.out.println("Login erfolgreich!");
+					view.frame.dispose();
 					FileView fileview = new FileView();			// This creates a new object that opens the Fileview window. More on that in Fileview.java
 					fileview.fileviewGo();
 					l = true;
@@ -40,6 +41,7 @@ public class LoginViewController implements ActionListener {
 			}
 		}
 		if(e.getSource() == view.registerButton) {
+			view.frame.dispose();
 			RegisterView reg = new RegisterView();
 			reg.registerviewGo();
 		}

@@ -62,7 +62,7 @@ public class AdminView {
 	private void showAdminview(String[] abteilungen) {
 		JFrame frame = new JFrame("Administrationsfunktionen");
 		// look into EXIT_ON_CLOSE
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
 		
 		// Buttoninitialisierung
 		bCreateGroup = new JButton("Abteilung erstellen");
