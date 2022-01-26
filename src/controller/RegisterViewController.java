@@ -24,11 +24,27 @@ public class RegisterViewController implements ActionListener {
 		if(e.getSource() == view.registerButton && view.firstnameTextArea.getText() != null && view.lastnameTextArea.getText() != null && view.emailTextArea.getText() != null && view.passwordTextArea.getText() != null) {
 			for(Firma f : Initializer.firmen.keySet()) {
 				if(f.getName().equals(view.cb.getSelectedItem().toString())) {
-					FirmaController fc = Initializer.firmen.get(f);
-					fc.createMitarbeiter(0, view.lastnameTextArea.getText(), view.firstnameTextArea.getText(), view.emailTextArea.getText(), view.passwordTextArea.getText());
-					Main.user = fc.loginMitarbeiter(view.emailTextArea.getText(), view.passwordTextArea.getText());
-					FileView fileview = new FileView();			// This creates a new object that opens the Fileview window. More on that in Fileview.java
-					fileview.fileviewGo();
+					String[] arr = view.emailTextArea.getText().split("@");
+					if(f.getDomain().equals(arr[1])) {
+						FirmaController fc = Initializer.firmen.get(f);
+						if(fc.isUniqueEmail(view.emailTextArea.getText())) {
+							if(f.getNumMitarbeiter() <= 9) {
+								fc.createMitarbeiter(0, view.lastnameTextArea.getText(), view.firstnameTextArea.getText(), view.emailTextArea.getText(), view.passwordTextArea.getText());
+								Main.user = fc.loginMitarbeiter(view.emailTextArea.getText(), view.passwordTextArea.getText());
+								FileView fileview = new FileView();			// This creates a new object that opens the Fileview window. More on that in Fileview.java
+								fileview.fileviewGo();
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "Die maximale Anzahl an Mitarbeiter ist erreicht!");
+							}
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Email ist bereits vergeben!");
+						}
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Keine gültige Email-Adresse!");
+					}
 				}
 			}
 		}

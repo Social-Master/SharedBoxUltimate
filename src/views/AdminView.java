@@ -5,16 +5,13 @@
 ///////////////////////////////////////////////////////////////////////
 package views;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.File;
 
 import javax.swing.*;
 
 import controller.AdminViewController;
-import controller.MitarbeiterController;
 import sharedBoxUltimate.Main;
 
-import java.util.*;
 
 /**
  * Adminview provides the graphical user interface that allows
@@ -62,7 +59,7 @@ public class AdminView {
 	private void showAdminview(String[] abteilungen) {
 		JFrame frame = new JFrame("Administrationsfunktionen");
 		// look into EXIT_ON_CLOSE
-		frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		
 		// Buttoninitialisierung
 		bCreateGroup = new JButton("Abteilung erstellen");

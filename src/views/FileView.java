@@ -166,6 +166,7 @@ public class FileView {
 			   adminSettingsButton.addActionListener(new ActionListener() {
 				   public void actionPerformed(ActionEvent e) {
 					String[] beispiel = {"Bei", "Spiel", "Abteilungen", "WOHER?"};
+					@SuppressWarnings("unused")
 					AdminView adminview = new AdminView(beispiel);
 				   }
 			   });

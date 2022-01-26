@@ -65,7 +65,7 @@ public class FirmaController {
 		for(Abteilung x : model.getAbteilungSet()) {
 			try {
 				if(name.equalsIgnoreCase(x.getName())) {
-					model.getAbteilungSet().remove(x);
+					model.deleteAbteilung(x);
 					deleteFolder(new File("Server/" + model.getName() + "/Abteilungen/" + name));
 				}
 			} 
@@ -107,5 +107,13 @@ public class FirmaController {
 	}
 	public Firma getFirma() {
 		return this.model;
+	}
+	public boolean isUniqueEmail(String email) {
+		for(Mitarbeiter m : this.model.getMitarbeiterSet()) {
+			if(m.getEmail().equalsIgnoreCase(email)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

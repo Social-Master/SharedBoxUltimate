@@ -6,15 +6,8 @@ import java.io.File;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-import models.Abteilung;
-import models.Firma;
-import models.Mitarbeiter;
-import sharedBoxUltimate.Initializer;
-import sharedBoxUltimate.Main;
-import views.AbteilungView;
 import views.InvitedFoldersView;
 
 public class InvitedFoldersViewController implements ActionListener {

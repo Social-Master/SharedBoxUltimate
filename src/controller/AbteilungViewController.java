@@ -6,9 +6,7 @@ import java.io.File;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import models.Abteilung;
 import sharedBoxUltimate.Main;
@@ -29,9 +27,7 @@ public class AbteilungViewController implements ActionListener {
 		this.ac = new AbteilungController(a, Main.user);
 	}
 	private void updateFileView() {
-		DefaultListModel<String> directoryContent = new DefaultListModel<>();
-		final JPanel listPanel = new JPanel();
-		
+		DefaultListModel<String> directoryContent = new DefaultListModel<>();		
 		for(File f : new MitarbeiterController(Main.user).getAbteilungFiles(a, view.currPath)) {
 			directoryContent.addElement(f.getName());
 		}

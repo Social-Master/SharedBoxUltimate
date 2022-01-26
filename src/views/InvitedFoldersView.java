@@ -7,7 +7,6 @@ import javax.swing.*;
 import controller.InvitedFoldersViewController;
 import controller.MitarbeiterController;
 import models.Mitarbeiter;
-import sharedBoxUltimate.Main;
 
 import java.awt.event.*;
 import java.io.File;

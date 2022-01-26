@@ -6,7 +6,6 @@ import java.io.File;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import models.Abteilung;
