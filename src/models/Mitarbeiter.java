@@ -1,5 +1,10 @@
 package models;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -89,6 +94,27 @@ public class Mitarbeiter {
 			if(a.getName().equals(name)) {
 				return true;
 			}
+		}
+		return false;
+	}
+	public boolean sharesWith(String name) {
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(new File("Server/" + this.getFirmaName() + "/Mitarbeiter/" + this.getName() + "/geteilte.txt")));
+			String currentLine;
+		    while((currentLine = reader.readLine()) != null) {
+		    	String[] arr = currentLine.split("/");
+		    	System.out.println(arr[3]);
+		    	if(arr[3].equals(name)) {
+		    		reader.close();
+		    		return true;
+		    	}
+		    }
+		    reader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+	    } catch (IOException e) {
+			e.printStackTrace();
 		}
 		return false;
 	}

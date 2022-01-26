@@ -153,7 +153,7 @@ public class MitarbeiterController {
 		try {
 			reader = new BufferedReader(new FileReader(new File("Server/" + model.getFirmaName() + "/Mitarbeiter/" + model.getName() + "/geteilte.txt")));
 			String currentLine;
-		    while((currentLine = reader.readLine()) != null){
+		    while((currentLine = reader.readLine()) != null) {
 		    	File tmp = new File(currentLine);
 		    	if(tmp.exists()) {
 		    		for(File f : tmp.listFiles()) {

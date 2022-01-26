@@ -10,6 +10,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import models.Abteilung;
+import models.Firma;
+import models.Mitarbeiter;
 import sharedBoxUltimate.DepartmentView;
 import sharedBoxUltimate.FileView;
 import sharedBoxUltimate.Initializer;
@@ -111,8 +113,25 @@ public class FileViewController implements ActionListener {
 			c.mkdir(view.currPath + "/" + name);
 			updateFileView();
 		}
+		if(e.getSource() == view.inviteToHomeDirectoryItem) {
+			MitarbeiterController c = new MitarbeiterController(Main.user);
+			String target = JOptionPane.showInputDialog("Geben sie den Namen des Mitarbeiters an, mit dem sie ihren Ordner teilen möchten:");
+			Mitarbeiter t = Initializer.getFirmaByName(Main.user.getFirmaName()).getMitarbeiterByName(target);
+			if(t == null) {
+				JOptionPane.showMessageDialog(null, "Der angegebene Mitarbeiter konnte nicht gefunden werden!");
+			}
+			else {
+				c.shareDirectory(t);
+				JOptionPane.showMessageDialog(null, "Erfolgreich!");
+			}
+		}
 		if(e.getSource() == view.toDepartmentView) {
-			String dep = JOptionPane.showInputDialog("Geben sie den Namen der Abteilung an, auf die sie zugreifen möchten:");
+			String infoS = "Geben sie den Namen der Abteilung an, auf die sie zugreifen möchten. Folgende stehen zur Auswahl:\n";
+			Firma ff = Initializer.getFirmaByName(Main.user.getFirmaName());
+			for(Abteilung i : ff.getAbteilungSet()) {
+				infoS += i.getName() + "\n";
+			}
+			String dep = JOptionPane.showInputDialog(infoS);
 			FirmaController f = Initializer.getFirmaControllerByName(Main.user.getFirmaName());
 			Abteilung a = f.getAbteilungByName(dep);
 			if(a == null) {
@@ -125,6 +144,23 @@ public class FileViewController implements ActionListener {
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Sie sind nicht Mitglied dieser Abteilung!");
+				}
+			}
+		}
+		if(e.getSource() == view.toSharedView) {
+			String infoS = "Geben sie den Namen des Mitarbeiters an, auf den sie zugreifen möchten:";
+			String username = JOptionPane.showInputDialog(infoS);
+			Firma f = Initializer.getFirmaByName(Main.user.getFirmaName());
+			Mitarbeiter m = f.getMitarbeiterByName(username);
+			if(m == null) {
+				JOptionPane.showMessageDialog(null, "Es konnte kein Mitarbeiter mit diesem Namen gefunden werde!");
+			}
+			else {
+				if(Main.user.sharesWith(m.getName())) {
+					
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Der Nutzer teilt nicht sein Verzeichniss mit Ihnen!");
 				}
 			}
 		}

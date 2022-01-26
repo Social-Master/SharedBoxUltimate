@@ -29,6 +29,7 @@ public class FileView {
 	 public JMenuItem cutFileItem = null;
 	 public JMenuItem renameFileItem = null;
 	 public JMenuItem mkdirFileItem = null;
+	 public JMenuItem inviteToHomeDirectoryItem = null;
 	 private FileViewController fvc = null;
 	 public String currPath = "";
 	 public JButton moveDownButton = null;
@@ -37,6 +38,7 @@ public class FileView {
 	 public JLabel filePathLabel = null;
 	 public JButton moveUpButton = null;
 	 public JButton toDepartmentView = null;
+	 public JButton toSharedView = null;
 	 
 	 public FileView() {
 		 this.fvc = new FileViewController(this);
@@ -112,13 +114,8 @@ public class FileView {
 		  deleteFileItem.addActionListener(fvc);
 		  mkdirFileItem = new JMenuItem("Ordner erstellen");
 		  mkdirFileItem.addActionListener(fvc);
-		  JMenuItem inviteToHomeDirectoryItem = new JMenuItem("Zum Home-Verzeichnis einladen...");
-		  inviteToHomeDirectoryItem.addActionListener(new ActionListener() {
-			  public void actionPerformed(ActionEvent e) {
-				//InviteToHomeDirectoryView inviteToHomeDirectoryView = new InviteToHomeDirectoryView();
-				//inviteToHomeDirectoryView.inviteToHomeDirectoryViewGo();
-			  }
-		  });
+		  inviteToHomeDirectoryItem = new JMenuItem("Zum Home-Verzeichnis einladen");
+		  inviteToHomeDirectoryItem.addActionListener(fvc);
 		  fileMenu.add(uploadFileItem);
 		  fileMenu.add(cutFileItem);
 		  fileMenu.add(copyFileItem);
@@ -180,8 +177,11 @@ public class FileView {
 		   });
 		   toDepartmentView = new JButton("Zum Abteilungsfilebrowser");
 		   toDepartmentView.addActionListener(fvc);
+		   toSharedView = new JButton("Zu den geteilten Home Verzeichnissen");
+		   toSharedView.addActionListener(fvc);
 		   userSettingsPanel.setLayout(new BoxLayout(userSettingsPanel, BoxLayout.PAGE_AXIS));
 		   userSettingsPanel.add(toDepartmentView);
+		   userSettingsPanel.add(toSharedView);
 		   userSettingsPanel.add(editProfileButton);
 		   userSettingsPanel.add(deleteProfileButton);
 		   if(Main.user.isOp()) {
@@ -221,35 +221,4 @@ public class FileView {
 		}
 	 }
 
-	 public String dialogBoxRenameFile() {
-		 String newFileName = JOptionPane.showInputDialog(null, "Neuen Dateinamen eingeben", "Datei umbenennen...", 1);
-		 return newFileName;
-	 }
-
-	 public String dialogBoxMoveFile() {
-		 String destinationPathFile = JOptionPane.showInputDialog(null, "Zielverzeichnis eingeben", "Datei bewegen...", 1);
-		 return destinationPathFile;
-	 }
-
-	 public int dialogBoxDeleteFile() {
-		String[] options = {"Ja", "Nein"};
-		int deleteFileValue = JOptionPane.showOptionDialog(null, "Sind Sie sicher, dass Sie diese Datei löschen möchten?", "Datei löschen...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-		return deleteFileValue;
-	 }
-
-	 public String dialogBoxRenameDirectory() {
-		String newDirectoryName = JOptionPane.showInputDialog(null, "Neuen Verzeichnisnamen eingeben", "Verzeichnis umbenennen...", 1);
-		return newDirectoryName;
-	 }
-
-	 public String dialogBoxMoveDirectory() {
-		String destinationPathDirectory = JOptionPane.showInputDialog(null, "Zielverzeichnis eingeben", "Verzeichnis verschieben...", 1);
-		return destinationPathDirectory;
-	 }
-
-	 public int dialogBoxDeleteDirectory() {
-		String[] options = {"Ja", "Nein"};
-		int deleteDirectoryValue = JOptionPane.showOptionDialog(null, "Sind Sie sicher, dass Sie dieses Verzeichnis löschen wollen?", "Verzeichnis löschen...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-		return deleteDirectoryValue;
-	 }
 }
