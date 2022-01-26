@@ -1,3 +1,6 @@
+/**
+ * one of the most important controller classes. From here Mitarbeiter or Abteilungen can be created and the corrosponding filestructure gets generated.
+ */
 package controller;
 
 import java.io.File;
@@ -11,13 +14,23 @@ import models.Mitarbeiter;
 public class FirmaController {
 	private Firma model;
 	
-	
+	/*
+	 * The controller needs the reference to to Firma class instance
+	 */
 	public FirmaController(Firma model) {
 		this.model = model;
 	}
 	public void readFirmaData() {
 		
 	}
+	/**
+	 * given the parameters the Mitarbeiter gets created and all its files for the file structure. Also the Mitarbeiter will be added to the Firma instance
+	 * @param id
+	 * @param name
+	 * @param vorname
+	 * @param email
+	 * @param passwort
+	 */
 	public void createMitarbeiter(int id, String name, String vorname, String email, String passwort) {
 		File mitarbeiterDir = new File("Server/" + model.getName() + "/Mitarbeiter");
 		if(!mitarbeiterDir.exists()) {
@@ -49,6 +62,9 @@ public class FirmaController {
 		}
 		
 	}
+	/**
+	 * Same for the Abteilung as for the Mitarbeiter. It creates the Abteilung file structure and adds the newly created instance to the Firma instance Abteilung set
+	 */
 	public void createAbteilung(String name) {
 		File abteilungDir = new File("Server/" + model.getName() + "/Abteilungen");
 		if(!abteilungDir.exists()) {
@@ -61,6 +77,11 @@ public class FirmaController {
 			model.addAbteilung(neu);
 		}
 	}
+	/**
+	 * Deletes an Abteilung from the Firma instance Abteilung set and delets the folder structure. CARE: If a Abteilung is deleted the reference remains in the abteilung.csv of each user.
+	 * This needs to be fixed so that every entry of that Abteilung gets deleted.
+	 * @param name
+	 */
 	public void deleteAbteilung(String name) {
 		for(Abteilung x : model.getAbteilungSet()) {
 			try {
@@ -74,6 +95,10 @@ public class FirmaController {
 			}
 		}
 	}
+	/**
+	 * Recursively deletes a folder and all its subfolders.
+	 * @param folder The folder that is supposed to be deleted
+	 */
 	public void deleteFolder(File folder) {
 	    File[] files = folder.listFiles();
 	    if(files != null) {
@@ -87,6 +112,12 @@ public class FirmaController {
 	    }
 	    folder.delete();
 	}
+	/**
+	 * The basic login function. Returns Mitarbeiter if login is correct. If the Mitarbeiter is not found then it returns null
+	 * @param name
+	 * @param passwort
+	 * @return returns the instance of the logged in Mitarbeiter
+	 */
 	public Mitarbeiter loginMitarbeiter(String name, String passwort) {
 		for(Mitarbeiter m : model.getMitarbeiterSet()) {
 			if(m.getEmail().equals(name)) {
@@ -97,6 +128,11 @@ public class FirmaController {
 		}
 		return null;
 	}
+	/**
+	 * returns Abteilung by given string. Care this function is case sensitive
+	 * @param name
+	 * @return returns Abteilung if found otherwise returns null
+	 */
 	public Abteilung getAbteilungByName(String name) {
 		for(Abteilung x : model.getAbteilungSet()) {
 			if(x.getName().equals(name)) {
@@ -105,9 +141,18 @@ public class FirmaController {
 		}
 		return null;
 	}
+	/**
+	 * returns Firma instance
+	 * @return
+	 */
 	public Firma getFirma() {
 		return this.model;
 	}
+	/**
+	 * checks if given Email is unique
+	 * @param email
+	 * @return true if email string is unique otherwise returns false
+	 */
 	public boolean isUniqueEmail(String email) {
 		for(Mitarbeiter m : this.model.getMitarbeiterSet()) {
 			if(m.getEmail().equalsIgnoreCase(email)) {

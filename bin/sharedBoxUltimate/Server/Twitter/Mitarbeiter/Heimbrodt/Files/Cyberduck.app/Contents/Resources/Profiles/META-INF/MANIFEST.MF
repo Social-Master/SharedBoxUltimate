@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Implementation-Version: 33862
+Specification-Vendor: iterate GmbH
+Build-Jdk-Spec: 1.8
+Created-By: Maven Jar Plugin 3.2.0
+Specification-Version: 7.7.2
+

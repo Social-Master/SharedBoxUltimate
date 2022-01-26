@@ -1,3 +1,6 @@
+/**
+ * basic Mitarbeiter model. Contains the core information of the model
+ */
 package models;
 
 import java.io.BufferedReader;
@@ -89,6 +92,11 @@ public class Mitarbeiter {
 			return false;
 		}
 	}
+	/**
+	 * returns true if Mitarbeiter is in the Abteilung by the given name
+	 * @param name
+	 * @return
+	 */
 	public boolean isInAbteilung(String name) {
 		for(Abteilung a : abteilungen) {
 			if(a.getName().equals(name)) {
@@ -97,6 +105,11 @@ public class Mitarbeiter {
 		}
 		return false;
 	}
+	/**
+	 * returns true if the given name belongs to a user that is sharing the home directory with the model
+	 * @param name
+	 * @return
+	 */
 	public boolean sharesWith(String name) {
 		BufferedReader reader;
 		try {

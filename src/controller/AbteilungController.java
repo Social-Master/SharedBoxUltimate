@@ -1,3 +1,6 @@
+/**
+ * This is the Main controller class for the Abteilung model. From here big modifications on the model will be executed. 
+ */
 package controller;
 
 import java.io.File;
@@ -16,11 +19,18 @@ public class AbteilungController {
 	Abteilung model;
 	Mitarbeiter mit;
 	
+	/**
+	 * Just the basic references to work with.
+	 */
 	public AbteilungController(Abteilung model, Mitarbeiter mit) {
 		this.model = model;
 		this.mit = mit;
 	}
-
+	/**
+	 * This function is the basic upload function. All files uploaded will uploaded straight to the Abteilung path plus the relative path given by the String dest
+	 * @param in
+	 * @param dest
+	 */
 	public void uploadFile(File in, String dest) {
 		try {
 			Files.copy(in.toPath(), new File("Server/" + mit.getFirmaName() + "/Abteilungen/" + model.getName() + "/" + dest + "/" + in.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
@@ -29,6 +39,11 @@ public class AbteilungController {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * This function deletes the file at the given path at the current Abteilung path
+	 * @param name
+	 */
 	public void deleteFileByName(String name) {
 		File del = new File("Server/" + mit.getFirmaName() + "/Abteilungen/" + model.getName() + "/" + name);
 		if(del.isDirectory()) {
@@ -41,6 +56,10 @@ public class AbteilungController {
 	
 		}
 	}
+	/**
+	 * This is the recursive function to delete a folder with all its contents
+	 * @param folder
+	 */
 	public void deleteFolder(File folder) {
 	    File[] files = folder.listFiles();
 	    if(files != null) {
@@ -54,6 +73,11 @@ public class AbteilungController {
 	    }
 	    folder.delete();
 	}
+	/**
+	 * Copies a file from the relative src path to the relative dest path. It is relative to the Abteilung path
+	 * @param src
+	 * @param dest
+	 */
 	public void copyFileByName(String src, String dest) {
 		File srcFile = new File("Server/" + mit.getFirmaName() + "/Abteilungen/" + model.getName() + "/" + src);
 		File destFile = new File("Server/" + mit.getFirmaName() + "/Abteilungen/" + model.getName() + "/" + dest);
@@ -75,6 +99,11 @@ public class AbteilungController {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Same as the copy function but it realizes a move
+	 * @param src
+	 * @param dest
+	 */
 	public void moveFileByName(String src, String dest) {
 		File srcFile = new File("Server/" + mit.getFirmaName() + "/Abteilungen/" + model.getName() + "/" + src);
 		File destFile = new File("Server/" + mit.getFirmaName() + "/Abteilungen/" + model.getName() + "/" + dest);
@@ -87,6 +116,11 @@ public class AbteilungController {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Renaming is just a fancy move
+	 * @param src
+	 * @param name
+	 */
 	public void renameFile(String src, String name) {
 		File srcFile = new File("Server/" + mit.getFirmaName() + "/Abteilungen/" + model.getName() + "/" + src);
 		File destFile = new File(srcFile.getParent() + "/" + name);
@@ -99,6 +133,11 @@ public class AbteilungController {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Uploads a whole directory. For that it uses the Java.nio package and Files.walk.
+	 * @param in
+	 * @param dest
+	 */
 	public void uploadDir(File in, String dest) {
 		try {
 			Files.walk(Paths.get(in.getAbsolutePath())).forEach(source -> { Path destination = Paths.get("Server/" + mit.getFirmaName() + "/Abteilungen/" + model.getName() + "/" + dest + "/" + in.getName(), source.toString().substring(in.getAbsolutePath().length()));

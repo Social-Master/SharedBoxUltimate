@@ -1,3 +1,6 @@
+/**
+ * The controller for the RegisterView.
+ */
 package controller;
 
 import java.awt.event.ActionEvent;
@@ -19,6 +22,9 @@ public class RegisterViewController implements ActionListener {
 		this.view = view;
 	}
 
+	/**
+	 * Checks if all the register conditions are checked. The form needs to filled the domain of the mail address needs to be correct and unique and the number of Mitarbeiter needs to be smaller than 10
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == view.registerButton && view.firstnameTextArea.getText() != null && view.lastnameTextArea.getText() != null && view.emailTextArea.getText() != null && view.passwordTextArea.getText() != null) {

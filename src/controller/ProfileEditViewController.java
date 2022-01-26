@@ -1,3 +1,6 @@
+/**
+ * Controller for the ProfileEditView class. It implements updating of the Mitarbeiter
+ */
 package controller;
 
 import java.awt.event.ActionEvent;

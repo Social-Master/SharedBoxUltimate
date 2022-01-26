@@ -67,14 +67,15 @@ public class FileView {
 			  directoryContent.addElement(f.getName());
 		  }
 		  directoryContentList = new JList<>(directoryContent);
-		  
+		  JScrollPane sp = new JScrollPane(directoryContentList);
+		  sp.setPreferredSize(new Dimension(500, 300));
 
 		  /**
 		   * This directoryContentListPanel adds the directoryContentList from above to a panel, which is not at all obvious. The panel is added to the frame a couple of lines below.
 		   */
 
 		  directoryContentListPanel = new JPanel();
-		  directoryContentListPanel.add(directoryContentList);
+		  directoryContentListPanel.add(sp);
 		  directoryContentListPanel.setOpaque(true);
 
 		  /**

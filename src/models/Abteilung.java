@@ -1,3 +1,6 @@
+/**
+ * basic Abteilung model. Contains the core information of the model
+ */
 package models;
 
 public class Abteilung {

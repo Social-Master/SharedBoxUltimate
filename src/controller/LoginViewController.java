@@ -1,3 +1,6 @@
+/**
+ * the first window that appers. The login to initialize the Main.user.
+ */
 package controller;
 
 import java.awt.event.ActionEvent;
@@ -22,6 +25,9 @@ public class LoginViewController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		/**
+		 * checks if the Users login is correct
+		 */
 		if(e.getSource() == view.loginButton) {
 			boolean l = false;
 			for(Firma f : Initializer.firmen.keySet()) {

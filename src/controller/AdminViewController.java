@@ -1,3 +1,6 @@
+/**
+ * the underlying controller class for the AdminView class. From here many modifications on the whole Firma dataset can be done.
+ */
 package controller;
 
 import java.awt.event.ActionEvent;
@@ -18,13 +21,19 @@ public class AdminViewController implements ActionListener {
 	Firma fir = null;
 	FirmaController firC = null;
 	
-	
+	/**
+	 * references to work with in the class body
+	 * @param view
+	 */
 	public AdminViewController(AdminView view) {
 		this.view = view;
 		this.fir = Initializer.getFirmaByName(Main.user.getFirmaName());
 		this.firC = Initializer.getFirmaControllerByName(Main.user.getFirmaName());
 	}
 
+	/**
+	 * overrides the actionPerformed and realizes the buttons and menu list items with their functions
+	 */
 	@SuppressWarnings("unused")
 	@Override
 	public void actionPerformed(ActionEvent e) {

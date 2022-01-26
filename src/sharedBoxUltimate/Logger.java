@@ -1,3 +1,6 @@
+/**
+ * The Loggin function that is staticaly called from many functions
+ */
 package sharedBoxUltimate;
 
 import java.io.File;

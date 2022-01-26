@@ -1,3 +1,6 @@
+/**
+ * The Controller Class for the InvitedFoldersView
+ */
 package controller;
 
 import java.awt.event.ActionEvent;
@@ -18,6 +21,9 @@ public class InvitedFoldersViewController implements ActionListener {
 	public InvitedFoldersViewController(InvitedFoldersView view) {
 		this.view = view;
 	}
+	/**
+	 * updates the fileView window
+	 */
 	private void updateFileView() {
 		DefaultListModel<String> dC = new DefaultListModel<>();
 		MitarbeiterController x = new MitarbeiterController(view.target);
@@ -27,6 +33,9 @@ public class InvitedFoldersViewController implements ActionListener {
 		view.contentList.setModel(dC);
 		
 	}
+	/**
+	 * implements the ActionListener. From here the different file operations are called. Pretty much identical to the FileViewController class
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == view.uploadFileItem) {

@@ -22,20 +22,26 @@ public class Main {
 		
 		Initializer b = new Initializer();
 		b.readFirmen();
+		
+		Initializer.createFirma("Twitter", "twitter.com");
+		Initializer.createFirma("Reddit", "reddit.com");
+		
+		FirmaController bla = Initializer.getFirmaControllerByName("twitter");
+		bla.createMitarbeiter(1, "Heimbrodt", "Sten", "heimbrodt@twitter.com", "passwort1");
+		bla.createMitarbeiter(2, "Muhabbek", "Adam", "muhabbek@twitter.com", "passwort2");
+		bla.createMitarbeiter(3, "Alex", "Muster", "alex.muster@twitter.com", "1234");
+		bla.createMitarbeiter(4, "Kim", "Beispiel", "kbeispiel@twitter.com", "1111");
+		bla.createMitarbeiter(5, "Sam", "Noel", "noel_sam@twitter.com", "kekse");
+		bla.createAbteilung("Development");
+		bla.createAbteilung("Research");
+		//bla.getFirma().printMitarbeiter();
+		
 		Initializer.getFirmaByName("twitter").getMitarbeiterByName("Heimbrodt").setOp(true);
 		LoginView loginview = new LoginView();		// Creates a new Loginview window. More about this window, see the comments in Loginview.java
 		loginview.loginviewGo();
 		
-		/*Initializer.createFirma("Twitter", "twitter.com");
-		Initializer.createFirma("Reddit", "reddit.com");
 		
-		FirmaController bla = b.getFirmaControllerByName("twitter");
-		bla.createMitarbeiter(1, "Heimbrodt", "Sten", "heimbrodt@twitter.com", "passwort1");
-		bla.createMitarbeiter(2, "Muhabbek", "Adam", "muhabbek@twitter.com", "passwort2");
-		bla.createAbteilung("Development");
-		bla.createAbteilung("Research");
-		bla.getFirma().printMitarbeiter();
-		*/
+		
 	}
 	
 	public static void initFileStructure() {

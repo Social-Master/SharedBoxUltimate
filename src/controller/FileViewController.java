@@ -1,3 +1,6 @@
+/**
+ * the controller class for the FileView class.
+ */
 package controller;
 
 import java.awt.event.ActionEvent;
@@ -26,6 +29,9 @@ public class FileViewController implements ActionListener {
 	public FileViewController(FileView view) {
 		this.view = view;
 	}
+	/**
+	 * Updates the file window items
+	 */
 	private void updateFileView() {
 		DefaultListModel<String> dC = new DefaultListModel<>();
 		MitarbeiterController x = new MitarbeiterController(Main.user);
@@ -34,6 +40,9 @@ public class FileViewController implements ActionListener {
 		}
 		view.directoryContentList.setModel(dC);
 	}
+	/**
+	 * The button und menu item interaction listeners. From here the different functions on the model controllers get called and the content on the view gets updated
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == view.uploadFileItem) {

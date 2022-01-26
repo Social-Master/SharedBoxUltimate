@@ -1,3 +1,6 @@
+/**
+ * basic Firma model. Contains the core information of the model
+ */
 package models;
 
 import java.util.HashSet;

@@ -1,3 +1,6 @@
+/**
+ * The class that inizializes everything including the file structure and loads the instances from the filesystem into the runtime
+ */
 package sharedBoxUltimate;
 
 import java.io.File;
@@ -28,6 +31,9 @@ public class Initializer {
 		
 	}
 	
+	/**
+	 * reads the file system and initializes the objects for Firma, Abteilung and Mitarbeiter and connects them
+	 */
 	public void readFirmen() {
 		File[] dirs = new File("Server").listFiles(File::isDirectory);
 		for (File datei : dirs) {
@@ -60,6 +66,11 @@ public class Initializer {
 			}
 		}
 	}
+	/**
+	 * Helper function to parse the userinfo.csv and initailize the Mitarbieter object and return it
+	 * @param datei
+	 * @return
+	 */
 	private Mitarbeiter parseMitarbeiterFile(File datei) {
 		BufferedReader reader;
 		Mitarbeiter mit = null;
@@ -84,6 +95,11 @@ public class Initializer {
 		}
 		return mit;
 	}
+	/**
+	 * Same for the Abteilung as for the Mitarbeiter except it is a call by reference
+	 * @param datei
+	 * @param mit
+	 */
 	private void parseAbteilungFile(File datei, Mitarbeiter mit) {
 		BufferedReader reader;
 		try {
@@ -104,11 +120,19 @@ public class Initializer {
 		}
 		
 	}
+	/**
+	 * Prints all Firmen
+	 */
 	public void printFirmen() {
 		for(Firma a : firmen.keySet()) {
 			System.out.println(a.getName());
 		}
 	}
+	/**
+	 * creates a new Firma with its file structure and create a new object and adds it to the firmen set
+	 * @param name
+	 * @param domain
+	 */
 	public static void createFirma(String name, String domain) {
 		File firmaDir = new File("Server/" + name);
 		if(!firmaDir.exists()) {
@@ -128,6 +152,11 @@ public class Initializer {
 			firmen.put(neu, new FirmaController(neu));
 		}
 	}
+	/**
+	 * returns reference to Firma if it is found by the name. Otherwise returns null
+	 * @param name
+	 * @return
+	 */
 	public static Firma getFirmaByName(String name) {
 		Set<Firma> bla = Initializer.firmen.keySet();
 		for(Firma blabla : bla) {
@@ -137,6 +166,11 @@ public class Initializer {
 		}
 		return null;
 	}
+	/**
+	 * returns reference to FirmaController if it is found by the name. Otherwise returns null
+	 * @param name
+	 * @return
+	 */
 	public static FirmaController getFirmaControllerByName(String name) {
 		Set<Firma> bla = Initializer.firmen.keySet();
 		for(Firma blabla : bla) {

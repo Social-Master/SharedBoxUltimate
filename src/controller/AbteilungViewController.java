@@ -1,3 +1,6 @@
+/**
+ * Controller Class for the AbteilungView.java view. 
+ */
 package controller;
 
 import java.awt.event.ActionEvent;
@@ -20,12 +23,19 @@ public class AbteilungViewController implements ActionListener {
 	private AbteilungController ac = null;
 	private int cop = 0;
 	
-	
+	/**
+	 * Again just the references to work with in the class
+	 * @param view
+	 * @param a
+	 */
 	public AbteilungViewController(AbteilungView view, Abteilung a) {
 		this.view = view;
 		this.a = a;
 		this.ac = new AbteilungController(a, Main.user);
 	}
+	/**
+	 * Helper function to update the fileView data section. Without that function every update would happen in the function call itself.
+	 */
 	private void updateFileView() {
 		DefaultListModel<String> directoryContent = new DefaultListModel<>();		
 		for(File f : new MitarbeiterController(Main.user).getAbteilungFiles(a, view.currPath)) {
@@ -33,7 +43,9 @@ public class AbteilungViewController implements ActionListener {
 		}
 		view.departmentContentList.setModel(directoryContent);
 	}
-
+	/**
+	 * The button und menu item interaction listeners. From here the different functions on the model controllers get called and the content on the view gets updated
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == view.moveDownButton) {
