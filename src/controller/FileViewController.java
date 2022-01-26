@@ -5,10 +5,14 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
+import models.Abteilung;
+import sharedBoxUltimate.DepartmentView;
 import sharedBoxUltimate.FileView;
+import sharedBoxUltimate.Initializer;
 import sharedBoxUltimate.Main;
 
 public class FileViewController implements ActionListener {
@@ -32,14 +36,21 @@ public class FileViewController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == view.uploadFileItem) {
 			MitarbeiterController c = new MitarbeiterController(Main.user);
-			String srcPath = JOptionPane.showInputDialog("Geben sie den Pfad der hochzuladenden Datei ein:");
-			File upload = new File(srcPath);
-			if(upload.isDirectory()) {
-				c.uploadDir(upload, view.currPath);
-			}
-			else {
-				c.uploadFile(upload, view.currPath);
-			}
+			File upload = null;
+			JFileChooser chooser = new JFileChooser();
+			chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+			
+		    int returnVal = chooser.showOpenDialog(null);
+		    if(returnVal == JFileChooser.APPROVE_OPTION) {
+		       upload = chooser.getSelectedFile();
+		       if(upload.isDirectory()) {
+					c.uploadDir(upload, view.currPath);
+				}
+				else {
+					c.uploadFile(upload, view.currPath);
+				}
+		    }
+			
 			updateFileView();
 		}
 		if(e.getSource() == view.moveDownButton) {
@@ -93,6 +104,29 @@ public class FileViewController implements ActionListener {
 			String name = JOptionPane.showInputDialog("Geben sie den neuen Dateinamen an:");
 			c.renameFile(view.currPath + target, name);
 			updateFileView();
+		}
+		if(e.getSource() == view.mkdirFileItem) {
+			MitarbeiterController c = new MitarbeiterController(Main.user);
+			String name = JOptionPane.showInputDialog("Geben sie den Namen des Ordners an:");
+			c.mkdir(view.currPath + "/" + name);
+			updateFileView();
+		}
+		if(e.getSource() == view.toDepartmentView) {
+			String dep = JOptionPane.showInputDialog("Geben sie den Namen der Abteilung an, auf die sie zugreifen möchten:");
+			FirmaController f = Initializer.getFirmaControllerByName(Main.user.getFirmaName());
+			Abteilung a = f.getAbteilungByName(dep);
+			if(a == null) {
+				JOptionPane.showMessageDialog(null, "Es konnte keine Abteilung mit diesem Namen gefunden werde!");
+			}
+			else {
+				if(Main.user.isInAbteilung(dep)) {
+					DepartmentView dv = new DepartmentView(a);
+					dv.departmentViewGo();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Sie sind nicht Mitglied dieser Abteilung!");
+				}
+			}
 		}
 	}
 

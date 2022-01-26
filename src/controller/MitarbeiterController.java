@@ -119,6 +119,15 @@ public class MitarbeiterController {
 			e.printStackTrace();
 		}
 	}
+	public void mkdir(String dest) {
+		File destFile = new File(model.getUserPath() + "/" + dest);
+		if(!destFile.exists()) {
+			destFile.mkdir();
+		}
+		else {
+			System.out.println("Ziel existert bereits!");
+		}
+	}
 	
 	
 	public Set<File> getUserFiles(String s) {
@@ -130,13 +139,11 @@ public class MitarbeiterController {
 		return out;
 	}
 
-	public Set<File> getAbteilungFiles() {
+	public Set<File> getAbteilungFiles(Abteilung a, String s) {
 		Set<File> out = new HashSet<File>();
-		for(Abteilung a : model.getAbteilungen()) {
-			File abteilungDir = new File("Server/" + model.getFirmaName() + "/Abteilungen/" + a.getName());
-			for(File f : abteilungDir.listFiles()) {
-				out.add(f);
-			}
+		File abteilungDir = new File("Server/" + model.getFirmaName() + "/Abteilungen/" + a.getName() + "/" + s);
+		for(File f : abteilungDir.listFiles()) {
+			out.add(f);
 		}
 		return out;
 	}

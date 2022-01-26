@@ -28,6 +28,7 @@ public class FileView {
 	 public JMenuItem pasteFileItem = null;
 	 public JMenuItem cutFileItem = null;
 	 public JMenuItem renameFileItem = null;
+	 public JMenuItem mkdirFileItem = null;
 	 private FileViewController fvc = null;
 	 public String currPath = "";
 	 public JButton moveDownButton = null;
@@ -35,6 +36,7 @@ public class FileView {
 	 public JList<String> abteilungContentList = null;
 	 public JLabel filePathLabel = null;
 	 public JButton moveUpButton = null;
+	 public JButton toDepartmentView = null;
 	 
 	 public FileView() {
 		 this.fvc = new FileViewController(this);
@@ -108,6 +110,8 @@ public class FileView {
 		  renameFileItem.addActionListener(fvc);
 		  deleteFileItem = new JMenuItem("Löschen");
 		  deleteFileItem.addActionListener(fvc);
+		  mkdirFileItem = new JMenuItem("Ordner erstellen");
+		  mkdirFileItem.addActionListener(fvc);
 		  JMenuItem inviteToHomeDirectoryItem = new JMenuItem("Zum Home-Verzeichnis einladen...");
 		  inviteToHomeDirectoryItem.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
@@ -121,6 +125,7 @@ public class FileView {
 		  fileMenu.add(pasteFileItem);
 		  fileMenu.add(renameFileItem);
 		  fileMenu.add(deleteFileItem);
+		  fileMenu.add(mkdirFileItem);
 		  fileMenu.add(inviteToHomeDirectoryItem);
 
 		  /**
@@ -173,7 +178,10 @@ public class FileView {
 				   dialogBoxLogout();
 			   }
 		   });
+		   toDepartmentView = new JButton("Zum Abteilungsfilebrowser");
+		   toDepartmentView.addActionListener(fvc);
 		   userSettingsPanel.setLayout(new BoxLayout(userSettingsPanel, BoxLayout.PAGE_AXIS));
+		   userSettingsPanel.add(toDepartmentView);
 		   userSettingsPanel.add(editProfileButton);
 		   userSettingsPanel.add(deleteProfileButton);
 		   if(Main.user.isOp()) {

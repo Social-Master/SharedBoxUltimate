@@ -84,4 +84,12 @@ public class Mitarbeiter {
 			return false;
 		}
 	}
+	public boolean isInAbteilung(String name) {
+		for(Abteilung a : abteilungen) {
+			if(a.getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
