@@ -135,7 +135,9 @@ public class InvitedFoldersView {
 			directoryContent.addElement(f.getName());
 		}
 		contentList = new JList<>(directoryContent);
-		listPanel.add(contentList);
+		JScrollPane sp = new JScrollPane(contentList);
+		sp.setPreferredSize(new Dimension(500, 300));
+		listPanel.add(sp);
 
 		frame.getContentPane().add(BorderLayout.NORTH, topPanel);
 		frame.getContentPane().add(BorderLayout.CENTER, listPanel);

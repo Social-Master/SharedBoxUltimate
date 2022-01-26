@@ -127,7 +127,9 @@ public class AbteilungView {
 		}
 		departmentContentList = new JList<>();
 		departmentContentList.setModel(directoryContent);
-		listPanel.add(departmentContentList);
+		JScrollPane sp = new JScrollPane(departmentContentList);
+		sp.setPreferredSize(new Dimension(500, 300));
+		listPanel.add(sp);
 
 		frame.getContentPane().add(BorderLayout.NORTH, topPanel);
 		frame.getContentPane().add(BorderLayout.CENTER, listPanel);
