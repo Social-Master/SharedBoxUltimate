@@ -33,6 +33,21 @@ public class MitarbeiterController {
 	 * @param dest
 	 */
 	public void uploadFile(File in, String dest) {
+		long fs = 0;
+		try{
+		fs = Files.size(in.toPath())/(1024*1024);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(fs > 5) {
+			JOptionPane.showMessageDialog(null, "Die Datei überschreitet die Maximalgröße von 5 MB.", "Dateigröße Überschritten", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		if(countSize(Paths.get(model.getUserPath()))/(1024*1024) + fs > 10) {
+			JOptionPane.showMessageDialog(null, "Der Upload würde die Speicherplatzbegrenzung von 10 MB überschreiten.", "Speicherplatzbegrenzung Überschritten", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		
 		try {
 			Files.copy(in.toPath(), new File(model.getUserPath() + "/" + dest + "/" + in.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
 			Logger.log(this.model, "Uploaded " + in.getName(), new File(model.getUserPath()));
@@ -345,6 +360,28 @@ public class MitarbeiterController {
 	public void setVorname(String in) {
 		updateUser(model.getId(), model.getName(), in, model.getEmail(), model.getPasswort(), model.getUserPath(), model.isOp());
 		model.setVorname(in);
+	}
+	
+	/**
+	* Returns the sum of the size of all Files in a given directory.
+	* @param dir
+	* @return s
+	*/
+	public long countSize(Path dir) {
+		long s = 0;
+		for(File i : dir.toFile().listFiles()) {
+			if(Files.isRegularFile(i.toPath())) {
+				try {
+					s += Files.size(i.toPath());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} 
+			else if(Files.isDirectory(i.toPath())) {
+				s += countSize(i.toPath());
+			}
+		}
+		return s;
 	}
 	
 	/**

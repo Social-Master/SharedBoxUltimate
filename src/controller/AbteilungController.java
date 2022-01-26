@@ -32,6 +32,21 @@ public class AbteilungController {
 	 * @param dest
 	 */
 	public void uploadFile(File in, String dest) {
+		long fs = 0;
+		try{
+		fs = Files.size(in.toPath())/(1024*1024);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(fs > 5) {
+			JOptionPane.showMessageDialog(null, "Die Datei überschreitet die Maximalgröße von 5 MB.", "Dateigröße Überschritten", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		if(countSize(Paths.get(model.getUserPath()))/(1024*1024) + fs > 25) {
+			JOptionPane.showMessageDialog(null, "Der Upload würde die Speicherplatzbegrenzung von 25 MB überschreiten.", "Speicherplatzbegrenzung Überschritten", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+	
 		try {
 			Files.copy(in.toPath(), new File("Server/" + mit.getFirmaName() + "/Abteilungen/" + model.getName() + "/" + dest + "/" + in.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
 			Logger.log(this.mit, "Uploaded " + in.getName(), new File("Server/" + mit.getFirmaName() + "/Abteilungen/" + model.getName() + "/" + dest));
@@ -153,5 +168,27 @@ public class AbteilungController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	* Returns the sum of the size of all Files in a given directory.
+	* @param dir
+	* @return s
+	*/
+	public long countSize(Path dir) {
+		long s = 0;
+		for(File i : dir.toFile().listFiles()) {
+			if(Files.isRegularFile(i.toPath())) {
+				try {
+					s += Files.size(i.toPath());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} 
+			else if(Files.isDirectory(i.toPath())) {
+				s += countSize(i.toPath());
+			}
+		}
+		return s;
 	}
 }
