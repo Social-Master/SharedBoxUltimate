@@ -1,11 +1,12 @@
 /**
  * This class is providing a view to allow the registration of new users.
  */
-package sharedBoxUltimate;
+package views;
 import javax.swing.*;
 
 import controller.RegisterViewController;
 import models.Firma;
+import sharedBoxUltimate.Initializer;
 
 import java.awt.event.*;
 import java.awt.*;

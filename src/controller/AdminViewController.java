@@ -9,9 +9,9 @@ import javax.swing.JOptionPane;
 
 import models.Firma;
 import models.Mitarbeiter;
-import sharedBoxUltimate.AdminView;
 import sharedBoxUltimate.Initializer;
 import sharedBoxUltimate.Main;
+import views.AdminView;
 
 public class AdminViewController implements ActionListener {
 	AdminView view = null;

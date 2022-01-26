@@ -1,4 +1,4 @@
-package sharedBoxUltimate;
+package views;
 /**
  * This class is the view that appears when the user are logged in; it shows the directory contents and allows access to settings.
  */
@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import controller.FileViewController;
 import controller.MitarbeiterController;
+import sharedBoxUltimate.Main;
 
 import java.awt.event.*;
 import java.io.File;

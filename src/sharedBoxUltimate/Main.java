@@ -7,6 +7,7 @@ import controller.FirmaController;
 import controller.MitarbeiterController;
 import models.Abteilung;
 import models.Mitarbeiter;
+import views.LoginView;
 
 @SuppressWarnings("unused")
 public class Main {

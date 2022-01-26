@@ -1,19 +1,20 @@
 /**
  * This class allows the user access to their departments.
  */
-package sharedBoxUltimate;
+package views;
 import javax.swing.*;
 
-import controller.DepartmentViewController;
+import controller.AbteilungViewController;
 import controller.MitarbeiterController;
 import models.Abteilung;
+import sharedBoxUltimate.Main;
 
 import java.awt.event.*;
 import java.io.File;
 //import java.io.File;
 import java.awt.*;
 
-public class DepartmentView {
+public class AbteilungView {
 	
 	/**
 	 * These are the main things, that allow a window to appear and all the items it will contain.
@@ -34,11 +35,11 @@ public class DepartmentView {
 	public JMenuItem renameFileItem = null;
 	public String currPath = "";
 	JMenu operationsMenu = null;
-	private DepartmentViewController dvc = null;
+	private AbteilungViewController dvc = null;
 	private Abteilung a = null;
 
-	public DepartmentView(Abteilung a) {
-		this.dvc = new DepartmentViewController(this, a);
+	public AbteilungView(Abteilung a) {
+		this.dvc = new AbteilungViewController(this, a);
 		this.a = a;
 	}
 	
@@ -48,7 +49,7 @@ public class DepartmentView {
 		 * The following lines set up the window itself (e.g. its size etc.)
 		 */
 
-		frame = new JFrame("Shared-Box Ultimate - Department");
+		frame = new JFrame("Shared-Box Ultimate - " + a.getName());
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(1000, 500);
 		frame.setLocation(300, 300);
@@ -70,23 +71,17 @@ public class DepartmentView {
 		cutFileItem = new JMenuItem("Ausschneiden", KeyEvent.VK_T);
 		cutFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
 		cutFileItem.addActionListener(dvc);
-		// cut ActionListener hier
 		copyFileItem = new JMenuItem("Kopieren", KeyEvent.VK_T);
 		copyFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 		copyFileItem.addActionListener(dvc);
-		// copy ActionListener hier
 		pasteFileItem = new JMenuItem("Einfügen", KeyEvent.VK_T);
 		pasteFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
 		pasteFileItem.addActionListener(dvc);
-		// paste ActionListener hier
 		renameFileItem = new JMenuItem("Umbenennen", KeyEvent.VK_T);
 		renameFileItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
 		renameFileItem.addActionListener(dvc);
-		// rename ActionListener hier
 		deleteFileItem = new JMenuItem("Löschen");
 		deleteFileItem.addActionListener(dvc);
-		// delete ActionListener hier
-		// ActionListener hier
 		operationsMenu.add(uploadFileItem);
 		operationsMenu.add(cutFileItem);
 		operationsMenu.add(copyFileItem);

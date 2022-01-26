@@ -12,10 +12,11 @@ import javax.swing.JOptionPane;
 import models.Abteilung;
 import models.Firma;
 import models.Mitarbeiter;
-import sharedBoxUltimate.DepartmentView;
-import sharedBoxUltimate.FileView;
 import sharedBoxUltimate.Initializer;
 import sharedBoxUltimate.Main;
+import views.AbteilungView;
+import views.FileView;
+import views.InvitedFoldersView;
 
 public class FileViewController implements ActionListener {
 	
@@ -139,7 +140,7 @@ public class FileViewController implements ActionListener {
 			}
 			else {
 				if(Main.user.isInAbteilung(dep)) {
-					DepartmentView dv = new DepartmentView(a);
+					AbteilungView dv = new AbteilungView(a);
 					dv.departmentViewGo();
 				}
 				else {
@@ -157,7 +158,8 @@ public class FileViewController implements ActionListener {
 			}
 			else {
 				if(Main.user.sharesWith(m.getName())) {
-					
+					InvitedFoldersView ifv = new InvitedFoldersView(m);
+					ifv.invitedFoldersViewGo();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Der Nutzer teilt nicht sein Verzeichniss mit Ihnen!");

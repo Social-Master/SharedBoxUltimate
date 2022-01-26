@@ -3,7 +3,7 @@
 // JList.getSelectedValue().toString() gibt null bei keiner Auswahl
 // TODO separates Registrationsverwaltungsfenser
 ///////////////////////////////////////////////////////////////////////
-package sharedBoxUltimate;
+package views;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -12,6 +12,7 @@ import javax.swing.*;
 
 import controller.AdminViewController;
 import controller.MitarbeiterController;
+import sharedBoxUltimate.Main;
 
 import java.util.*;
 

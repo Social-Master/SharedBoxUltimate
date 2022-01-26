@@ -1,7 +1,7 @@
 /**
  * This class is the login window.
  */
-package sharedBoxUltimate;
+package views;
 import javax.swing.*;
 
 import controller.LoginViewController;

@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import models.Firma;
-import sharedBoxUltimate.FileView;
 import sharedBoxUltimate.Initializer;
 import sharedBoxUltimate.Main;
-import sharedBoxUltimate.RegisterView;
+import views.FileView;
+import views.RegisterView;
 
 public class RegisterViewController implements ActionListener {
 	

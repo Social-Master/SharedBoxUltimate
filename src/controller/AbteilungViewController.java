@@ -11,19 +11,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import models.Abteilung;
-import sharedBoxUltimate.DepartmentView;
 import sharedBoxUltimate.Main;
+import views.AbteilungView;
 
-public class DepartmentViewController implements ActionListener {
+public class AbteilungViewController implements ActionListener {
 	
-	private DepartmentView view = null;
+	private AbteilungView view = null;
 	private File src = null;
 	private Abteilung a = null;
 	private AbteilungController ac = null;
 	private int cop = 0;
 	
 	
-	public DepartmentViewController(DepartmentView view, Abteilung a) {
+	public AbteilungViewController(AbteilungView view, Abteilung a) {
 		this.view = view;
 		this.a = a;
 		this.ac = new AbteilungController(a, Main.user);
@@ -89,12 +89,11 @@ public class DepartmentViewController implements ActionListener {
 			cop = 1;
 		}
 		if(e.getSource() == view.pasteFileItem) {
-			MitarbeiterController c = new MitarbeiterController(Main.user);
 			if(cop == 1) {
-				c.copyFileByName(src.getPath(), view.currPath + src.getName());
+				ac.copyFileByName(src.getPath(), view.currPath + src.getName());
 			}
 			else if(cop == 2) {
-				c.moveFileByName(src.getPath(), view.currPath + src.getName());
+				ac.moveFileByName(src.getPath(), view.currPath + src.getName());
 			}
 			updateFileView();
 		}
@@ -103,10 +102,9 @@ public class DepartmentViewController implements ActionListener {
 			cop = 2;
 		}
 		if(e.getSource() == view.renameFileItem) {
-			MitarbeiterController c = new MitarbeiterController(Main.user);
 			String target = view.departmentContentList.getSelectedValue();
 			String name = JOptionPane.showInputDialog("Geben sie den neuen Dateinamen an:");
-			c.renameFile(view.currPath + target, name);
+			ac.renameFile(view.currPath + target, name);
 			updateFileView();
 		}
 		

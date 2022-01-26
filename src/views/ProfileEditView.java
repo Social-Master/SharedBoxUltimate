@@ -1,7 +1,7 @@
 /**
  * This is the view, that appears, when the editProfileButton from the Fileview class is clicked. It allows the edit some data in their profile.
  */
-package sharedBoxUltimate;
+package views;
 import javax.swing.*;
 
 import controller.ProfileEditViewController;

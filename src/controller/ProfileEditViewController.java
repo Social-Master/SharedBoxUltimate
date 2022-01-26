@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import sharedBoxUltimate.Main;
-import sharedBoxUltimate.ProfileEditView;
+import views.ProfileEditView;
 
 public class ProfileEditViewController implements ActionListener {
 	private ProfileEditView view = null;
